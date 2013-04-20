@@ -1,0 +1,29 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           saForms
+    theme:                 project
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          sa_forms
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:    
+        fields:
+#           form_url:   { label: Url}
+        display: [=id, form_name, created_at, updated_at]
+        object_actions: 
+           View: { name: Add a comment, action: preview, icon: backend/addcomment.png }
+           _delete: ~
+           _edit: ~		
+      filter:  
+        class: false
+      form:    ~
+      edit:    ~
+      new:     

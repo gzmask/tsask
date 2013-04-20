@@ -1,0 +1,163 @@
+Oct 24 15:35:51 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /forms/show/id/33 with parameters array (  'module' => 'forms',  'action' => 'show',  'id' => '33',)
+Oct 24 15:35:51 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Oct 24 15:35:51 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Oct 24 15:35:51 symfony [info] {formsActions} Call "formsActions->executeShow()"
+Oct 24 15:35:51 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Oct 24 15:35:51 symfony [info] {Doctrine_Connection_Statement} execute : SELECT s.id AS s__id, s.form_name AS s__form_name, s.form_content AS s__form_content, s.form_published AS s__form_published, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM sa_forms s WHERE (s.id = ?) LIMIT 1 - (33)
+Oct 24 15:35:51 symfony [info] {formsActions} $this->form_content  
+	  
+	  
+	  
+
+                    <li class="control_text_area">    <div class="fbc_bar">    <div class="bar_tit">Text Area</div>    <div class="bar_btns"><span>    <a href="#!" title="ARROW DOWN" class="btn_down"></a>    <a href="#!" title="ARROW UP" class="btn_up"></a>    <a href="#!" title="ARROW BOTTOM" class="btn_bottom"></a>    <a href="#!" title="ARROW TOP" class="btn_top"></a>    <a href="#!" title="DELETE" class="btn_del"></a>    </span></div>    </div>    <div class="fbc_txt">    <textarea style="width: 729px; height: 174px;" class="intxt" id="text_area_text" onfocus="if(value =='Click to edit this text...'){value =''}" onblur="if (value ==''){value='Click to edit this text...'}">Click to edit this text...</textarea>    </div>    </li>    <li class="control_heading">    <div class="fbc_bar">    <div class="bar_tit">Heading</div>    <div class="bar_btns"><span>    <a href="#!" title="ARROW DOWN" class="btn_down"></a>    <a href="#!" title="ARROW UP" class="btn_up"></a>    <a href="#!" title="ARROW BOTTOM" class="btn_bottom"></a>    <a href="#!" title="ARROW TOP" class="btn_top"></a>    <a href="#!" title="DELETE" class="btn_del"></a>    </span></div>    </div>    <div class="fbc_txt">    <input class="intxt" id="heading_text" value="Click to edit this text..." onfocus="if(value =='Click to edit this text...'){value =''}" onblur="if (value ==''){value='Click to edit this text...'}">    </div>    </li>    
+Oct 24 15:35:51 symfony [info] {formsActions} $this->form_published  <div class="requ_desc">This form must be filled in completely and returned to the Authority with payment. Failure to do so may result in a delay in the processing of your application. Please refer to TSK-0003 Client Authorization Payment form for payment options. You can download all forms at <a href="#!" class="fontc">www.tsask.ca</a>. Please fax or email completed application with payment.</div><div class="requf_tit">I. Personal Information</div>
+Oct 24 15:35:51 symfony [info] {sfPHPView} Render "/var/authority/apps/frontend/modules/forms/templates/showSuccess.php"
+Oct 24 15:35:51 symfony [info] {sfPHPView} Decorate content with "/var/authority/apps/frontend/templates/layout.php"
+Oct 24 15:35:51 symfony [info] {sfPHPView} Render "/var/authority/apps/frontend/templates/layout.php"
+Oct 24 15:35:51 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Oct 24 15:35:51 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Oct 24 15:35:51 symfony [info] {sfWebDebugLogger} Configuration 294.52 ms (9)
+Oct 24 15:35:51 symfony [info] {sfWebDebugLogger} Factories 124.13 ms (1)
+Oct 24 15:35:51 symfony [info] {sfWebDebugLogger} Action "forms/show" 49.66 ms (1)
+Oct 24 15:35:51 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Oct 24 15:35:51 symfony [info] {sfWebDebugLogger} View "Success" for "forms/show" 20.55 ms (1)
+Oct 24 15:35:51 symfony [info] {sfWebResponse} Send content (37662 o)
+Oct 24 15:35:53 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /forms/show/id/33 with parameters array (  'module' => 'forms',  'action' => 'show',  'id' => '33',)
+Oct 24 15:35:53 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Oct 24 15:35:53 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Oct 24 15:35:53 symfony [info] {formsActions} Call "formsActions->executeShow()"
+Oct 24 15:35:53 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Oct 24 15:35:53 symfony [info] {Doctrine_Connection_Statement} execute : SELECT s.id AS s__id, s.form_name AS s__form_name, s.form_content AS s__form_content, s.form_published AS s__form_published, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM sa_forms s WHERE (s.id = ?) LIMIT 1 - (33)
+Oct 24 15:35:53 symfony [info] {formsActions} $this->form_content  
+	  
+	  
+	  
+
+                    <li class="control_text_area">    <div class="fbc_bar">    <div class="bar_tit">Text Area</div>    <div class="bar_btns"><span>    <a href="#!" title="ARROW DOWN" class="btn_down"></a>    <a href="#!" title="ARROW UP" class="btn_up"></a>    <a href="#!" title="ARROW BOTTOM" class="btn_bottom"></a>    <a href="#!" title="ARROW TOP" class="btn_top"></a>    <a href="#!" title="DELETE" class="btn_del"></a>    </span></div>    </div>    <div class="fbc_txt">    <textarea style="width: 729px; height: 174px;" class="intxt" id="text_area_text" onfocus="if(value =='Click to edit this text...'){value =''}" onblur="if (value ==''){value='Click to edit this text...'}">Click to edit this text...</textarea>    </div>    </li>    <li class="control_heading">    <div class="fbc_bar">    <div class="bar_tit">Heading</div>    <div class="bar_btns"><span>    <a href="#!" title="ARROW DOWN" class="btn_down"></a>    <a href="#!" title="ARROW UP" class="btn_up"></a>    <a href="#!" title="ARROW BOTTOM" class="btn_bottom"></a>    <a href="#!" title="ARROW TOP" class="btn_top"></a>    <a href="#!" title="DELETE" class="btn_del"></a>    </span></div>    </div>    <div class="fbc_txt">    <input class="intxt" id="heading_text" value="Click to edit this text..." onfocus="if(value =='Click to edit this text...'){value =''}" onblur="if (value ==''){value='Click to edit this text...'}">    </div>    </li>    
+Oct 24 15:35:53 symfony [info] {formsActions} $this->form_published  <div class="requ_desc">This form must be filled in completely and returned to the Authority with payment. Failure to do so may result in a delay in the processing of your application. Please refer to TSK-0003 Client Authorization Payment form for payment options. You can download all forms at <a href="#!" class="fontc">www.tsask.ca</a>. Please fax or email completed application with payment.</div><div class="requf_tit">I. Personal Information</div>
+Oct 24 15:35:53 symfony [info] {sfPHPView} Render "/var/authority/apps/frontend/modules/forms/templates/showSuccess.php"
+Oct 24 15:35:53 symfony [info] {sfPHPView} Decorate content with "/var/authority/apps/frontend/templates/layout.php"
+Oct 24 15:35:53 symfony [info] {sfPHPView} Render "/var/authority/apps/frontend/templates/layout.php"
+Oct 24 15:35:53 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Oct 24 15:35:53 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Oct 24 15:35:53 symfony [info] {sfWebDebugLogger} Configuration 1.15 ms (9)
+Oct 24 15:35:53 symfony [info] {sfWebDebugLogger} Factories 22.25 ms (1)
+Oct 24 15:35:53 symfony [info] {sfWebDebugLogger} Action "forms/show" 34.05 ms (1)
+Oct 24 15:35:53 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Oct 24 15:35:53 symfony [info] {sfWebDebugLogger} View "Success" for "forms/show" 8.29 ms (1)
+Oct 24 15:35:53 symfony [info] {sfWebResponse} Send content (37625 o)
+Oct 24 15:36:06 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /forms/show/id/33 with parameters array (  'module' => 'forms',  'action' => 'show',  'id' => '33',)
+Oct 24 15:36:06 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Oct 24 15:36:06 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Oct 24 15:36:06 symfony [info] {formsActions} Call "formsActions->executeShow()"
+Oct 24 15:36:06 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Oct 24 15:36:06 symfony [info] {Doctrine_Connection_Statement} execute : SELECT s.id AS s__id, s.form_name AS s__form_name, s.form_content AS s__form_content, s.form_published AS s__form_published, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM sa_forms s WHERE (s.id = ?) LIMIT 1 - (33)
+Oct 24 15:36:06 symfony [info] {formsActions} $this->form_content  
+	  
+	  
+	  
+
+                    <li class="control_text_area">    <div class="fbc_bar">    <div class="bar_tit">Text Area</div>    <div class="bar_btns"><span>    <a href="#!" title="ARROW DOWN" class="btn_down"></a>    <a href="#!" title="ARROW UP" class="btn_up"></a>    <a href="#!" title="ARROW BOTTOM" class="btn_bottom"></a>    <a href="#!" title="ARROW TOP" class="btn_top"></a>    <a href="#!" title="DELETE" class="btn_del"></a>    </span></div>    </div>    <div class="fbc_txt">    <textarea style="width: 729px; height: 174px;" class="intxt" id="text_area_text" onfocus="if(value =='Click to edit this text...'){value =''}" onblur="if (value ==''){value='Click to edit this text...'}">Click to edit this text...</textarea>    </div>    </li>    <li class="control_heading">    <div class="fbc_bar">    <div class="bar_tit">Heading</div>    <div class="bar_btns"><span>    <a href="#!" title="ARROW DOWN" class="btn_down"></a>    <a href="#!" title="ARROW UP" class="btn_up"></a>    <a href="#!" title="ARROW BOTTOM" class="btn_bottom"></a>    <a href="#!" title="ARROW TOP" class="btn_top"></a>    <a href="#!" title="DELETE" class="btn_del"></a>    </span></div>    </div>    <div class="fbc_txt">    <input class="intxt" id="heading_text" value="Click to edit this text..." onfocus="if(value =='Click to edit this text...'){value =''}" onblur="if (value ==''){value='Click to edit this text...'}">    </div>    </li>    
+Oct 24 15:36:06 symfony [info] {formsActions} $this->form_published  <div class="requ_desc">This form must be filled in completely and returned to the Authority with payment. Failure to do so may result in a delay in the processing of your application. Please refer to TSK-0003 Client Authorization Payment form for payment options. You can download all forms at <a href="#!" class="fontc">www.tsask.ca</a>. Please fax or email completed application with payment.</div><div class="requf_tit">I. Personal Information</div>
+Oct 24 15:36:06 symfony [info] {sfPHPView} Render "/var/authority/apps/frontend/modules/forms/templates/showSuccess.php"
+Oct 24 15:36:06 symfony [info] {sfPHPView} Decorate content with "/var/authority/apps/frontend/templates/layout.php"
+Oct 24 15:36:06 symfony [info] {sfPHPView} Render "/var/authority/apps/frontend/templates/layout.php"
+Oct 24 15:36:06 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Oct 24 15:36:06 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Oct 24 15:36:06 symfony [info] {sfWebDebugLogger} Configuration 1.19 ms (9)
+Oct 24 15:36:06 symfony [info] {sfWebDebugLogger} Factories 22.88 ms (1)
+Oct 24 15:36:06 symfony [info] {sfWebDebugLogger} Action "forms/show" 27.30 ms (1)
+Oct 24 15:36:06 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Oct 24 15:36:06 symfony [info] {sfWebDebugLogger} View "Success" for "forms/show" 23.48 ms (1)
+Oct 24 15:36:06 symfony [info] {sfWebResponse} Send content (37628 o)
+Oct 24 15:37:53 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /forms/show/id/33 with parameters array (  'module' => 'forms',  'action' => 'show',  'id' => '33',)
+Oct 24 15:37:53 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Oct 24 15:37:53 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Oct 24 15:37:53 symfony [info] {formsActions} Call "formsActions->executeShow()"
+Oct 24 15:37:53 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Oct 24 15:37:53 symfony [info] {Doctrine_Connection_Statement} execute : SELECT s.id AS s__id, s.form_name AS s__form_name, s.form_content AS s__form_content, s.form_published AS s__form_published, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM sa_forms s WHERE (s.id = ?) LIMIT 1 - (33)
+Oct 24 15:37:53 symfony [info] {formsActions} $this->form_content  
+	  
+	  
+	  
+
+                    <li class="control_text_area">    <div class="fbc_bar">    <div class="bar_tit">Text Area</div>    <div class="bar_btns"><span>    <a href="#!" title="ARROW DOWN" class="btn_down"></a>    <a href="#!" title="ARROW UP" class="btn_up"></a>    <a href="#!" title="ARROW BOTTOM" class="btn_bottom"></a>    <a href="#!" title="ARROW TOP" class="btn_top"></a>    <a href="#!" title="DELETE" class="btn_del"></a>    </span></div>    </div>    <div class="fbc_txt">    <textarea style="width: 729px; height: 174px;" class="intxt" id="text_area_text" onfocus="if(value =='Click to edit this text...'){value =''}" onblur="if (value ==''){value='Click to edit this text...'}">Click to edit this text...</textarea>    </div>    </li>    <li class="control_heading">    <div class="fbc_bar">    <div class="bar_tit">Heading</div>    <div class="bar_btns"><span>    <a href="#!" title="ARROW DOWN" class="btn_down"></a>    <a href="#!" title="ARROW UP" class="btn_up"></a>    <a href="#!" title="ARROW BOTTOM" class="btn_bottom"></a>    <a href="#!" title="ARROW TOP" class="btn_top"></a>    <a href="#!" title="DELETE" class="btn_del"></a>    </span></div>    </div>    <div class="fbc_txt">    <input class="intxt" id="heading_text" value="Click to edit this text..." onfocus="if(value =='Click to edit this text...'){value =''}" onblur="if (value ==''){value='Click to edit this text...'}">    </div>    </li>    
+Oct 24 15:37:53 symfony [info] {formsActions} $this->form_published  <div class="requ_desc">This form must be filled in completely and returned to the Authority with payment. Failure to do so may result in a delay in the processing of your application. Please refer to TSK-0003 Client Authorization Payment form for payment options. You can download all forms at <a href="#!" class="fontc">www.tsask.ca</a>. Please fax or email completed application with payment.</div><div class="requf_tit">I. Personal Information</div>
+Oct 24 15:37:53 symfony [info] {sfPHPView} Render "/var/authority/apps/frontend/modules/forms/templates/showSuccess.php"
+Oct 24 15:37:53 symfony [info] {sfPHPView} Decorate content with "/var/authority/apps/frontend/templates/layout.php"
+Oct 24 15:37:53 symfony [info] {sfPHPView} Render "/var/authority/apps/frontend/templates/layout.php"
+Oct 24 15:37:53 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Oct 24 15:37:53 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Oct 24 15:37:53 symfony [info] {sfWebDebugLogger} Configuration 1.24 ms (9)
+Oct 24 15:37:53 symfony [info] {sfWebDebugLogger} Factories 32.48 ms (1)
+Oct 24 15:37:53 symfony [info] {sfWebDebugLogger} Action "forms/show" 64.25 ms (1)
+Oct 24 15:37:53 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Oct 24 15:37:53 symfony [info] {sfWebDebugLogger} View "Success" for "forms/show" 9.18 ms (1)
+Oct 24 15:37:53 symfony [info] {sfWebResponse} Send content (36723 o)
+Oct 24 15:59:30 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /forms/show/id/33 with parameters array (  'module' => 'forms',  'action' => 'show',  'id' => '33',)
+Oct 24 15:59:30 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Oct 24 15:59:30 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Oct 24 15:59:30 symfony [info] {formsActions} Call "formsActions->executeShow()"
+Oct 24 15:59:30 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Oct 24 15:59:30 symfony [info] {Doctrine_Connection_Statement} execute : SELECT s.id AS s__id, s.form_name AS s__form_name, s.form_content AS s__form_content, s.form_published AS s__form_published, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM sa_forms s WHERE (s.id = ?) LIMIT 1 - (33)
+Oct 24 15:59:30 symfony [info] {formsActions} $this->form_content  
+	  
+	  
+	  
+
+                    <li class="control_text_area">    <div class="fbc_bar">    <div class="bar_tit">Text Area</div>    <div class="bar_btns"><span>    <a href="#!" title="ARROW DOWN" class="btn_down"></a>    <a href="#!" title="ARROW UP" class="btn_up"></a>    <a href="#!" title="ARROW BOTTOM" class="btn_bottom"></a>    <a href="#!" title="ARROW TOP" class="btn_top"></a>    <a href="#!" title="DELETE" class="btn_del"></a>    </span></div>    </div>    <div class="fbc_txt">    <textarea style="width: 729px; height: 174px;" class="intxt" id="text_area_text" onfocus="if(value =='Click to edit this text...'){value =''}" onblur="if (value ==''){value='Click to edit this text...'}">Click to edit this text...</textarea>    </div>    </li>    <li class="control_heading">    <div class="fbc_bar">    <div class="bar_tit">Heading</div>    <div class="bar_btns"><span>    <a href="#!" title="ARROW DOWN" class="btn_down"></a>    <a href="#!" title="ARROW UP" class="btn_up"></a>    <a href="#!" title="ARROW BOTTOM" class="btn_bottom"></a>    <a href="#!" title="ARROW TOP" class="btn_top"></a>    <a href="#!" title="DELETE" class="btn_del"></a>    </span></div>    </div>    <div class="fbc_txt">    <input class="intxt" id="heading_text" value="Click to edit this text..." onfocus="if(value =='Click to edit this text...'){value =''}" onblur="if (value ==''){value='Click to edit this text...'}">    </div>    </li>    
+Oct 24 15:59:30 symfony [info] {formsActions} $this->form_published  <div class="requ_desc">This form must be filled in completely and returned to the Authority with payment. Failure to do so may result in a delay in the processing of your application. Please refer to TSK-0003 Client Authorization Payment form for payment options. You can download all forms at <a href="#!" class="fontc">www.tsask.ca</a>. Please fax or email completed application with payment.</div><div class="requf_tit">I. Personal Information</div>
+Oct 24 15:59:30 symfony [info] {sfPHPView} Render "/var/authority/apps/frontend/modules/forms/templates/showSuccess.php"
+Oct 24 15:59:30 symfony [info] {sfPHPView} Decorate content with "/var/authority/apps/frontend/templates/layout.php"
+Oct 24 15:59:30 symfony [info] {sfPHPView} Render "/var/authority/apps/frontend/templates/layout.php"
+Oct 24 15:59:30 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Oct 24 15:59:30 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Oct 24 15:59:30 symfony [info] {sfWebDebugLogger} Configuration 1.56 ms (9)
+Oct 24 15:59:30 symfony [info] {sfWebDebugLogger} Factories 110.05 ms (1)
+Oct 24 15:59:30 symfony [info] {sfWebDebugLogger} Action "forms/show" 67.48 ms (1)
+Oct 24 15:59:30 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Oct 24 15:59:30 symfony [info] {sfWebDebugLogger} View "Success" for "forms/show" 27.27 ms (1)
+Oct 24 15:59:30 symfony [info] {sfWebResponse} Send content (37628 o)
+Oct 24 21:00:16 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /forms/show/id/33 with parameters array (  'module' => 'forms',  'action' => 'show',  'id' => '33',)
+Oct 24 21:00:16 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Oct 24 21:00:16 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Oct 24 21:00:16 symfony [info] {formsActions} Call "formsActions->executeShow()"
+Oct 24 21:00:16 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Oct 24 21:00:16 symfony [info] {Doctrine_Connection_Statement} execute : SELECT s.id AS s__id, s.form_name AS s__form_name, s.form_content AS s__form_content, s.form_published AS s__form_published, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM sa_forms s WHERE (s.id = ?) LIMIT 1 - (33)
+Oct 24 21:00:16 symfony [info] {formsActions} $this->form_content  
+	  
+	  
+	  
+
+                    <li class="control_text_area">    <div class="fbc_bar">    <div class="bar_tit">Text Area</div>    <div class="bar_btns"><span>    <a href="#!" title="ARROW DOWN" class="btn_down"></a>    <a href="#!" title="ARROW UP" class="btn_up"></a>    <a href="#!" title="ARROW BOTTOM" class="btn_bottom"></a>    <a href="#!" title="ARROW TOP" class="btn_top"></a>    <a href="#!" title="DELETE" class="btn_del"></a>    </span></div>    </div>    <div class="fbc_txt">    <textarea style="width: 729px; height: 174px;" class="intxt" id="text_area_text" onfocus="if(value =='Click to edit this text...'){value =''}" onblur="if (value ==''){value='Click to edit this text...'}">Click to edit this text...</textarea>    </div>    </li>    <li class="control_heading">    <div class="fbc_bar">    <div class="bar_tit">Heading</div>    <div class="bar_btns"><span>    <a href="#!" title="ARROW DOWN" class="btn_down"></a>    <a href="#!" title="ARROW UP" class="btn_up"></a>    <a href="#!" title="ARROW BOTTOM" class="btn_bottom"></a>    <a href="#!" title="ARROW TOP" class="btn_top"></a>    <a href="#!" title="DELETE" class="btn_del"></a>    </span></div>    </div>    <div class="fbc_txt">    <input class="intxt" id="heading_text" value="Click to edit this text..." onfocus="if(value =='Click to edit this text...'){value =''}" onblur="if (value ==''){value='Click to edit this text...'}">    </div>    </li>    
+Oct 24 21:00:16 symfony [info] {formsActions} $this->form_published  <div class="requ_desc">This form must be filled in completely and returned to the Authority with payment. Failure to do so may result in a delay in the processing of your application. Please refer to TSK-0003 Client Authorization Payment form for payment options. You can download all forms at <a href="#!" class="fontc">www.tsask.ca</a>. Please fax or email completed application with payment.</div><div class="requf_tit">I. Personal Information</div>
+Oct 24 21:00:16 symfony [info] {sfPHPView} Render "/var/authority/apps/frontend/modules/forms/templates/showSuccess.php"
+Oct 24 21:00:16 symfony [info] {sfPHPView} Decorate content with "/var/authority/apps/frontend/templates/layout.php"
+Oct 24 21:00:16 symfony [info] {sfPHPView} Render "/var/authority/apps/frontend/templates/layout.php"
+Oct 24 21:00:16 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Oct 24 21:00:16 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Oct 24 21:00:16 symfony [info] {sfWebDebugLogger} Configuration 1.27 ms (9)
+Oct 24 21:00:16 symfony [info] {sfWebDebugLogger} Factories 35.26 ms (1)
+Oct 24 21:00:16 symfony [info] {sfWebDebugLogger} Action "forms/show" 28.64 ms (1)
+Oct 24 21:00:16 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Oct 24 21:00:16 symfony [info] {sfWebDebugLogger} View "Success" for "forms/show" 7.16 ms (1)
+Oct 24 21:00:16 symfony [info] {sfWebResponse} Send content (36737 o)
+Nov 20 04:46:18 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /credit with parameters array (  'module' => 'credit',  'action' => 'index',)
+Nov 20 04:46:18 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Nov 20 04:46:18 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Nov 20 04:46:18 symfony [info] {creditActions} Call "creditActions->executeIndex()"
+Nov 20 04:57:02 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /credit with parameters array (  'module' => 'credit',  'action' => 'index',)
+Nov 20 04:57:02 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Nov 20 04:57:02 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Nov 20 04:57:02 symfony [info] {creditActions} Call "creditActions->executeIndex()"
+Nov 20 04:57:03 symfony [info] {sfPHPView} Render "/var/authority/apps/frontend/modules/credit/templates/indexSuccess.php"
+Nov 20 04:57:03 symfony [notice] {sfWebDebugLogger}  Notice at /var/authority/apps/frontend/modules/credit/templates/indexSuccess.php on line 1 (Use of undefined constant txResult - assumed 'txResult')
+Nov 20 04:57:03 symfony [info] {sfPHPView} Decorate content with "/var/authority/apps/frontend/templates/layout.php"
+Nov 20 04:57:03 symfony [info] {sfPHPView} Render "/var/authority/apps/frontend/templates/layout.php"
+Nov 20 04:57:03 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Nov 20 04:57:03 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Nov 20 04:57:03 symfony [info] {sfWebDebugLogger} Configuration 30.26 ms (10)
+Nov 20 04:57:03 symfony [info] {sfWebDebugLogger} Factories 167.11 ms (1)
+Nov 20 04:57:03 symfony [info] {sfWebDebugLogger} Action "credit/index" 331.88 ms (1)
+Nov 20 04:57:03 symfony [info] {sfWebDebugLogger} View "Success" for "credit/index" 31.58 ms (1)
+Nov 20 04:57:03 symfony [info] {sfWebResponse} Send content (27288 o)

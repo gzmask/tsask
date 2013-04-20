@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>technical safety authority interface design</title>
+<link rel="stylesheet" type="text/css" href="../css/common.css"/>
+<!--[if lte IE 6]>
+<script src="../js/DD_belatedPNG.js" mce_src="../js/DD_belatedPNG.js"></script>
+<script type="text/javascript">     /* EXAMPLE */   DD_belatedPNG.fix('div,h3,li,h1,a,h6,input,h4,span,img');   /* 此处添加应用透明PNG的CSS选择器即可*/   </script>
+<![endif]-->
+
+</head>
+<body>
+<div class="wrapper">
+  <div class="header">
+    <div class="icon_logo"><a href="#" title="technical safety authority interface design"><img src="../images/icon_logo.jpg" alt="technical safety authority interface design"/></a></div>
+    <div class="icon_exit"><a href="#!" title="logOut">Log Out</a></div>
+  </div>
+  <div class="container">
+  <div class="mainnav">
+<ul class="navlist">
+<li><a href="#!" title="form" class="nav1"><span>Form</span></a></li>
+<li><a href="#!" title="orders" class="nav2"><span>orders</span></a></li>
+<li><a href="#!" title="users" class="nav3_on"><span>users</span></a></li>
+</ul>
+<div class="clear"></div>
+</div>
+<div class="mainbox">
+<div class="subnav">
+<a href="#!" title="new form" class="newform">New Form</a>
+<a href="#!" title="new user" class="newuser">New User</a>
+</div>
+<dl class="txtcont">
+<dt>
+<div class="ltit"><strong>Users Builder</strong></div>
+<div class="rbtns"><a href="#!" title="save" class="bsave">SAVE</a><a href="#!" title="cancle" class="bcancle">CANCLE</a></div>
+<div class="clear"></div>
+</dt>
+<dd>
+<div class="forms_cont">
+<div class="fc_tit">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fct_tab">
+  <tr>
+    <th width="190">Form Tools</th>
+    <th>Form Design Area</th>
+    </tr>
+</table>
+</div>
+<div class="fc_con formbuil_box">
+    <div class="fbnav">
+    <ul class="fbn_list">
+    <li class="cur"><img src="../images/blank.gif" class="icon_heading"/>Heading</li>
+    <li><img src="../images/blank.gif" class="icon_textb"/>Text Box</li>
+    <li><img src="../images/blank.gif" class="icon_texta"/>Text Area</li>
+    <li><img src="../images/blank.gif" class="icon_dropd"/>Drop Down</li>
+    <li><img src="../images/blank.gif" class="icon_radio"/>Radio Button</li>
+    <li><img src="../images/blank.gif" class="icon_check"/>Check Box</li>
+    <li><img src="../images/blank.gif" class="icon_file"/>File Upload</li>
+    <li><img src="../images/blank.gif" class="icon_submit"/>Submit Button</li>
+    <li><img src="../images/blank.gif" class="icon_reset"/>Reset Button</li>
+    <li><img src="../images/blank.gif" class="icon_fullname"/>Full Name</li>
+    <li><img src="../images/blank.gif" class="icon_email"/>E-mail</li>
+    <li><img src="../images/blank.gif" class="icon_addr"/>Address</li>
+    <li><img src="../images/blank.gif" class="icon_phone"/>Phone</li>
+    <li><img src="../images/blank.gif" class="icon_bdp"/>Birth Date Picker</li>
+    <li><img src="../images/blank.gif" class="icon_numb"/>Number</li>
+    <li><img src="../images/blank.gif" class="icon_datet"/>DateTime</li>
+    <li><img src="../images/blank.gif" class="icon_uniid"/>Unique Id</li>
+    <li><img src="../images/blank.gif" class="icon_pay"/>Payment</li>
+    </ul>
+    </div>
+    <div class="fb_cont">
+    <ul class="fbc_list">
+    <li>
+    <div class="fbc_bar">
+    <div class="bar_tit">Number</div>
+    <div class="bar_btns"><span>
+    <a href="#!" title="ARROW DOWN" class="btn_down" ></a>
+    <a href="#!" title="ARROW UP" class="btn_up"></a>
+    <a href="#!" title="ARROW BOTTOM" class="btn_bottom"></a>
+    <a href="#!" title="ARROW TOP" class="btn_top"></a>
+    <a href="#!" title="DELETE" class="btn_del"></a>
+    </span></div>
+    </div>
+    <div class="fbc_txt">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="fulln_tab">
+  <tr>
+    <td width="108" valign="top"><input class="intxt" value="Number" style="width:100px;"/></td>
+    <td align="left" valign="top"><input class="intxt" value="ex:25" style="width:120px;" onfocus="if(value =='ex:25'){value =''}" onblur="if (value ==''){value='ex:25'}"/></td>
+    </tr>
+</table>
+    </div>
+    </li>
+    <li>
+    <div class="fbc_bar">
+    <div class="bar_tit">DateTime</div>
+    <div class="bar_btns"><span>
+    <a href="#!" title="ARROW DOWN" class="btn_down" ></a>
+    <a href="#!" title="ARROW UP" class="btn_up"></a>
+    <a href="#!" title="ARROW BOTTOM" class="btn_bottom"></a>
+    <a href="#!" title="ARROW TOP" class="btn_top"></a>
+    <a href="#!" title="DELETE" class="btn_del"></a>
+    </span></div>
+    </div>
+    <div class="fbc_txt">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="fulln_tab">
+      <tr>
+        <td align="left" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="fulln_tab">
+          <tr>
+            <td width="108" valign="top"><input class="intxt" value="Click to edit this text..." onfocus="if(value =='Click to edit this text...'){value =''}" onblur="if (value ==''){value='Click to edit this text...'}" style="width:100px;"/></td>
+            <td width="46" align="left" valign="top"><input class="intxt" value="16" style="width:30px;" onfocus="if(value =='16'){value =''}" onblur="if (value ==''){value='16'}"/><br />
+<span class="fonti">Month</span></td>
+            <td width="10" align="left" valign="middle"><span class="fontc2">/</span><br />
+<span class="fonti">&nbsp;</span></td>
+            <td width="46" align="left" valign="top"><input class="intxt" value="16" style="width:30px;" onfocus="if(value =='16'){value =''}" onblur="if (value ==''){value='16'}"/><br />
+<span class="fonti">Day</span></td>
+            <td width="10" align="left" valign="middle"><span class="fontc2">/</span><br />
+<span class="fonti">&nbsp;</span></td>
+            <td width="46" align="left" valign="top"><input class="intxt" value="16" style="width:30px;" onfocus="if(value =='16'){value =''}" onblur="if (value ==''){value='16'}"/><br />
+<span class="fonti">Year</span></td>
+            <td width="18" align="left" valign="middle"><span class="fontc2">at</span><br />
+<span class="fonti">&nbsp;</span></td>
+            <td width="46" align="left" valign="top"><input class="intxt" value="16" style="width:30px;" onfocus="if(value =='16'){value =''}" onblur="if (value ==''){value='16'}"/><br />
+<span class="fonti">Hour</span></td>
+            <td width="10" align="left" valign="middle"><span class="fontc2">:</span><br />
+<span class="fonti">&nbsp;</span></td>
+            <td width="46" align="left" valign="top"><input class="intxt" value="16" style="width:30px;" onfocus="if(value =='16'){value =''}" onblur="if (value ==''){value='16'}"/><br />
+<span class="fonti">Minutes</span></td>
+            <td width="97" align="left" valign="top"><div class="hoptions op_dtime">
+     <input name="searchdomain" type="hidden" value="">
+     <input id="dtimeSearchType" name="searchType" type="hidden" value="playlist">
+     <div class="selSearch">
+    <div class="nowSearch" id="dtimeSlected" onclick="if(document.getElementById('dtimeSel').style.display=='none'){document.getElementById('dtimeSel').style.display='block';}else {document.getElementById('dtimeSel').style.display='none';};return false;" onmouseout="drop_mouseout('dtime');">AM</div>
+    <div class="btnSel"><a href="#" onclick="if(document.getElementById('dtimeSel').style.display=='none'){document.getElementById('dtimeSel').style.display='block';}else {document.getElementById('dtimeSel').style.display='none';};return false;" onmouseout="drop_mouseout('dtime');"></a></div>
+    <div class="clear"></div>
+    <ul class="selOption" id="dtimeSel" style="display:none;">
+    <li><a href="#" onclick="return search_show('dtime','SW',this)" onmouseover="drop_mouseover('dtime');" onmouseout="drop_mouseout('dtime');">AM</a></li>
+    <li><a href="#" onclick="return search_show('dtime','XW',this)" onmouseover="drop_mouseover('dtime');" onmouseout="drop_mouseout('dtime');">PM</a></li>
+    </ul>
+     </div>
+   </div></td>
+            <td align="left" valign="middle"><img src="../images/icon_datetime.jpg" width="17" height="20" /><br />
+<span class="fonti">&nbsp;</span></td>
+          </tr>
+        </table></td>
+      </tr>
+      </table>
+    </div>
+    </li>
+    <li>
+    <div class="fbc_bar">
+    <div class="bar_tit">Unique Id</div>
+    <div class="bar_btns"><span>
+    <a href="#!" title="ARROW DOWN" class="btn_down" ></a>
+    <a href="#!" title="ARROW UP" class="btn_up"></a>
+    <a href="#!" title="ARROW BOTTOM" class="btn_bottom"></a>
+    <a href="#!" title="ARROW TOP" class="btn_top"></a>
+    <a href="#!" title="DELETE" class="btn_del"></a>
+    </span></div>
+    </div>
+    <div class="fbc_txt">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="fulln_tab">
+  <tr>
+    <td width="118" valign="top"><input class="intxt" value="Click to edit this text..." onfocus="if(value =='Click to edit this text...'){value =''}" onblur="if (value ==''){value='Click to edit this text...'}" style="width:100px;"/></td>
+    <td align="left" valign="top"><input class="intxt" value="0" style="width:500px;" onfocus="if(value =='0'){value =''}" onblur="if (value ==''){value='0'}"/><br />
+<span class="fonti fontc3"><img src="../images/icon_ts.jpg">This field will not be soon on the form</span></td>
+  </tr>
+</table>
+    </div>
+    </li>
+    <li>
+    <div class="fbc_bar">
+    <div class="bar_tit">Payment</div>
+    <div class="bar_btns"><span>
+    <a href="#!" title="ARROW DOWN" class="btn_down" ></a>
+    <a href="#!" title="ARROW UP" class="btn_up"></a>
+    <a href="#!" title="ARROW BOTTOM" class="btn_bottom"></a>
+    <a href="#!" title="ARROW TOP" class="btn_top"></a>
+    <a href="#!" title="DELETE" class="btn_del"></a>
+    </span></div>
+    </div>
+    <div class="fbc_txt">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="fulln_tab">
+  <tr>
+    <td width="118" valign="top"><input class="intxt" value="Click to edit this text..." onfocus="if(value =='Click to edit this text...'){value =''}" onblur="if (value ==''){value='Click to edit this text...'}" style="width:100px;"/></td>
+    <td width="98" align="left" valign="top"><input class="intxt" value=""  style="width:80px;"/><br /><span class="fonti">Cost</span></td>
+    <td width="98" align="left" valign="top"><input class="intxt" value=""  style="width:80px;"/><br /><span class="fonti">Tax(%)</span></td>
+    <td width="98" align="left" valign="top"><input class="intxt" value=""  style="width:80px;"/><br /> <span class="fonti">Shipping</span></td>
+    <td align="left" valign="top"><input class="intxt" value="Click to edit this text..." onfocus="if(value =='Click to edit this text...'){value =''}" onblur="if (value ==''){value='Click to edit this text...'}" style="width:200px;"/>
+    <br />
+    <span class="fonti">Extra field</span></td>
+  </tr>
+</table>
+    </div>
+    </li>
+    </ul>
+    </div>
+    <div class="clear"></div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="footer"></div>
+</div>
+</body>
+</html>
+<script src="../js/jquery-1.7.2.js" language="javascript"></script>
+<script src="../js/layout.js" language="javascript"></script>

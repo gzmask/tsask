@@ -1,0 +1,15 @@
+/* CSS Document */
+
+body{ background:#fff;background:url(/backend/images/index_body_bg.jpg) no-repeat top center; -webkit-text-size-adjust:none; color:#666}
+.r_logo{ position:absolute; top:px; left:150px}
+.hint_content{ position:absolute;top:200px;width:100%;vertical-align:center;text-align: center}
+#login_main{ }
+.login{ width:554px; margin:0 auto; background:url(/backend/images/login/loginbox_bg.jpg); height:470px; padding-top:160px; padding-left:480px; }
+.login .login_title{ background:url(/backend/images/login/login_title.gif) no-repeat; width:416px; height:79px; display:block;}
+.login .login_box{ background-color:#FFFFFF; border:0px solid #a7cee9; border-top:none; width:368px; padding-left:44px; padding-top:13px;padding-bottom:27px;}
+.login .login_box label { font-size:12px;width:50px;}
+.login .login_box input { width:205px;}
+.login .login_box p{ padding-top:0px; line-height:22px;width:370px;}
+.login .login_box p.bottom{ text-align:right; width:325px;}
+.login .login_box p .btn_login{ background:url(/backend/images/login/btn_login.gif) no-repeat; width:92px; height:24px; cursor:pointer; border:0;padding-right:150px}
+.error_list {color: #ff0000;font-size:12px;}

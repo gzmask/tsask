@@ -1,0 +1,16 @@
+<VirtualHost *:80>##authority					##authority
+  ServerAdmin gzmask@gmail.com
+  DocumentRoot "/var/authority/web"
+  ServerName 50.57.135.73
+  DirectoryIndex index.php
+  <Directory "/var/authority/web">
+    AllowOverride All
+    Allow from All
+  </Directory>
+
+  Alias /sf "/var/authority/lib/vendor/symfony/data/web/sf"
+  <Directory "/var/authority/lib/vendor/symfony/data/web/sf">
+    AllowOverride All
+    Allow from All
+  </Directory>
+</VirtualHost>
