@@ -41,15 +41,15 @@
     </div>
     <div class="fb_cont">
     <ul class="fbc_head">
-		<li class="form_name">
-		<div class="fbc_bar">
-		<div class="bar_tit">Form Name</div>
-		</div>
-		<div class="fbc_txt">
-		<input class="intxt" id="form_name" name="form_name" value="" onfocus="if(value ==\'Click to edit this text...\'){value =\'\'}" onblur="if (value ==\'\'){value=\'Click to edit this text...\'}"/>
-		</div>
-		</li>
-    </ul>	
+        <li class="form_name">
+            <div class="fbc_bar">
+                <div class="bar_tit">Form Name</div>
+            </div>
+            <div class="fbc_txt">
+                <input class="intxt" id="form_name" name="form_name" value="" onfocus="if(value ==\'Click to edit this text...\'){value =\'\'}" onblur="if (value ==\'\'){value=\'Click to edit this text...\'}"/>
+            </div>
+        </li>
+    </ul>
     <ul class="fbc_list">
 
     </ul>
@@ -61,4 +61,4 @@
 </dl>
 <input type="hidden" value="" id="form_content" name="form_content" />
 <input type="hidden" value="" id="form_published" name="form_published" />
-<form>
+</form>
