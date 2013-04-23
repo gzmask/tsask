@@ -18,7 +18,6 @@ generator:
         display: [=id, created_at, updated_at]
         object_actions: 
            View: { name: view, action: view, icon: backend/addcomment.png }		
-           _delete: ~		   
       filter:  
         class: false
       form:    ~

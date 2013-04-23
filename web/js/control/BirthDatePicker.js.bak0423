@@ -23,39 +23,19 @@ function controlBirthDatePickerItemDay(){
 	return control_item_day
 }
 
-function controlBirthDatePickerItemYear(from,to){
-	var from_param;
-	var to_param;
+function controlBirthDatePickerItemYear(){
 	var control_item_year="";
 	year=new Date().getFullYear();
-	
-	if (typeof from == 'undefined'){
-		from_param=year-5;
-	}else{
-		from_param=from;
-	}
-	if (typeof to == 'undefined'){
-		to_param=year+10;
-	}else{
-		to_param=to;
-	}
-	
-	for(i=from_param;i<=to_param;i++){	
+	for(i=year-5;i<=year+10;i++){	
 	control_item_year+=
 	'    <li><a href="#">'+i+'</a></li>';	
 	}
 	return control_item_year
 }
 
-function controlBirthDatePicker(str_birth_date_picker_name,str_birth_date_picker_text,str_birth_date_picker_is_need_day,str_birth_date_picker_year_from,str_birth_date_picker_year_to) {
-	year=new Date().getFullYear();
-	
+function controlBirthDatePicker(str_birth_date_picker_name,str_birth_date_picker_text) {
 	if (typeof str_birth_date_picker_name == 'undefined')str_birth_date_picker_name='';
 	if (typeof str_birth_date_picker_text == 'undefined')str_birth_date_picker_text='Birth Date:';	
-	if (typeof str_birth_date_picker_is_need_day == 'undefined')str_birth_date_picker_is_need_day='undefined';
-	if (typeof str_birth_date_picker_year_from == 'undefined')str_birth_date_picker_year_from=year-5;	
-	if (typeof str_birth_date_picker_year_to == 'undefined')str_birth_date_picker_year_to=year+10;
-	
 	var control_birth_date_picker='    <li class="control control_birth_date_picker">'+
 	'    <div class="fbc_bar">'+
 	'    <div class="bar_tit">Birth Date Picker</div>'+
@@ -71,31 +51,9 @@ function controlBirthDatePicker(str_birth_date_picker_name,str_birth_date_picker
 	'    <div class="fbc_txt">'+
 	'    	<div class="fbct_98">control name:</div>'+
 	'    	<div class="fbct_half">'+
-	'      	<input class="intxt" id="birth_date_picker_name" value="'+str_birth_date_picker_name+'" style="width:235px;" />'+	
+	'      	<input class="intxt" id="birth_date_picker_name" value="'+str_birth_date_picker_name+'" style="width:235px;" />'+
 	'    	</div>'+	
 	'    </div>'+	
-
-	
-	'    <div class="fbc_txt">'+
-	'    	<div class="fbct_98">is need day:</div>'+
-	'    	<div class="fbct_half">'+
-	'          <input type="checkbox" name="birth_date_picker_is_need_day" value="" id="birth_date_picker_is_need_day" '+str_birth_date_picker_is_need_day+' />'+	
-	'    	</div>'+	
-	'    </div>'+	
-	
-	'    <div class="fbc_txt">'+
-	'    	<div class="fbct_98">year from:</div>'+
-	'    	<div class="fbct_half">'+
-	'      	<input class="intxt" id="birth_date_picker_year_from" value="'+str_birth_date_picker_year_from+'" style="width:235px;" />'+	
-	'    	</div>'+	
-	'    </div>'+	
-
-	'    <div class="fbc_txt">'+
-	'    	<div class="fbct_98">year to:</div>'+
-	'    	<div class="fbct_half">'+
-	'      	<input class="intxt" id="birth_date_picker_year_to" value="'+str_birth_date_picker_year_to+'" style="width:235px;" />'+	
-	'    	</div>'+	
-	'    </div>'+		
 	
 	'    <div class="fbc_txt">'+
 	'    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="fulln_tab">'+	
@@ -116,10 +74,7 @@ controlBirthDatePickerItemMonth()+
 	'     </div>'+
 	'   </div>'+
 	'    <br />'+
-	'<span class="fonti">Month</span></td>';
-	
-	if (str_birth_date_picker_is_need_day=='checked'){	
-	control_birth_date_picker=control_birth_date_picker+
+	'<span class="fonti">Month</span></td>'+
 	'    <td width="136" align="left" valign="middle">'+
 	'    <div class="hoptions op_day">'+
 	'     <input name="searchdomain" type="hidden" value="">'+
@@ -135,9 +90,7 @@ controlBirthDatePickerItemDay()+
 	'     </div>'+
 	'   </div>'+
 	'   <br />'+
-	'<span class="fonti">Day</span></td>';
-	}
-	control_birth_date_picker=control_birth_date_picker+	
+	'<span class="fonti">Day</span></td>'+
 	'    <td align="left" valign="top">'+
 	'    <div class="hoptions op_year">'+
 	'     <input name="searchdomain" type="hidden" value="">'+
@@ -148,7 +101,7 @@ controlBirthDatePickerItemDay()+
 	'    <div class="clear"></div>'+
 	'    <ul class="selOption" id="yearSel" style="display:none;">'+
 //controlBirthDatePickerItemYear()	
-controlBirthDatePickerItemYear(str_birth_date_picker_year_from,str_birth_date_picker_year_to)+	
+controlBirthDatePickerItemYear()+	
 	'    </ul>'+
 	'     </div>'+
 	'   </div>'+
@@ -176,7 +129,7 @@ function rebindActionBirthDatePicker(obj){
 }
 
 function addBirthDatePicker(obj, sm) {
-	var c=$('.fbc_list').append(controlBirthDatePicker('','','checked')).find("li.control:last");
+	var c=$('.fbc_list').append(controlBirthDatePicker()).find("li.control:last");
 	bindAction(c);
 	bindActionBirthDatePickerList(c);
 };
@@ -184,26 +137,14 @@ function addBirthDatePicker(obj, sm) {
 function saveBirthDatePicker(obj, sm) {
 	var birth_date_picker_name=obj.find("#birth_date_picker_name").val();	
 	var title_text=obj.find("#birth_date_picker_text").val();
-
-	var birth_date_picker_is_need_day=obj.find("#birth_date_picker_is_need_day").attr("checked");	
-	//alert(birth_date_picker_is_need_day);
-	var birth_date_picker_year_from=obj.find("#birth_date_picker_year_from").val();
-	var birth_date_picker_year_to=obj.find("#birth_date_picker_year_to").val();	
-	
 	var control='';
-	control=controlBirthDatePicker(birth_date_picker_name,title_text,birth_date_picker_is_need_day,birth_date_picker_year_from,birth_date_picker_year_to);		
+	control=controlBirthDatePicker(birth_date_picker_name,title_text);		
 	return control;
 }
 
 function makeBirthDatePicker(obj, sm) {
 	var birth_date_picker_name=obj.find("#birth_date_picker_name").val();
 	var title_text=obj.find("#birth_date_picker_text").val();
-	
-	var birth_date_picker_is_need_day=obj.find("#birth_date_picker_is_need_day").attr("checked");	
-	//alert(birth_date_picker_is_need_day);
-	var birth_date_picker_year_from=obj.find("#birth_date_picker_year_from").val();
-	var birth_date_picker_year_to=obj.find("#birth_date_picker_year_to").val();	
-	
 	if('Click to edit this text...'==title_text){
 		title_text='';
 	}
@@ -226,8 +167,6 @@ function makeBirthDatePicker(obj, sm) {
 	control=control+'   </div>';
 	control=control+'    <br />';
 	control=control+'<span class="fonti">Month</span></td>';
-	
-	if (birth_date_picker_is_need_day=='checked'){
 	control=control+'    <td width="132" align="left" valign="middle">';
 	control=control+'    <div class="hoptions op_day">';
 	control=control+'     <input name="searchdomain" type="hidden" value="">';
@@ -243,8 +182,6 @@ function makeBirthDatePicker(obj, sm) {
 	control=control+'   </div>';
 	control=control+'   <br />';
 	control=control+'<span class="fonti">Day</span></td>';
-	}
-	
 	control=control+'    <td align="left" valign="top">';
 	control=control+'    <div class="hoptions op_year">';
 	control=control+'     <input name="searchdomain" type="hidden" value="">';
@@ -254,7 +191,7 @@ function makeBirthDatePicker(obj, sm) {
 	control=control+'    <div class="btnSel" id="yearSelButton" ><a href="#" ></a></div>';
 	control=control+'    <div class="clear"></div>';
 	control=control+'    <ul class="selOption" id="yearSel" style="display:none;">';
-	control=control+controlBirthDatePickerItemYear(birth_date_picker_year_from,birth_date_picker_year_to);
+	control=control+controlBirthDatePickerItemYear();
 	control=control+'    </ul>';
 	control=control+'     </div>';
 	control=control+'   </div>';

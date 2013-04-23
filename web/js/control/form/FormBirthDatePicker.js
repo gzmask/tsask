@@ -52,7 +52,7 @@ function formBirthDatePicker(obj, sm) {
 	var birth_date_picker_label=obj.find("#birth_date_picker_label").text();
 	var form_birth_date_picker_month=obj.find("#monthSelected").text();
 	var form_birth_date_picker_day=obj.find("#daySelected").text();
-	var form_birth_date_picker_year=obj.find("#yearSelected").text();		
+	var form_birth_date_picker_year=obj.find("#yearSelected").text();
 	var control='';
 	control=control+'<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fulln_tab form_control form_birth_date_picker">';
 	control=control+'  <tr>';
@@ -72,6 +72,7 @@ function formBirthDatePicker(obj, sm) {
 	control=control+'   </div>';
 	control=control+'    <br />';
 	control=control+'<span class="fonti">Month</span></td>';
+	if(form_birth_date_picker_day!=''){
 	control=control+'    <td width="132" align="left" valign="middle">';
 	control=control+'    <div class="hoptions op_day">';
 	control=control+'     <input name="searchdomain" type="hidden" value="">';
@@ -87,6 +88,7 @@ function formBirthDatePicker(obj, sm) {
 	control=control+'   </div>';
 	control=control+'   <br />';
 	control=control+'<span class="fonti">Day</span></td>';
+	}
 	control=control+'    <td align="left" valign="top">';
 	control=control+'    <div class="hoptions op_year">';
 	control=control+'     <input name="searchdomain" type="hidden" value="">';
