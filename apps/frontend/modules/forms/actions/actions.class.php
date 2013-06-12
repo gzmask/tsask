@@ -558,7 +558,7 @@ class formsActions extends sfActions
 	//if($this->reqOrdCountry=='' or $this->reqOrdCountry==null)$needPayment=false;
 
     //here requires review to make beanstream works
-	if($needPayment){
+	if($needPayment){ //needpayment is easily falsed. make sure this is ture
 		$request_string='';
 
 		$requestType='requestType=BACKEND&';
@@ -615,6 +615,7 @@ class formsActions extends sfActions
 		curl_setopt( $ch, CURLOPT_POSTFIELDS,  $request_string);
 		// Now POST the transaction. $txResult will contain Beanstream's response
 		$this->txResult = str_replace("&","<br>",urldecode(curl_exec( $ch )));
+        die($this->txResult."Ray debug=======");
 
 		$this->order_content=$this->getRequestParameter('order_content');
 		$my_order=new saOrders();
