@@ -22,11 +22,11 @@ class formsActions extends sfActions
     $this->sa_forms = Doctrine_Core::getTable('saForms')->find(array($request->getParameter('id')));
     $this->forward404Unless($this->sa_forms);
 	$this->logMessage('$this->form_content  '.$this->sa_forms['form_content']);
-	$this->logMessage('$this->form_published  '.$this->sa_forms['form_published']);		
+	$this->logMessage('$this->form_published  '.$this->sa_forms['form_published']);
     $this->form_name=$this->sa_forms['form_name'];
-    $this->form_published=$this->sa_forms['form_published'];	
+    $this->form_published=$this->sa_forms['form_published'];
   }
-  
+
   public function executeCommit(sfWebRequest $request)
   {
     //$this->sa_forms = Doctrine_Core::getTable('saForms')->find(array($request->getParameter('id')));
@@ -272,8 +272,8 @@ class formsActions extends sfActions
 	$countryId[236]="EH";
 	$countryId[237]="YE";
 	$countryId[238]="ZM";
-	$countryId[239]="ZW";	
-	
+	$countryId[239]="ZW";
+
 	$countryName[0]="Afghanistan";
 	$countryName[1]="Argentina";
 	$countryName[2]="?land Islands";
@@ -514,9 +514,9 @@ class formsActions extends sfActions
 	$countryName[237]="Yemen";
 	$countryName[238]="Zambia";
 	$countryName[239]="Zimbabwe";
-	
+
 	$needPayment=true;
-	
+
 	$this->reqTrnCardOwner=$this->getRequestParameter('trnCardOwner_first_name').$this->getRequestParameter('trnCardOwner_last_name');
 	$this->reqTrnCardNumber=$this->getRequestParameter('trnCardNumber');
 	$this->reqTrnExpMonth=$this->getRequestParameter('trnExp_month');
@@ -526,12 +526,12 @@ class formsActions extends sfActions
 	$this->reqOrdEmailAddress=$this->getRequestParameter('ordEmailAddress');
 	$this->reqOrdName=$this->getRequestParameter('ordName_first_name').$this->getRequestParameter('ordName_last_name');
 	$this->reqOrdPhoneNumber=$this->getRequestParameter('ordPhoneNumber_area_code').' '.$this->getRequestParameter('ordPhoneNumber_phone_number');
-	$this->reqOrdAddress1=$this->getRequestParameter('ordAddress_street');	
-	$this->reqOrdAddress2=$this->getRequestParameter('ordAddress_street_line2');	
-	$this->reqOrdCity=$this->getRequestParameter('ordAddress_city');		
-	$this->reqOrdProvince=$this->getRequestParameter('ordAddress_state');	
-	$this->reqOrdPostalCode=$this->getRequestParameter('ordAddress_zipcode');	
-	$this->reqOrdCountry=$this->getRequestParameter('ordAddress_country');	
+	$this->reqOrdAddress1=$this->getRequestParameter('ordAddress_street');
+	$this->reqOrdAddress2=$this->getRequestParameter('ordAddress_street_line2');
+	$this->reqOrdCity=$this->getRequestParameter('ordAddress_city');
+	$this->reqOrdProvince=$this->getRequestParameter('ordAddress_state');
+	$this->reqOrdPostalCode=$this->getRequestParameter('ordAddress_zipcode');
+	$this->reqOrdCountry=$this->getRequestParameter('ordAddress_country');
 
 	//format
 	$this->reqTrnExpYear=substr($this->reqTrnExpYear,-2,2);
@@ -541,7 +541,7 @@ class formsActions extends sfActions
 		}
 	}
 
-	
+
 	if($this->reqTrnCardOwner=='' or $this->reqTrnCardOwner==null)$needPayment=false;
 	if($this->reqTrnCardNumber=='' or $this->reqTrnCardNumber==null)$needPayment=false;
 	if($this->reqTrnExpMonth=='' or $this->reqTrnExpMonth==null)$needPayment=false;
@@ -556,7 +556,8 @@ class formsActions extends sfActions
 	if($this->reqOrdProvince=='' or $this->reqOrdProvince==null)$needPayment=false;
 	////if($this->reqOrdPostalCode=='' or $this->reqOrdPostalCode==null)$needPayment=false;
 	//if($this->reqOrdCountry=='' or $this->reqOrdCountry==null)$needPayment=false;
-	
+
+    //here requires review to make beanstream works
 	if($needPayment){
 		$request_string='';
 
@@ -597,8 +598,8 @@ class formsActions extends sfActions
 		$request_string.=$ordCity;
 		$request_string.=$ordProvince;
 		$request_string.=$ordPostalCode;
-		$request_string.=$ordCountry;	
-		
+		$request_string.=$ordCountry;
+
 		// Initialize curl
 		$ch = curl_init();
 		// Get curl to POST
@@ -610,35 +611,35 @@ class formsActions extends sfActions
 		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
 		// This is the location of the Beanstream payment gateway
 		curl_setopt( $ch, CURLOPT_URL, "https://www.beanstream.com/scripts/process_transaction.asp" );
-		// These are the transaction parameters that we will POST	
+		// These are the transaction parameters that we will POST
 		curl_setopt( $ch, CURLOPT_POSTFIELDS,  $request_string);
 		// Now POST the transaction. $txResult will contain Beanstream's response
 		$this->txResult = str_replace("&","<br>",urldecode(curl_exec( $ch )));
 
 		$this->order_content=$this->getRequestParameter('order_content');
 		$my_order=new saOrders();
-		$my_order['order_content']=$this->order_content;	
-		$my_order->save();		
-		curl_close( $ch );  
+		$my_order['order_content']=$this->order_content;
+		$my_order->save();
+		curl_close( $ch );
 
 	}else{
 		$this->order_content=$this->getRequestParameter('order_content');
 		$my_order=new saOrders();
-		$my_order['order_content']=$this->order_content;	
+		$my_order['order_content']=$this->order_content;
 		$my_order->save();
 		$this->txResult ='commit success';
 	}
 
 	$this->logMessage('$this->order_content  '.$this->sa_forms['order_content']);
-    $this->getRequest()->setParameter('txResult', $this->txResult);	
+    $this->getRequest()->setParameter('txResult', $this->txResult);
 	$this->forward('forms','commitFinished');
-  }  
+  }
 
   public function executeCommitFinished(sfWebRequest $request)
   {
 	$this->txResult=$this->getRequestParameter('txResult');
   }
-  
+
   /*public function executeNew(sfWebRequest $request)
   {
     $this->form = new saFormsForm();
