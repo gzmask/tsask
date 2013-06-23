@@ -554,6 +554,7 @@ class formsActions extends sfActions
 	if($this->reqOrdAddress1=='' or $this->reqOrdAddress1==null)$needPayment=false;
 	if($this->reqOrdCity=='' or $this->reqOrdCity==null)$needPayment=false;
 	if($this->reqOrdProvince=='' or $this->reqOrdProvince==null)$needPayment=false;
+        //================Warning! disable form validation according to testing. enable when in production!!!
 	////if($this->reqOrdPostalCode=='' or $this->reqOrdPostalCode==null)$needPayment=false;
 	//if($this->reqOrdCountry=='' or $this->reqOrdCountry==null)$needPayment=false;
 
@@ -613,10 +614,10 @@ class formsActions extends sfActions
 		curl_setopt( $ch, CURLOPT_URL, "https://www.beanstream.com/scripts/process_transaction.asp" );
 		// These are the transaction parameters that we will POST
 		curl_setopt( $ch, CURLOPT_POSTFIELDS,  $request_string);
-                die($request_string."\nRay debug====");
+                die($request_string."This string is correct. Ray debug====");
 		// Now POST the transaction. $txResult will contain Beanstream's response
 		$this->txResult = str_replace("&","<br>",urldecode(curl_exec( $ch )));
-                die($this->txResult."Ray debug=======");
+                die($this->txResult."The response is declinding, account is not golive yet. Ray debug=======");
 
 		$this->order_content=$this->getRequestParameter('order_content');
 		$my_order=new saOrders();
