@@ -519,8 +519,10 @@ class formsActions extends sfActions
 
 	$this->reqTrnCardOwner=$this->getRequestParameter('trnCardOwner_first_name').$this->getRequestParameter('trnCardOwner_last_name');
 	$this->reqTrnCardNumber=$this->getRequestParameter('trnCardNumber');
-	$this->reqTrnExpMonth=$this->getRequestParameter('trnExp_month');
-	$this->reqTrnExpYear=$this->getRequestParameter('trnExp_year');
+	//$this->reqTrnExpMonth=$this->getRequestParameter('trnExp_month');
+	$this->reqTrnExpMonth=$this->getRequestParameter('expire date_month');
+	//$this->reqTrnExpYear=$this->getRequestParameter('trnExp_year');
+	$this->reqTrnExpYear=$this->getRequestParameter('expire date_year');
 	$this->reqTrnOrderNumber=$this->getRequestParameter('trnOrderNumber');
 	$this->reqTrnAmount=$this->getRequestParameter('trnAmount_cost');
 	$this->reqOrdEmailAddress=$this->getRequestParameter('ordEmailAddress');
@@ -542,18 +544,18 @@ class formsActions extends sfActions
 	}
 
 
-	if($this->reqTrnCardOwner=='' or $this->reqTrnCardOwner==null)$needPayment=false;
-	if($this->reqTrnCardNumber=='' or $this->reqTrnCardNumber==null)$needPayment=false;
-	if($this->reqTrnExpMonth=='' or $this->reqTrnExpMonth==null)$needPayment=false;
-	if($this->reqTrnExpYear=='' or $this->reqTrnExpYear==null)$needPayment=false;
+	//if($this->reqTrnCardOwner=='' or $this->reqTrnCardOwner==null)$needPayment=false;
+	//if($this->reqTrnCardNumber=='' or $this->reqTrnCardNumber==null)$needPayment=false;
+	//if($this->reqTrnExpMonth=='' or $this->reqTrnExpMonth==null)$needPayment=false;
+	//if($this->reqTrnExpYear=='' or $this->reqTrnExpYear==null)$needPayment=false;
 	//if($this->reqTrnOrderNumber=='' or $this->reqTrnOrderNumber==null)$needPayment=false;
-	if($this->reqTrnAmount=='' or $this->reqTrnAmount==null)$needPayment=false;
-	if($this->reqOrdEmailAddress=='' or $this->reqOrdEmailAddress==null)$needPayment=false;
+	//if($this->reqTrnAmount=='' or $this->reqTrnAmount==null)$needPayment=false;
+	//if($this->reqOrdEmailAddress=='' or $this->reqOrdEmailAddress==null)$needPayment=false;
 	//if($this->reqOrdName=='' or $this->reqOrdName==null)$needPayment=false;
-	if($this->reqOrdPhoneNumber=='' or $this->reqOrdPhoneNumber==null)$needPayment=false;
-	if($this->reqOrdAddress1=='' or $this->reqOrdAddress1==null)$needPayment=false;
-	if($this->reqOrdCity=='' or $this->reqOrdCity==null)$needPayment=false;
-	if($this->reqOrdProvince=='' or $this->reqOrdProvince==null)$needPayment=false;
+	//if($this->reqOrdPhoneNumber=='' or $this->reqOrdPhoneNumber==null)$needPayment=false;
+	//if($this->reqOrdAddress1=='' or $this->reqOrdAddress1==null)$needPayment=false;
+	//if($this->reqOrdCity=='' or $this->reqOrdCity==null)$needPayment=false;
+	//if($this->reqOrdProvince=='' or $this->reqOrdProvince==null)$needPayment=false;
         //================Warning! disable form validation according to testing. enable when in production!!!
 	//if($this->reqOrdPostalCode=='' or $this->reqOrdPostalCode==null)$needPayment=false;
 	//if($this->reqOrdCountry=='' or $this->reqOrdCountry==null)$needPayment=false;
@@ -614,10 +616,10 @@ class formsActions extends sfActions
 		curl_setopt( $ch, CURLOPT_URL, "https://www.beanstream.com/scripts/process_transaction.asp" );
 		// These are the transaction parameters that we will POST
 		curl_setopt( $ch, CURLOPT_POSTFIELDS,  $request_string);
-                die($request_string."This string is correct. Ray debug====");
+                //die($request_string."This string is correct. Ray debug====");
 		// Now POST the transaction. $txResult will contain Beanstream's response
 		$this->txResult = str_replace("&","<br>",urldecode(curl_exec( $ch )));
-                die($this->txResult."Ray debug=======");
+                die($request_string."====debug====".$this->txResult."====debug=====");
 
 		$this->order_content=$this->getRequestParameter('order_content');
 		$my_order=new saOrders();
