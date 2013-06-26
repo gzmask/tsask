@@ -614,10 +614,10 @@ class formsActions extends sfActions
 		curl_setopt( $ch, CURLOPT_URL, "https://www.beanstream.com/scripts/process_transaction.asp" );
 		// These are the transaction parameters that we will POST
 		curl_setopt( $ch, CURLOPT_POSTFIELDS,  $request_string);
-                die($request_string."This string is correct. Ray debug====");
+                //die($request_string."This string is correct. Ray debug====");
 		// Now POST the transaction. $txResult will contain Beanstream's response
 		$this->txResult = str_replace("&","<br>",urldecode(curl_exec( $ch )));
-                die($this->txResult."The response is declinding, account is not golive yet. Ray debug=======");
+                die($this->txResult."Ray debug=======");
 
 		$this->order_content=$this->getRequestParameter('order_content');
 		$my_order=new saOrders();
