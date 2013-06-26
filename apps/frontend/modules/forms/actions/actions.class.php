@@ -546,16 +546,16 @@ class formsActions extends sfActions
 	if($this->reqTrnCardNumber=='' or $this->reqTrnCardNumber==null)$needPayment=false;
 	if($this->reqTrnExpMonth=='' or $this->reqTrnExpMonth==null)$needPayment=false;
 	if($this->reqTrnExpYear=='' or $this->reqTrnExpYear==null)$needPayment=false;
-	if($this->reqTrnOrderNumber=='' or $this->reqTrnOrderNumber==null)$needPayment=false;
+	//if($this->reqTrnOrderNumber=='' or $this->reqTrnOrderNumber==null)$needPayment=false;
 	if($this->reqTrnAmount=='' or $this->reqTrnAmount==null)$needPayment=false;
 	if($this->reqOrdEmailAddress=='' or $this->reqOrdEmailAddress==null)$needPayment=false;
-	if($this->reqOrdName=='' or $this->reqOrdName==null)$needPayment=false;
+	//if($this->reqOrdName=='' or $this->reqOrdName==null)$needPayment=false;
 	if($this->reqOrdPhoneNumber=='' or $this->reqOrdPhoneNumber==null)$needPayment=false;
 	if($this->reqOrdAddress1=='' or $this->reqOrdAddress1==null)$needPayment=false;
 	if($this->reqOrdCity=='' or $this->reqOrdCity==null)$needPayment=false;
 	if($this->reqOrdProvince=='' or $this->reqOrdProvince==null)$needPayment=false;
         //================Warning! disable form validation according to testing. enable when in production!!!
-	////if($this->reqOrdPostalCode=='' or $this->reqOrdPostalCode==null)$needPayment=false;
+	//if($this->reqOrdPostalCode=='' or $this->reqOrdPostalCode==null)$needPayment=false;
 	//if($this->reqOrdCountry=='' or $this->reqOrdCountry==null)$needPayment=false;
 
     //here requires review to make beanstream works
