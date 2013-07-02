@@ -22,11 +22,11 @@ class formsActions extends sfActions
     $this->sa_forms = Doctrine_Core::getTable('saForms')->find(array($request->getParameter('id')));
     $this->forward404Unless($this->sa_forms);
 	$this->logMessage('$this->form_content  '.$this->sa_forms['form_content']);
-	$this->logMessage('$this->form_published  '.$this->sa_forms['form_published']);
+	$this->logMessage('$this->form_published  '.$this->sa_forms['form_published']);		
     $this->form_name=$this->sa_forms['form_name'];
-    $this->form_published=$this->sa_forms['form_published'];
+    $this->form_published=$this->sa_forms['form_published'];	
   }
-
+  
   public function executeCommit(sfWebRequest $request)
   {
     //$this->sa_forms = Doctrine_Core::getTable('saForms')->find(array($request->getParameter('id')));
@@ -272,8 +272,8 @@ class formsActions extends sfActions
 	$countryId[236]="EH";
 	$countryId[237]="YE";
 	$countryId[238]="ZM";
-	$countryId[239]="ZW";
-
+	$countryId[239]="ZW";	
+	
 	$countryName[0]="Afghanistan";
 	$countryName[1]="Argentina";
 	$countryName[2]="?land Islands";
@@ -514,68 +514,54 @@ class formsActions extends sfActions
 	$countryName[237]="Yemen";
 	$countryName[238]="Zambia";
 	$countryName[239]="Zimbabwe";
-
+	
 	$needPayment=true;
-
-	$this->reqTrnCardOwner=$this->getRequestParameter('trnCardOwner_first_name').$this->getRequestParameter('trnCardOwner_last_name');
-	$this->reqTrnCardNumber=$this->getRequestParameter('trnCardNumber');
-	//$this->reqTrnExpMonth=$this->getRequestParameter('trnExp_month');
-	$this->reqTrnExpMonth=$this->getRequestParameter('expire date_month');
-	//$this->reqTrnExpYear=$this->getRequestParameter('trnExp_year');
-	$this->reqTrnExpYear=$this->getRequestParameter('expire date_year');
-	$this->reqTrnOrderNumber=$this->getRequestParameter('trnOrderNumber');
-	$this->reqTrnAmount=$this->getRequestParameter('trnAmount_cost');
-	$this->reqOrdEmailAddress=$this->getRequestParameter('ordEmailAddress');
-	$this->reqOrdName=$this->getRequestParameter('ordName_first_name').$this->getRequestParameter('ordName_last_name');
-	$this->reqOrdPhoneNumber=$this->getRequestParameter('ordPhoneNumber_area_code').' '.$this->getRequestParameter('ordPhoneNumber_phone_number');
-	$this->reqOrdAddress1=$this->getRequestParameter('ordAddress_street');
-	$this->reqOrdAddress2=$this->getRequestParameter('ordAddress_street_line2');
-	$this->reqOrdCity=$this->getRequestParameter('ordAddress_city');
-	$this->reqOrdProvince=$this->getRequestParameter('ordAddress_state');
-	$this->reqOrdPostalCode=$this->getRequestParameter('ordAddress_zipcode');
-	$this->reqOrdCountry=$this->getRequestParameter('ordAddress_country');
-
-	//format
-	$this->reqTrnExpYear=substr($this->reqTrnExpYear,-2,2);
-	for ($i=0; $i<=238; $i++){
-		if($countryName[$i]==$this->reqOrdCountry){
-			$this->reqOrdCountry=$countryId[$i];
-		}
-	}
+	
+	$this->reqOrdName=$this->getRequestParameter('ordName');
+	$this->reqOrdPhoneNumber=$this->getRequestParameter('ordPhoneNumber');	
+	$this->reqOrdAddress1=$this->getRequestParameter('ordAddress1');	
+	$this->reqOrdAddress2=$this->getRequestParameter('ordAddress2');	
+	$this->reqOrdCity=$this->getRequestParameter('ordCity');	
+	$this->reqOrdProvince=$this->getRequestParameter('ordProvince');
+	$this->reqOrdPostalCode=$this->getRequestParameter('ordPostalCode');		
+	$this->reqOrdCountry=$this->getRequestParameter('ordCountry');		
+	$this->reqOrdEmailAddress=$this->getRequestParameter('ordEmailAddress');	
+	
+	$this->reqTrnOrderNumber=$this->getRequestParameter('trnOrderNumber');	
+	$this->reqTrnAmount=$this->getRequestParameter('trnAmount');		
+	$this->reqTrnCardOwner=$this->getRequestParameter('trnCardOwner');
+	$this->reqTrnCardType=$this->getRequestParameter('trnCardType');
+	$this->reqTrnCardNumber=$this->getRequestParameter('trnCardNumber');	
+	$this->reqTrnExpMonth=$this->getRequestParameter('trnExpMonth');
+	$this->reqTrnExpYear=$this->getRequestParameter('trnExpYear');
 
 
-	//if($this->reqTrnCardOwner=='' or $this->reqTrnCardOwner==null)$needPayment=false;
-	//if($this->reqTrnCardNumber=='' or $this->reqTrnCardNumber==null)$needPayment=false;
-	//if($this->reqTrnExpMonth=='' or $this->reqTrnExpMonth==null)$needPayment=false;
-	//if($this->reqTrnExpYear=='' or $this->reqTrnExpYear==null)$needPayment=false;
-	//if($this->reqTrnOrderNumber=='' or $this->reqTrnOrderNumber==null)$needPayment=false;
-	//if($this->reqTrnAmount=='' or $this->reqTrnAmount==null)$needPayment=false;
-	//if($this->reqOrdEmailAddress=='' or $this->reqOrdEmailAddress==null)$needPayment=false;
-	//if($this->reqOrdName=='' or $this->reqOrdName==null)$needPayment=false;
-	//if($this->reqOrdPhoneNumber=='' or $this->reqOrdPhoneNumber==null)$needPayment=false;
-	//if($this->reqOrdAddress1=='' or $this->reqOrdAddress1==null)$needPayment=false;
-	//if($this->reqOrdCity=='' or $this->reqOrdCity==null)$needPayment=false;
-	//if($this->reqOrdProvince=='' or $this->reqOrdProvince==null)$needPayment=false;
-        //================Warning! disable form validation according to testing. enable when in production!!!
-	//if($this->reqOrdPostalCode=='' or $this->reqOrdPostalCode==null)$needPayment=false;
-	//if($this->reqOrdCountry=='' or $this->reqOrdCountry==null)$needPayment=false;
+	if($this->reqOrdName=='' or $this->reqOrdName==null)$needPayment=false;
+	if($this->reqOrdPhoneNumber=='' or $this->reqOrdPhoneNumber==null)$needPayment=false;
+	if($this->reqOrdAddress1=='' or $this->reqOrdAddress1==null)$needPayment=false;
+	if($this->reqOrdAddress2=='' or $this->reqOrdAddress2==null)$needPayment=false;
+	if($this->reqOrdCity=='' or $this->reqOrdCity==null)$needPayment=false;
+	if($this->reqOrdProvince=='' or $this->reqOrdProvince==null)$needPayment=false;
+	if($this->reqOrdPostalCode=='' or $this->reqOrdPostalCode==null)$needPayment=false;
+	if($this->reqOrdCountry=='' or $this->reqOrdCountry==null)$needPayment=false;
+	if($this->reqOrdEmailAddress=='' or $this->reqOrdEmailAddress==null)$needPayment=false;
+	
+	if($this->reqTrnOrderNumber=='' or $this->reqTrnOrderNumber==null)$needPayment=false;
+	if($this->reqTrnAmount=='' or $this->reqTrnAmount==null)$needPayment=false;	
+	if($this->reqTrnCardOwner=='' or $this->reqTrnCardOwner==null)$needPayment=false;
+	if($this->reqTrnCardType=='' or $this->reqTrnCardType==null)$needPayment=false;	
+	if($this->reqTrnCardNumber=='' or $this->reqTrnCardNumber==null)$needPayment=false;
+	if($this->reqTrnExpMonth=='' or $this->reqTrnExpMonth==null)$needPayment=false;
+	if($this->reqTrnExpYear=='' or $this->reqTrnExpYear==null)$needPayment=false;
 
-    //here requires review to make beanstream works
-	if($needPayment){ //needpayment is easily falsed. make sure this is ture
+
+
+	if($needPayment){
 		$request_string='';
 
 		$requestType='requestType=BACKEND&';
 		$merchant_id='merchant_id=257900000&';
 
-		$trnCardOwner='trnCardOwner='.$this->reqTrnCardOwner.'&';
-		$trnCardNumber='trnCardNumber='.$this->reqTrnCardNumber.'&';
-		$trnExpMonth='trnExpMonth='.$this->reqTrnExpMonth.'&';
-		$trnExpYear='trnExpYear='.$this->reqTrnExpYear.'&';
-
-		$trnOrderNumber='trnOrderNumber='.$this->reqTrnOrderNumber.'&';
-		$trnAmount='trnAmount='.$this->reqTrnAmount.'&';
-
-		$ordEmailAddress='ordEmailAddress='.$this->reqOrdEmailAddress.'&';
 		$ordName='ordName='.$this->reqOrdName.'&';
 		$ordPhoneNumber='ordPhoneNumber='.$this->reqOrdPhoneNumber.'&';
 		$ordAddress1='ordAddress1='.$this->reqOrdAddress1.'&';
@@ -583,17 +569,21 @@ class formsActions extends sfActions
 		$ordCity='ordCity='.$this->reqOrdCity.'&';
 		$ordProvince='ordProvince='.$this->reqOrdProvince.'&';
 		$ordPostalCode='ordPostalCode='.$this->reqOrdPostalCode.'&';
-		$ordCountry='ordCountry='.$this->reqOrdCountry.'';
+		$ordCountry='ordCountry='.$this->reqOrdCountry.'&';
+		$ordEmailAddress='ordEmailAddress='.$this->reqOrdEmailAddress.'&';
+
+		$trnOrderNumber='trnOrderNumber='.$this->reqTrnOrderNumber.'&';
+		$trnAmount='trnAmount='.$this->reqTrnAmount.'&';		
+		$trnCardOwner='trnCardOwner='.$this->reqTrnCardOwner.'&';
+		$trnCardNumber='trnCardNumber='.$this->reqTrnCardNumber.'&';
+		$trnCardType='trnCardType='.$this->reqTrnCardType.'&';		
+		$trnExpMonth='trnExpMonth='.$this->reqTrnExpMonth.'&';
+		$trnExpYear='trnExpYear='.$this->reqTrnExpYear.'&';
+
 
 		$request_string.=$requestType;
 		$request_string.=$merchant_id;
-		$request_string.=$trnCardOwner;
-		$request_string.=$trnCardNumber;
-		$request_string.=$trnExpMonth;
-		$request_string.=$trnExpYear;
-		$request_string.=$trnOrderNumber;
-		$request_string.=$trnAmount;
-		$request_string.=$ordEmailAddress;
+		
 		$request_string.=$ordName;
 		$request_string.=$ordPhoneNumber;
 		$request_string.=$ordAddress1;
@@ -602,7 +592,20 @@ class formsActions extends sfActions
 		$request_string.=$ordProvince;
 		$request_string.=$ordPostalCode;
 		$request_string.=$ordCountry;
+		$request_string.=$ordEmailAddress;
 
+		$request_string.=$trnOrderNumber;
+		$request_string.=$trnAmount;		
+		$request_string.=$trnCardOwner;
+		$request_string.=$trnCardNumber;
+		$request_string.=$trnCardType;
+		$request_string.=$trnExpMonth;
+		$request_string.=$trnExpYear;
+
+
+
+	
+		
 		// Initialize curl
 		$ch = curl_init();
 		// Get curl to POST
@@ -614,37 +617,35 @@ class formsActions extends sfActions
 		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
 		// This is the location of the Beanstream payment gateway
 		curl_setopt( $ch, CURLOPT_URL, "https://www.beanstream.com/scripts/process_transaction.asp" );
-		// These are the transaction parameters that we will POST
+		// These are the transaction parameters that we will POST	
 		curl_setopt( $ch, CURLOPT_POSTFIELDS,  $request_string);
-                //die($request_string."This string is correct. Ray debug====");
 		// Now POST the transaction. $txResult will contain Beanstream's response
 		$this->txResult = str_replace("&","<br>",urldecode(curl_exec( $ch )));
-                die($request_string."====debug====".$this->txResult."====debug=====");
-
+		$this->txResult.= $request_string;
 		$this->order_content=$this->getRequestParameter('order_content');
 		$my_order=new saOrders();
-		$my_order['order_content']=$this->order_content;
-		$my_order->save();
-		curl_close( $ch );
+		$my_order['order_content']=$this->order_content;	
+		$my_order->save();		
+		curl_close( $ch );  
 
 	}else{
 		$this->order_content=$this->getRequestParameter('order_content');
 		$my_order=new saOrders();
-		$my_order['order_content']=$this->order_content;
+		$my_order['order_content']=$this->order_content;	
 		$my_order->save();
 		$this->txResult ='commit success';
 	}
 
 	$this->logMessage('$this->order_content  '.$this->sa_forms['order_content']);
-    $this->getRequest()->setParameter('txResult', $this->txResult);
+    $this->getRequest()->setParameter('txResult', $this->txResult);	
 	$this->forward('forms','commitFinished');
-  }
+  }  
 
   public function executeCommitFinished(sfWebRequest $request)
   {
 	$this->txResult=$this->getRequestParameter('txResult');
   }
-
+  
   /*public function executeNew(sfWebRequest $request)
   {
     $this->form = new saFormsForm();
