@@ -535,11 +535,9 @@ class formsActions extends sfActions
 	$this->reqTrnExpMonth=$this->getRequestParameter('trnExpMonth');
 	$this->reqTrnExpYear=$this->getRequestParameter('trnExpYear');
 
-
 	if($this->reqOrdName=='' or $this->reqOrdName==null)$needPayment=false;
 	if($this->reqOrdPhoneNumber=='' or $this->reqOrdPhoneNumber==null)$needPayment=false;
 	if($this->reqOrdAddress1=='' or $this->reqOrdAddress1==null)$needPayment=false;
-	if($this->reqOrdAddress2=='' or $this->reqOrdAddress2==null)$needPayment=false;
 	if($this->reqOrdCity=='' or $this->reqOrdCity==null)$needPayment=false;
 	if($this->reqOrdProvince=='' or $this->reqOrdProvince==null)$needPayment=false;
 	if($this->reqOrdPostalCode=='' or $this->reqOrdPostalCode==null)$needPayment=false;
