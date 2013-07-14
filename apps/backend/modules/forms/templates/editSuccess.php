@@ -30,6 +30,7 @@
     <li onclick="javascript:addSubmitButton();"><img src="/images/blank.gif" class="icon_submit" />Submit Button</li>
     <li onclick="javascript:addResetButton();"><img src="/images/blank.gif" class="icon_reset" />Reset Button</li>
     <li onclick="javascript:addFullName();"><img src="/images/blank.gif" class="icon_fullname" />Full Name</li>
+    <li onclick="javascript:addClientEmail();"><img src="/images/blank.gif" class="icon_email" />Client E-mail</li>	
     <li onclick="javascript:addEmail();"><img src="/images/blank.gif" class="icon_email" />E-mail</li>
     <li onclick="javascript:addAddress();"><img src="/images/blank.gif" class="icon_addr" />Address</li>
     <li onclick="javascript:addPhone();"><img src="/images/blank.gif" class="icon_phone" />Phone</li>

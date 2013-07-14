@@ -21,10 +21,10 @@ class formsActions extends sfActions
   {
     $this->sa_forms = Doctrine_Core::getTable('saForms')->find(array($request->getParameter('id')));
     $this->forward404Unless($this->sa_forms);
-	$this->logMessage('$this->form_content  '.$this->sa_forms['form_content']);
-	$this->logMessage('$this->form_published  '.$this->sa_forms['form_published']);		
+	//$this->logMessage('$this->form_content  '.$this->sa_forms['form_content']);
+	//$this->logMessage('$this->form_published  '.$this->sa_forms['form_published']);		
     $this->form_name=$this->sa_forms['form_name'];
-    $this->form_published=$this->sa_forms['form_published'];	
+    $this->form_published=$this->sa_forms['form_published'];
   }
   
   public function executeCommit(sfWebRequest $request)
@@ -517,6 +517,8 @@ class formsActions extends sfActions
 	
 	$needPayment=true;
 	
+	$this->reqClientEmail=$this->getRequestParameter('form_client_email_value');
+	
 	$this->reqOrdName=$this->getRequestParameter('ordName');
 	$this->reqOrdPhoneNumber=$this->getRequestParameter('ordPhoneNumber');	
 	$this->reqOrdAddress1=$this->getRequestParameter('ordAddress1');	
@@ -636,6 +638,29 @@ class formsActions extends sfActions
 
 	$this->logMessage('$this->order_content  '.$this->sa_forms['order_content']);
     $this->getRequest()->setParameter('txResult', $this->txResult);	
+	$this->logMessage('txResult  '.$this->txResult);
+	//start send info email
+	$mydate=getdate(date("U"));
+	$now="$mydate[year]-$mydate[month]-$mydate[mday]  $mydate[hours]:$mydate[minutes]:$mydate[seconds]";
+	
+	$mailTo=array('2020481441@qq.com'=> '2020481441@qq.com');
+	
+	if($this->reqClientEmail!='' and $this->reqClientEmail!=null){
+		$mailTo[]=$this->reqClientEmail;
+	};
+	
+    
+	$message = $this->getMailer()->compose(
+      array('tsask0713@163.com' => 'tsaskAdmin'),
+      $mailTo,
+      'Tsask information',
+      <<<EOF
+	  form number {$my_order->getId()} at {$now}.
+EOF
+	);
+ 
+    $this->getMailer()->send($message);
+
 	$this->forward('forms','commitFinished');
   }  
 

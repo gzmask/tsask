@@ -33,6 +33,9 @@ function commitOrder(){
 		}			
 		if($(this).hasClass('form_email')){
 			content=content+formEmail($(this));	
+		}
+		if($(this).hasClass('form_client_email')){
+			content=content+formClientEmail($(this));	
 		}		
 		if($(this).hasClass('form_full_name')){
 			content=content+formFullName($(this));	

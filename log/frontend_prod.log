@@ -1,0 +1,161 @@
+Jul 13 08:57:04 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /forms/show/id/12 with parameters array (  'module' => 'forms',  'action' => 'show',  'id' => '12',)
+Jul 13 08:57:04 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 13 08:57:04 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 13 08:57:04 symfony [info] {formsActions} Call "formsActions->executeShow()"
+Jul 13 08:57:04 symfony [info] {sfPHPView} Render "/var/authority/apps/frontend/modules/forms/templates/showSuccess.php"
+Jul 13 08:57:04 symfony [info] {sfPHPView} Decorate content with "/var/authority/apps/frontend/templates/layout.php"
+Jul 13 08:57:04 symfony [info] {sfPHPView} Render "/var/authority/apps/frontend/templates/layout.php"
+Jul 13 08:57:04 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 13 08:57:04 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 13 08:57:04 symfony [info] {sfWebResponse} Send content (4140 o)
+Jul 13 08:57:05 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /js/control/form/FormSubmitButton.js with parameters array (  'module' => 'js',  'action' => 'control',  'form' => 'FormSubmitButton.js',)
+Jul 13 08:57:05 symfony [info] {sfFrontWebController} Action "js/control" does not exist
+Jul 13 08:57:06 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 13 08:57:06 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 13 08:57:06 symfony [info] {defaultActions} Call "defaultActions->executeError404()"
+Jul 13 08:57:06 symfony [info] {sfPHPView} Render "/var/authority/lib/vendor/symfony/lib/controller/default/templates/error404Success.php"
+Jul 13 08:57:06 symfony [info] {sfPHPView} Decorate content with "/var/authority/lib/vendor/symfony/lib/controller/default/templates/defaultLayout.php"
+Jul 13 08:57:06 symfony [info] {sfPHPView} Render "/var/authority/lib/vendor/symfony/lib/controller/default/templates/defaultLayout.php"
+Jul 13 08:57:06 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Jul 13 08:57:06 symfony [info] {sfWebResponse} Send header "Status: 404 Not Found"
+Jul 13 08:57:06 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 13 08:57:06 symfony [info] {sfWebResponse} Send content (2103 o)
+Jul 13 08:57:06 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /js/control/form/FormFileUpload.js with parameters array (  'module' => 'js',  'action' => 'control',  'form' => 'FormFileUpload.js',)
+Jul 13 08:57:06 symfony [info] {sfFrontWebController} Action "js/control" does not exist
+Jul 13 08:57:06 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /js/control/form/FormResetButton.js with parameters array (  'module' => 'js',  'action' => 'control',  'form' => 'FormResetButton.js',)
+Jul 13 08:57:06 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 13 08:57:06 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 13 08:57:06 symfony [info] {defaultActions} Call "defaultActions->executeError404()"
+Jul 13 08:57:06 symfony [info] {sfPHPView} Render "/var/authority/lib/vendor/symfony/lib/controller/default/templates/error404Success.php"
+Jul 13 08:57:06 symfony [info] {sfPHPView} Decorate content with "/var/authority/lib/vendor/symfony/lib/controller/default/templates/defaultLayout.php"
+Jul 13 08:57:06 symfony [info] {sfPHPView} Render "/var/authority/lib/vendor/symfony/lib/controller/default/templates/defaultLayout.php"
+Jul 13 08:57:06 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Jul 13 08:57:06 symfony [info] {sfWebResponse} Send header "Status: 404 Not Found"
+Jul 13 08:57:06 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 13 08:57:06 symfony [info] {sfWebResponse} Send content (2103 o)
+Jul 13 08:57:06 symfony [info] {sfFrontWebController} Action "js/control" does not exist
+Jul 13 08:57:06 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 13 08:57:06 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 13 08:57:06 symfony [info] {defaultActions} Call "defaultActions->executeError404()"
+Jul 13 08:57:06 symfony [info] {sfPHPView} Render "/var/authority/lib/vendor/symfony/lib/controller/default/templates/error404Success.php"
+Jul 13 08:57:06 symfony [info] {sfPHPView} Decorate content with "/var/authority/lib/vendor/symfony/lib/controller/default/templates/defaultLayout.php"
+Jul 13 08:57:06 symfony [info] {sfPHPView} Render "/var/authority/lib/vendor/symfony/lib/controller/default/templates/defaultLayout.php"
+Jul 13 08:57:06 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Jul 13 08:57:06 symfony [info] {sfWebResponse} Send header "Status: 404 Not Found"
+Jul 13 08:57:06 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 13 08:57:06 symfony [info] {sfWebResponse} Send content (2103 o)
+Jul 13 08:57:11 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /js/control/form/FormSubmitButton.js with parameters array (  'module' => 'js',  'action' => 'control',  'form' => 'FormSubmitButton.js',)
+Jul 13 08:57:11 symfony [info] {sfFrontWebController} Action "js/control" does not exist
+Jul 13 08:57:11 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 13 08:57:11 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 13 08:57:11 symfony [info] {defaultActions} Call "defaultActions->executeError404()"
+Jul 13 08:57:11 symfony [info] {sfPHPView} Render "/var/authority/lib/vendor/symfony/lib/controller/default/templates/error404Success.php"
+Jul 13 08:57:11 symfony [info] {sfPHPView} Decorate content with "/var/authority/lib/vendor/symfony/lib/controller/default/templates/defaultLayout.php"
+Jul 13 08:57:11 symfony [info] {sfPHPView} Render "/var/authority/lib/vendor/symfony/lib/controller/default/templates/defaultLayout.php"
+Jul 13 08:57:11 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Jul 13 08:57:11 symfony [info] {sfWebResponse} Send header "Status: 404 Not Found"
+Jul 13 08:57:11 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 13 08:57:11 symfony [info] {sfWebResponse} Send content (2103 o)
+Jul 13 08:57:20 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /forms/commit with parameters array (  'module' => 'forms',  'action' => 'commit',)
+Jul 13 08:57:20 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 13 08:57:20 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 13 08:57:20 symfony [info] {formsActions} Call "formsActions->executeCommit()"
+Jul 13 08:57:20 symfony [info] {formsActions} $this->order_content  
+Jul 13 08:57:20 symfony [info] {formsActions} txResult  commit success
+Jul 13 08:57:24 symfony [info] {sfMailerMessageLoggerPlugin} Sending email "Tsask information" to "2020481441@qq.com, 251499275@qq.com"
+Jul 13 08:57:26 symfony [info] {formsActions} Forward to action "forms/commitFinished"
+Jul 13 08:57:26 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 13 08:57:26 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 13 08:57:26 symfony [info] {formsActions} Call "formsActions->executeCommitFinished()"
+Jul 13 08:57:26 symfony [info] {sfPHPView} Render "/var/authority/apps/frontend/modules/forms/templates/commitFinishedSuccess.php"
+Jul 13 08:57:26 symfony [info] {sfPHPView} Decorate content with "/var/authority/apps/frontend/templates/layout.php"
+Jul 13 08:57:26 symfony [info] {sfPHPView} Render "/var/authority/apps/frontend/templates/layout.php"
+Jul 13 08:57:26 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 13 08:57:26 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 13 08:57:26 symfony [info] {sfWebResponse} Send content (3422 o)
+Jul 13 08:57:27 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /js/control/form/FormFileUpload.js with parameters array (  'module' => 'js',  'action' => 'control',  'form' => 'FormFileUpload.js',)
+Jul 13 08:57:27 symfony [info] {sfFrontWebController} Action "js/control" does not exist
+Jul 13 08:57:27 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 13 08:57:27 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 13 08:57:27 symfony [info] {defaultActions} Call "defaultActions->executeError404()"
+Jul 13 08:57:27 symfony [info] {sfPHPView} Render "/var/authority/lib/vendor/symfony/lib/controller/default/templates/error404Success.php"
+Jul 13 08:57:27 symfony [info] {sfPHPView} Decorate content with "/var/authority/lib/vendor/symfony/lib/controller/default/templates/defaultLayout.php"
+Jul 13 08:57:27 symfony [info] {sfPHPView} Render "/var/authority/lib/vendor/symfony/lib/controller/default/templates/defaultLayout.php"
+Jul 13 08:57:27 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Jul 13 08:57:27 symfony [info] {sfWebResponse} Send header "Status: 404 Not Found"
+Jul 13 08:57:27 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 13 08:57:27 symfony [info] {sfWebResponse} Send content (2103 o)
+Jul 13 08:57:28 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /js/control/form/FormSubmitButton.js with parameters array (  'module' => 'js',  'action' => 'control',  'form' => 'FormSubmitButton.js',)
+Jul 13 08:57:28 symfony [info] {sfFrontWebController} Action "js/control" does not exist
+Jul 13 08:57:28 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 13 08:57:28 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 13 08:57:28 symfony [info] {defaultActions} Call "defaultActions->executeError404()"
+Jul 13 08:57:28 symfony [info] {sfPHPView} Render "/var/authority/lib/vendor/symfony/lib/controller/default/templates/error404Success.php"
+Jul 13 08:57:28 symfony [info] {sfPHPView} Decorate content with "/var/authority/lib/vendor/symfony/lib/controller/default/templates/defaultLayout.php"
+Jul 13 08:57:28 symfony [info] {sfPHPView} Render "/var/authority/lib/vendor/symfony/lib/controller/default/templates/defaultLayout.php"
+Jul 13 08:57:28 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Jul 13 08:57:28 symfony [info] {sfWebResponse} Send header "Status: 404 Not Found"
+Jul 13 08:57:28 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 13 08:57:28 symfony [info] {sfWebResponse} Send content (2103 o)
+Jul 13 08:57:29 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /js/control/form/FormResetButton.js with parameters array (  'module' => 'js',  'action' => 'control',  'form' => 'FormResetButton.js',)
+Jul 13 08:57:29 symfony [info] {sfFrontWebController} Action "js/control" does not exist
+Jul 13 08:57:29 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 13 08:57:29 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 13 08:57:29 symfony [info] {defaultActions} Call "defaultActions->executeError404()"
+Jul 13 08:57:29 symfony [info] {sfPHPView} Render "/var/authority/lib/vendor/symfony/lib/controller/default/templates/error404Success.php"
+Jul 13 08:57:29 symfony [info] {sfPHPView} Decorate content with "/var/authority/lib/vendor/symfony/lib/controller/default/templates/defaultLayout.php"
+Jul 13 08:57:29 symfony [info] {sfPHPView} Render "/var/authority/lib/vendor/symfony/lib/controller/default/templates/defaultLayout.php"
+Jul 13 08:57:29 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Jul 13 08:57:29 symfony [info] {sfWebResponse} Send header "Status: 404 Not Found"
+Jul 13 08:57:29 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 13 08:57:29 symfony [info] {sfWebResponse} Send content (2103 o)
+Jul 13 08:57:29 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /js/control/form/FormSubmitButton.js with parameters array (  'module' => 'js',  'action' => 'control',  'form' => 'FormSubmitButton.js',)
+Jul 13 08:57:29 symfony [info] {sfFrontWebController} Action "js/control" does not exist
+Jul 13 08:57:29 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 13 08:57:29 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 13 08:57:29 symfony [info] {defaultActions} Call "defaultActions->executeError404()"
+Jul 13 08:57:29 symfony [info] {sfPHPView} Render "/var/authority/lib/vendor/symfony/lib/controller/default/templates/error404Success.php"
+Jul 13 08:57:29 symfony [info] {sfPHPView} Decorate content with "/var/authority/lib/vendor/symfony/lib/controller/default/templates/defaultLayout.php"
+Jul 13 08:57:29 symfony [info] {sfPHPView} Render "/var/authority/lib/vendor/symfony/lib/controller/default/templates/defaultLayout.php"
+Jul 13 08:57:29 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Jul 13 08:57:29 symfony [info] {sfWebResponse} Send header "Status: 404 Not Found"
+Jul 13 08:57:29 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 13 08:57:29 symfony [info] {sfWebResponse} Send content (2103 o)
+Jul 13 14:21:56 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 13 14:21:56 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 13 14:21:56 symfony [info] {defaultActions} Call "defaultActions->executeError404()"
+Jul 13 14:21:56 symfony [info] {sfPHPView} Render "/var/authority/lib/vendor/symfony/lib/controller/default/templates/error404Success.php"
+Jul 13 14:21:56 symfony [info] {sfPHPView} Decorate content with "/var/authority/lib/vendor/symfony/lib/controller/default/templates/defaultLayout.php"
+Jul 13 14:21:56 symfony [info] {sfPHPView} Render "/var/authority/lib/vendor/symfony/lib/controller/default/templates/defaultLayout.php"
+Jul 13 14:21:56 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Jul 13 14:21:56 symfony [info] {sfWebResponse} Send header "Status: 404 Not Found"
+Jul 13 14:21:56 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 13 14:21:56 symfony [info] {sfWebResponse} Send content (2103 o)
+Jul 13 23:55:26 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'home',  'action' => 'index',)
+Jul 13 23:55:27 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 13 23:55:27 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 13 23:55:27 symfony [info] {homeActions} Call "homeActions->executeIndex()"
+Jul 13 23:55:27 symfony [info] {sfFrontWebController} Redirect to "/backend.php"
+Jul 13 23:55:27 symfony [info] {sfWebResponse} Send status "HTTP/1.0 302 Found"
+Jul 13 23:55:27 symfony [info] {sfWebResponse} Send header "Location: /backend.php"
+Jul 13 23:55:27 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 14 00:55:12 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'home',  'action' => 'index',)
+Jul 14 00:55:12 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 14 00:55:12 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 14 00:55:12 symfony [info] {homeActions} Call "homeActions->executeIndex()"
+Jul 14 00:55:12 symfony [info] {sfFrontWebController} Redirect to "/backend.php"
+Jul 14 00:55:12 symfony [info] {sfWebResponse} Send status "HTTP/1.0 302 Found"
+Jul 14 00:55:12 symfony [info] {sfWebResponse} Send header "Location: /backend.php"
+Jul 14 00:55:12 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 14 03:04:33 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /%70%68%70%70%61%74%68/%70%68%70 with parameters array (  'module' => 'phppath',  'action' => 'php',)
+Jul 14 03:04:33 symfony [info] {sfFrontWebController} Action "phppath/php" does not exist
+Jul 14 03:04:33 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 14 03:04:33 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 14 03:04:33 symfony [info] {defaultActions} Call "defaultActions->executeError404()"
+Jul 14 03:04:33 symfony [info] {sfPHPView} Render "/var/authority/lib/vendor/symfony/lib/controller/default/templates/error404Success.php"
+Jul 14 03:04:33 symfony [info] {sfPHPView} Decorate content with "/var/authority/lib/vendor/symfony/lib/controller/default/templates/defaultLayout.php"
+Jul 14 03:04:33 symfony [info] {sfPHPView} Render "/var/authority/lib/vendor/symfony/lib/controller/default/templates/defaultLayout.php"
+Jul 14 03:04:33 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Jul 14 03:04:33 symfony [info] {sfWebResponse} Send header "Status: 404 Not Found"
+Jul 14 03:04:33 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 14 03:04:33 symfony [info] {sfWebResponse} Send content (2103 o)

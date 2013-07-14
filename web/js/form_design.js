@@ -131,6 +131,8 @@ function saveForm(){
 			content=content+saveDateTime($(this));
 		}else if ($(this).hasClass('control_drop_down')){
 			content=content+saveDropDown($(this));
+		}else if ($(this).hasClass('control_client_email')){
+			content=content+saveClientEmail($(this));			
 		}else if ($(this).hasClass('control_email')){
 			content=content+saveEmail($(this));
 		}else if ($(this).hasClass('control_file_upload')){
@@ -172,6 +174,8 @@ function saveForm(){
 			published=published+makeDateTime($(this));
 		}else if ($(this).hasClass('control_drop_down')){
 			published=published+makeDropDown($(this));
+		}else if ($(this).hasClass('control_client_email')){
+			published=published+makeClientEmail($(this));			
 		}else if ($(this).hasClass('control_email')){
 			published=published+makeEmail($(this));
 		}else if ($(this).hasClass('control_file_upload')){

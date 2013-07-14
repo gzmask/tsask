@@ -44,3 +44,5 @@ all:
       success_signin_url:      /forms  # the plugin use the referer as default
       #success_signout_url:     /orders/index         # the plugin use the referer as default
 
+    default_timezone:       America/Regina
+
