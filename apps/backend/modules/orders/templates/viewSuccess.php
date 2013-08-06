@@ -20,7 +20,7 @@
 	</div>
     <div class="icon_exit"></div>
   </div>-->
-  
+<h2>Form Name: <?php echo $sf_data->getRaw('form_name');?></h2>
 <?php echo $sf_data->getRaw('order_content');?>
 
 

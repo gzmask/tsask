@@ -17,7 +17,8 @@ class ordersActions extends autoOrdersActions
   {
     $this->sa_orders = $this->getRoute()->getObject();
     $this->form = $this->configuration->getForm($this->sa_orders);  
-	$this->order_content=$this->sa_orders['order_content'];	
+    $this->order_content=$this->sa_orders['order_content'];	
+    $this->form_name=$this->sa_orders['form_name'];	
   }   
 
   public function postExecute()

@@ -623,15 +623,22 @@ class formsActions extends sfActions
 		$this->txResult = str_replace("&","<br>",urldecode(curl_exec( $ch )));
 		$this->txResult.= $request_string;
 		$this->order_content=$this->getRequestParameter('order_content');
+		$this->form_name=$this->getRequestParameter('form_name');
 		$my_order=new saOrders();
 		$my_order['order_content']=$this->order_content;	
+                if ($this->form_name) {
+                  $my_order['form_name']=$this->form_name;}
+                else {
+                  $my_order['form_name']=$this->reqOrdName;}
 		$my_order->save();		
 		curl_close( $ch );  
 
 	}else{
 		$this->order_content=$this->getRequestParameter('order_content');
+		$this->form_name=$this->getRequestParameter('form_name');
 		$my_order=new saOrders();
 		$my_order['order_content']=$this->order_content;	
+                $my_order['form_name']=$this->form_name;
 		$my_order->save();
 		$this->txResult ='commit success';
 	}

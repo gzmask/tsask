@@ -39,6 +39,7 @@
 </div>
 </div>
 <input type="hidden" value="" id="order_content" name="order_content" />
+<input type="hidden" value="<?php echo $sf_data->getRaw('form_name');?>" id="form_name" name="form_name" />
 </form>
 <div class="footer"></div>
 
