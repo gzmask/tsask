@@ -1,3 +1,4 @@
 /cache/
 /tags/
 *.zip
+log/frontend_prod.log

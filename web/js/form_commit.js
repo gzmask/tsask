@@ -44,7 +44,7 @@ function commitOrder(){
 			content=content+formNumber($(this));	
 		}	
 		if($(this).hasClass('form_payment')){
-			content=content+formPayment($(this));	
+			//content=content+formPayment($(this));	
 		}		
 		if($(this).hasClass('form_phone')){
 			content=content+formPhone($(this));	
