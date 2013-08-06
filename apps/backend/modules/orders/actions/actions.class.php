@@ -13,6 +13,15 @@ require_once dirname(__FILE__).'/../lib/ordersGeneratorHelper.class.php';
  */
 class ordersActions extends autoOrdersActions
 {
+
+  /*
+  public function executeIndex(sfWebRequest $request)
+  {
+    parent::executeIndex($request);
+    $this->sa_orders->setQuery(Doctrine_Core::getTable('sa_orders')->getListeByState('Published'));
+  }*/
+
+
   public function executeView(sfWebRequest $request)
   {
     $this->sa_orders = $this->getRoute()->getObject();

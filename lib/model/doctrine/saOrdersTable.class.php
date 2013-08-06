@@ -14,6 +14,10 @@ class saOrdersTable extends Doctrine_Table
      */
     public static function getInstance()
     {
-        return Doctrine_Core::getTable('saOrders');
+
+      $q = Doctrine_Core::getTable('saOrders')
+        ->createQuery('c')
+        ->orderBy('c.created_at ASC');
+        return $q->execute(); 
     }
 }
