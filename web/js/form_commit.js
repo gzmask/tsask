@@ -44,7 +44,10 @@ function commitOrder(){
 			content=content+formNumber($(this));	
 		}	
 		if($(this).hasClass('form_payment')){
-			//content=content+formPayment($(this));	
+                        var re = /(Credit\sCard\sNumber:<\/font><\/td><td>)\d+(<\/td><\/tr>)/;
+                        var str = formPayment($(this));
+                        var result = str.replace(re, "$1******$2");
+			content=content+result;
 		}		
 		if($(this).hasClass('form_phone')){
 			content=content+formPhone($(this));	
