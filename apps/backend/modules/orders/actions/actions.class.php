@@ -17,9 +17,12 @@ class ordersActions extends autoOrdersActions
   /*
   public function executeIndex(sfWebRequest $request)
   {
-    parent::executeIndex($request);
-    $this->sa_orders->setQuery(Doctrine_Core::getTable('sa_orders')->getListeByState('Published'));
-  }*/
+    $this->sa_orders = Doctrine_Core::getTable('SaOrders') 
+      ->createQuery('a') 
+      ->orderBy('a.created_at ASC')
+      ->execute();
+  }
+   */
 
 
   public function executeView(sfWebRequest $request)
