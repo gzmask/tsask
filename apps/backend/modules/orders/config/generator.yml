@@ -15,7 +15,7 @@ generator:
       actions: ~
       fields:  ~
       list:    
-        display: [=id, created_at, updated_at]
+        display: [=id, form_name, created_at, updated_at]
         object_actions: 
            View: { name: view, action: view, icon: backend/addcomment.png }		
            _delete: ~		   
