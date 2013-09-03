@@ -8,6 +8,7 @@
   :dependencies [[ring/ring-core "1.1.8"]
                  [ring/ring-jetty-adapter "1.1.8"]
                  [ring-mock "0.1.5"]
+                 [me.raynes/laser "1.1.1"]
                  [hiccup "1.0.3"]
                  [compojure "1.1.5"]
                  [mysql/mysql-connector-java "5.1.25"]
