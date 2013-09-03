@@ -17,4 +17,4 @@
   :source-paths ["src"]
   :ring {:handler csvexporter.core/app}
   :main csvexporter.core
-  :profiles {:uberjar {:aot [csvexporter.core]}})
+  :profiles {:uberjar {:aot :all}})
