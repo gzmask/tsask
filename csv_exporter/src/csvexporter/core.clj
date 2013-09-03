@@ -14,10 +14,13 @@
               [compojure.route :as route]))
 
 (defn export-csv []
-  (l/document
-    (l/parse (file "resources/templates/index.html"))
-    (l/class= "content")
-    (l/content "injected content")))
+  (let [reports (j/with-connection SQLDB
+                              (j/with-query-results rs [(str "select * from CSV_report;")] (doall rs)))]
+    (do
+      (l/document
+        (l/parse (file "resources/templates/index.html"))
+        (l/class= "content")
+        (l/content "injected content")))))
 
 (defn csv [params]
   (j/insert! SQLDB :CSV_report 
