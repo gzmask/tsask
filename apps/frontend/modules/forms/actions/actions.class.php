@@ -563,7 +563,7 @@ class formsActions extends sfActions
           $csv_app_detail = $ap_type;
           $csv_paid_by = $this->reqTrnCardOwner;
           $csv_card_type = $this->reqTrnCardType;
-          $csv_payment_amt = $this->reqTrnAmount;
+          $csv_payment_amt = $this->getRequestParameter('trnAmount');
           $csv_ch = curl_init();
           $curlConfig = array(
             CURLOPT_URL            => "localhost:3000/csvs/create",
