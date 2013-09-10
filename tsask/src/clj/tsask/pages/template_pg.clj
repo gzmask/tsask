@@ -15,10 +15,31 @@
   "get page by pagename"
   (html5
    [:head
-    [:title "csv exporter 欢迎使用"]
+    [:title "technical safety authority interface design_login"]
+    (include-css "/css/common.css")
     (if include-files
       (apply include include-files))]
-   [:body page]))
+   [:body
+    [:div.wrapper
+     [:div.header
+      [:div.icon_logo
+       [:a {:href "#" :title "technical safety authority interface design"}
+        [:img {:src "/images/icon_logo.jpg" :alt "technical safety authority interface design"}]]]
+      [:div.icon_exit
+       [:a {:href "#!" :title "log out"}]]]
+     [:div.container
+      [:div.mainnav
+       [:ul.navlist
+        [:li [:a.nav1 {:href "http://www.tsaskforms.ca/backend.php/forms" :title "forms"} [:span "Form"]]]
+        [:li [:a.nav2 {:href "http://www.tsaskforms.ca/backend.php/orders" :title "orders"} [:span "Order"]]]
+        [:li [:a.nav3 {:href "http://www.tsaskforms.ca/backend.php/users" :title "users"} [:span "User"]]]
+        [:li [:a.nav4 {:href "/csv/payment-report" :title "payment report"} [:span "Payment Report"]]]]
+       [:div.clear]]
+      [:div.mainbox
+       [:div.subnav
+        [:a.newform {:href "#!" :title "new form"} "New Form"]
+        [:a.newuser {:href "#!" :title "new user"} "New User"]]
+       page]]]]))
 
 
 (def error-page

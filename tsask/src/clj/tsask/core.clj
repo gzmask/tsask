@@ -3,7 +3,6 @@
     (:use compojure.core 
           tsask.env
           ring.adapter.jetty
-          tsask.pages.template-pg
           tsask.wrap)
 
     (:require [compojure.handler :as handler]
@@ -17,15 +16,18 @@
               [compojure.route :as route]
               [ring.middleware.json :as json]
 
-              [tsask.csv.crud :as csv]))
+              [tsask.csv.crud :as csv]
+              [tsask.session.log :as log]))
 
 (defroutes app-routes
   (route/resources "/")
-  (GET "/login/" [] (login))
-  (POST "/check" {{username :username password :password} :params session :session} (check username password session))
-  (GET "/csvs/export" [] (csv/export))
-  (GET "/csvs/new" {params :params session :session} (wrap-session-verify (csv/new params session) session))
-  (POST "/csvs/create" {params :params session :session} (wrap-session-verify (csv/create params session) session)))
+  (GET "/login" [] (log/login))
+  (POST "/check" {{username :username password :password} :params session :session} (log/check username password session))
+  (GET "/check" {{x :x y :y} :params session :session} (log/check-tsask x y session))
+  (GET "/csv/export" {session :session} (wrap-session-verify (csv/export) session))
+  (GET "/csv/new" {session :session} (wrap-session-verify (csv/new) session))
+  (GET "/csv/payment-report" {session :session} (wrap-session-verify (csv/payment-report) session))
+  (POST "/csv/create" {params :params session :session} (wrap-session-verify (csv/create params) session)))
 
 (def app
     (params/wrap-params (session/wrap-session (handler/site app-routes))))
