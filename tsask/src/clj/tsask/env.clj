@@ -1,5 +1,5 @@
-(ns csvexporter.env
-  (:use csvexporter.pages.template-pg))
+(ns tsask.env
+  (:use tsask.pages.template-pg))
 
 (def SQLDB {:subprotocol "mysql"
                               :subname "//127.0.0.1:3306/isaac"

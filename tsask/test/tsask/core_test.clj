@@ -1,6 +1,6 @@
-(ns csv-exporter.core-test
+(ns tsask.core-test
   (:require [clojure.test :refer :all]
-            [csv-exporter.core :refer :all]))
+            [tsask.core :refer :all]))
 
 (deftest a-test
   (testing "FIXME, I fail."

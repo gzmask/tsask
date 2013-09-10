@@ -1,4 +1,4 @@
-(defproject csvexporter "0.1.0-SNAPSHOT"
+(defproject tsask "0.1.0-SNAPSHOT"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
@@ -17,8 +17,8 @@
                  [org.clojure/clojure "1.5.1"]
                  [enfocus "2.0.0-beta1"]]
   :source-paths ["src/clj"]
-  :ring {:handler csvexporter.core/app
+  :ring {:handler tsask.core/app
          :auto-reload? true
          :nrepl {:start? true :port 7000}}
-  :main csvexporter.core
+  :main tsask.core
   :profiles {:uberjar {:aot :all}})
