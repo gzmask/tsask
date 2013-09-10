@@ -41,6 +41,7 @@ class BasesfGuardAuthActions extends sfActions
         // or to the homepage
         $signinUrl = sfConfig::get('app_sf_guard_plugin_success_signin_url', $user->getReferer($request->getReferer()));
 
+        //return $this->redirect('http://www.tsaskforms.ca:3000/check?x=1&y=314');
         return $this->redirect('' != $signinUrl ? $signinUrl : '@homepage');
       }
     }
