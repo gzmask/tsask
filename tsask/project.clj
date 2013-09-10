@@ -16,7 +16,7 @@
                  [org.clojure/java.jdbc "0.3.0-alpha4"]
                  [org.clojure/clojure "1.5.1"]
                  [enfocus "2.0.0-beta1"]]
-  :source-paths ["src"]
+  :source-paths ["src/clj"]
   :ring {:handler csvexporter.core/app
          :auto-reload? true
          :nrepl {:start? true :port 7000}}
