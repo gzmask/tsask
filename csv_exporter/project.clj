@@ -8,6 +8,7 @@
   :dependencies [[ring/ring-core "1.1.8"]
                  [ring/ring-jetty-adapter "1.1.8"]
                  [ring-mock "0.1.5"]
+                 [ring/ring-json "0.2.0"]
                  [me.raynes/laser "1.1.1"]
                  [hiccup "1.0.3"]
                  [compojure "1.1.5"]
@@ -16,6 +17,8 @@
                  [org.clojure/clojure "1.5.1"]
                  [enfocus "2.0.0-beta1"]]
   :source-paths ["src"]
-  :ring {:handler csvexporter.core/app}
+  :ring {:handler csvexporter.core/app
+         :auto-reload? true
+         :nrepl {:start? true :port 7000}}
   :main csvexporter.core
   :profiles {:uberjar {:aot :all}})
