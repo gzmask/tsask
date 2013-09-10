@@ -23,13 +23,13 @@ DROP TABLE IF EXISTS `sa_forms`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sa_forms` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `form_name` varchar(255) DEFAULT NULL,
-  `form_content` longtext,
-  `form_published` longtext,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+    `id` bigint(20) NOT NULL AUTO_INCREMENT,
+    `form_name` varchar(255) DEFAULT NULL,
+    `form_content` longtext,
+    `form_published` longtext,
+    `created_at` datetime NOT NULL,
+    `updated_at` datetime NOT NULL,
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -51,16 +51,16 @@ DROP TABLE IF EXISTS `sa_forms_element`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sa_forms_element` (
-  `form_id` bigint(20) NOT NULL DEFAULT '0',
-  `form_name` varchar(255) DEFAULT NULL,
-  `element_name` varchar(255) DEFAULT NULL,
-  `element_key` varchar(255) DEFAULT NULL,
-  `element_value` varchar(255) DEFAULT NULL,
-  `element_type` int(11) DEFAULT NULL,
-  `sort` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`form_id`)
+    `form_id` bigint(20) NOT NULL DEFAULT '0',
+    `form_name` varchar(255) DEFAULT NULL,
+    `element_name` varchar(255) DEFAULT NULL,
+    `element_key` varchar(255) DEFAULT NULL,
+    `element_value` varchar(255) DEFAULT NULL,
+    `element_type` int(11) DEFAULT NULL,
+    `sort` int(11) DEFAULT NULL,
+    `created_at` datetime NOT NULL,
+    `updated_at` datetime NOT NULL,
+    PRIMARY KEY (`form_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -81,17 +81,17 @@ DROP TABLE IF EXISTS `sa_orders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sa_orders` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `form_id` bigint(20) DEFAULT NULL,
-  `user_id` bigint(20) DEFAULT NULL,
-  `form_name` varchar(255) DEFAULT NULL,
-  `user_name` varchar(255) DEFAULT NULL,
-  `total_cost_paid` varchar(255) DEFAULT NULL,
-  `date_completed` datetime DEFAULT NULL,
-  `order_content` longtext,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+    `id` bigint(20) NOT NULL AUTO_INCREMENT,
+    `form_id` bigint(20) DEFAULT NULL,
+    `user_id` bigint(20) DEFAULT NULL,
+    `form_name` varchar(255) DEFAULT NULL,
+    `user_name` varchar(255) DEFAULT NULL,
+    `total_cost_paid` varchar(255) DEFAULT NULL,
+    `date_completed` datetime DEFAULT NULL,
+    `order_content` longtext,
+    `created_at` datetime NOT NULL,
+    `updated_at` datetime NOT NULL,
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -113,15 +113,15 @@ DROP TABLE IF EXISTS `sf_guard_forgot_password`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sf_guard_forgot_password` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) NOT NULL,
-  `unique_key` varchar(255) DEFAULT NULL,
-  `expires_at` datetime NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `user_id_idx` (`user_id`),
-  CONSTRAINT `sf_guard_forgot_password_user_id_sf_guard_user_id` FOREIGN KEY (`user_id`) REFERENCES `sf_guard_user` (`id`) ON DELETE CASCADE
+    `id` bigint(20) NOT NULL AUTO_INCREMENT,
+    `user_id` bigint(20) NOT NULL,
+    `unique_key` varchar(255) DEFAULT NULL,
+    `expires_at` datetime NOT NULL,
+    `created_at` datetime NOT NULL,
+    `updated_at` datetime NOT NULL,
+    PRIMARY KEY (`id`),
+    KEY `user_id_idx` (`user_id`),
+    CONSTRAINT `sf_guard_forgot_password_user_id_sf_guard_user_id` FOREIGN KEY (`user_id`) REFERENCES `sf_guard_user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -142,13 +142,13 @@ DROP TABLE IF EXISTS `sf_guard_group`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sf_guard_group` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `description` text,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`)
+    `id` bigint(20) NOT NULL AUTO_INCREMENT,
+    `name` varchar(255) DEFAULT NULL,
+    `description` text,
+    `created_at` datetime NOT NULL,
+    `updated_at` datetime NOT NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -170,14 +170,14 @@ DROP TABLE IF EXISTS `sf_guard_group_permission`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sf_guard_group_permission` (
-  `group_id` bigint(20) NOT NULL DEFAULT '0',
-  `permission_id` bigint(20) NOT NULL DEFAULT '0',
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`group_id`,`permission_id`),
-  KEY `sf_guard_group_permission_permission_id_sf_guard_permission_id` (`permission_id`),
-  CONSTRAINT `sf_guard_group_permission_group_id_sf_guard_group_id` FOREIGN KEY (`group_id`) REFERENCES `sf_guard_group` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `sf_guard_group_permission_permission_id_sf_guard_permission_id` FOREIGN KEY (`permission_id`) REFERENCES `sf_guard_permission` (`id`) ON DELETE CASCADE
+    `group_id` bigint(20) NOT NULL DEFAULT '0',
+    `permission_id` bigint(20) NOT NULL DEFAULT '0',
+    `created_at` datetime NOT NULL,
+    `updated_at` datetime NOT NULL,
+    PRIMARY KEY (`group_id`,`permission_id`),
+    KEY `sf_guard_group_permission_permission_id_sf_guard_permission_id` (`permission_id`),
+    CONSTRAINT `sf_guard_group_permission_group_id_sf_guard_group_id` FOREIGN KEY (`group_id`) REFERENCES `sf_guard_group` (`id`) ON DELETE CASCADE,
+    CONSTRAINT `sf_guard_group_permission_permission_id_sf_guard_permission_id` FOREIGN KEY (`permission_id`) REFERENCES `sf_guard_permission` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -199,13 +199,13 @@ DROP TABLE IF EXISTS `sf_guard_permission`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sf_guard_permission` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `description` text,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`)
+    `id` bigint(20) NOT NULL AUTO_INCREMENT,
+    `name` varchar(255) DEFAULT NULL,
+    `description` text,
+    `created_at` datetime NOT NULL,
+    `updated_at` datetime NOT NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -227,15 +227,15 @@ DROP TABLE IF EXISTS `sf_guard_remember_key`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sf_guard_remember_key` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) DEFAULT NULL,
-  `remember_key` varchar(32) DEFAULT NULL,
-  `ip_address` varchar(50) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `user_id_idx` (`user_id`),
-  CONSTRAINT `sf_guard_remember_key_user_id_sf_guard_user_id` FOREIGN KEY (`user_id`) REFERENCES `sf_guard_user` (`id`) ON DELETE CASCADE
+    `id` bigint(20) NOT NULL AUTO_INCREMENT,
+    `user_id` bigint(20) DEFAULT NULL,
+    `remember_key` varchar(32) DEFAULT NULL,
+    `ip_address` varchar(50) DEFAULT NULL,
+    `created_at` datetime NOT NULL,
+    `updated_at` datetime NOT NULL,
+    PRIMARY KEY (`id`),
+    KEY `user_id_idx` (`user_id`),
+    CONSTRAINT `sf_guard_remember_key_user_id_sf_guard_user_id` FOREIGN KEY (`user_id`) REFERENCES `sf_guard_user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -256,23 +256,23 @@ DROP TABLE IF EXISTS `sf_guard_user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sf_guard_user` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(255) DEFAULT NULL,
-  `last_name` varchar(255) DEFAULT NULL,
-  `email_address` varchar(255) NOT NULL,
-  `username` varchar(128) NOT NULL,
-  `algorithm` varchar(128) NOT NULL DEFAULT 'sha1',
-  `salt` varchar(128) DEFAULT NULL,
-  `password` varchar(128) DEFAULT NULL,
-  `is_active` tinyint(1) DEFAULT '1',
-  `is_super_admin` tinyint(1) DEFAULT '0',
-  `last_login` datetime DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email_address` (`email_address`),
-  UNIQUE KEY `username` (`username`),
-  KEY `is_active_idx_idx` (`is_active`)
+    `id` bigint(20) NOT NULL AUTO_INCREMENT,
+    `first_name` varchar(255) DEFAULT NULL,
+    `last_name` varchar(255) DEFAULT NULL,
+    `email_address` varchar(255) NOT NULL,
+    `username` varchar(128) NOT NULL,
+    `algorithm` varchar(128) NOT NULL DEFAULT 'sha1',
+    `salt` varchar(128) DEFAULT NULL,
+    `password` varchar(128) DEFAULT NULL,
+    `is_active` tinyint(1) DEFAULT '1',
+    `is_super_admin` tinyint(1) DEFAULT '0',
+    `last_login` datetime DEFAULT NULL,
+    `created_at` datetime NOT NULL,
+    `updated_at` datetime NOT NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `email_address` (`email_address`),
+    UNIQUE KEY `username` (`username`),
+    KEY `is_active_idx_idx` (`is_active`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -294,14 +294,14 @@ DROP TABLE IF EXISTS `sf_guard_user_group`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sf_guard_user_group` (
-  `user_id` bigint(20) NOT NULL DEFAULT '0',
-  `group_id` bigint(20) NOT NULL DEFAULT '0',
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`user_id`,`group_id`),
-  KEY `sf_guard_user_group_group_id_sf_guard_group_id` (`group_id`),
-  CONSTRAINT `sf_guard_user_group_group_id_sf_guard_group_id` FOREIGN KEY (`group_id`) REFERENCES `sf_guard_group` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `sf_guard_user_group_user_id_sf_guard_user_id` FOREIGN KEY (`user_id`) REFERENCES `sf_guard_user` (`id`) ON DELETE CASCADE
+    `user_id` bigint(20) NOT NULL DEFAULT '0',
+    `group_id` bigint(20) NOT NULL DEFAULT '0',
+    `created_at` datetime NOT NULL,
+    `updated_at` datetime NOT NULL,
+    PRIMARY KEY (`user_id`,`group_id`),
+    KEY `sf_guard_user_group_group_id_sf_guard_group_id` (`group_id`),
+    CONSTRAINT `sf_guard_user_group_group_id_sf_guard_group_id` FOREIGN KEY (`group_id`) REFERENCES `sf_guard_group` (`id`) ON DELETE CASCADE,
+    CONSTRAINT `sf_guard_user_group_user_id_sf_guard_user_id` FOREIGN KEY (`user_id`) REFERENCES `sf_guard_user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -323,14 +323,14 @@ DROP TABLE IF EXISTS `sf_guard_user_permission`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sf_guard_user_permission` (
-  `user_id` bigint(20) NOT NULL DEFAULT '0',
-  `permission_id` bigint(20) NOT NULL DEFAULT '0',
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`user_id`,`permission_id`),
-  KEY `sf_guard_user_permission_permission_id_sf_guard_permission_id` (`permission_id`),
-  CONSTRAINT `sf_guard_user_permission_permission_id_sf_guard_permission_id` FOREIGN KEY (`permission_id`) REFERENCES `sf_guard_permission` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `sf_guard_user_permission_user_id_sf_guard_user_id` FOREIGN KEY (`user_id`) REFERENCES `sf_guard_user` (`id`) ON DELETE CASCADE
+    `user_id` bigint(20) NOT NULL DEFAULT '0',
+    `permission_id` bigint(20) NOT NULL DEFAULT '0',
+    `created_at` datetime NOT NULL,
+    `updated_at` datetime NOT NULL,
+    PRIMARY KEY (`user_id`,`permission_id`),
+    KEY `sf_guard_user_permission_permission_id_sf_guard_permission_id` (`permission_id`),
+    CONSTRAINT `sf_guard_user_permission_permission_id_sf_guard_permission_id` FOREIGN KEY (`permission_id`) REFERENCES `sf_guard_permission` (`id`) ON DELETE CASCADE,
+    CONSTRAINT `sf_guard_user_permission_user_id_sf_guard_user_id` FOREIGN KEY (`user_id`) REFERENCES `sf_guard_user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
