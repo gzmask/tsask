@@ -566,7 +566,7 @@ class formsActions extends sfActions
           $csv_payment_amt = $this->getRequestParameter('trnAmount');
           $csv_ch = curl_init();
           $curlConfig = array(
-            CURLOPT_URL            => "localhost:3000/csvs/create",
+            CURLOPT_URL            => "localhost:3000/csv/create",
             CURLOPT_POST           => true,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_POSTFIELDS     => array(
