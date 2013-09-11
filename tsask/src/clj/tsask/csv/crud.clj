@@ -25,11 +25,11 @@
                   csv_rows)]
     (do
       (spit "resources/public/export.csv" csv_str :append false)
-      (l/document
-        (l/parse (io/file "resources/templates/csv_export.html"))
-        (l/class= "content")
-        (l/content "The database of order has been exported:")))))
-
+      (pages
+       [:div {:style "margin-top: 17px;"}
+        [:p "Export Completed"]
+        ;;[:i.icon-download.icon-large [:a{:href "/export.csv"}]]
+        [:a {:href "/export.csv"} "Download"]])))) 
 
 (defn create [params]
   (j/insert! SQLDB :CSVt_report 

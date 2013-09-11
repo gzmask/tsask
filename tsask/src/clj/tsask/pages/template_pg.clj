@@ -17,6 +17,7 @@
    [:head
     [:title "technical safety authority interface design_login"]
     (include-css "/css/common.css")
+    (include-css "/css/font-awesome.css")
     (if include-files
       (apply include include-files))]
    [:body
@@ -33,12 +34,12 @@
         [:li [:a.nav1 {:href "http://www.tsaskforms.ca/backend.php/forms" :title "forms"} [:span "Form"]]]
         [:li [:a.nav2 {:href "http://www.tsaskforms.ca/backend.php/orders" :title "orders"} [:span "Order"]]]
         [:li [:a.nav3 {:href "http://www.tsaskforms.ca/backend.php/users" :title "users"} [:span "User"]]]
-        [:li [:a.nav4 {:href "/csv/payment-report" :title "payment report"} [:span "Payment Report"]]]]
+        [:li [:a.nav4_on {:href "/csv/payment-report" :title "payment report"} [:span "Payment Report"]]]]
        [:div.clear]]
       [:div.mainbox
        [:div.subnav
-        [:a.newform {:href "#!" :title "new form"} "New Form"]
-        [:a.newuser {:href "#!" :title "new user"} "New User"]]
+        [:a.newform {:href "http://www.tsaskforms.ca/backend.php/forms/new" :title "new form"} "New Form"]
+        [:a.newuser {:href "http://www.tsaskforms.ca/backend.php/users/new" :title "new user"} "New User"]]
        page]]]]))
 
 
