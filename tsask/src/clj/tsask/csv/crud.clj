@@ -2,7 +2,8 @@
   (:use compojure.core
         tsask.env
         tsask.wrap
-        tsask.pages.template-pg)
+        tsask.pages.template-pg
+        ring.util.response)
   (:require [clojure.java.jdbc :as j]
             [clojure.java.jdbc.sql :as sql]
             [me.raynes.laser :as l]
@@ -25,11 +26,13 @@
                   csv_rows)]
     (do
       (spit "resources/public/export.csv" csv_str :append false)
-      (pages
-       [:div {:style "margin-top: 17px;"}
-        [:p "Export Completed"]
-        ;;[:i.icon-download.icon-large [:a{:href "/export.csv"}]]
-        [:a {:href "/export.csv"} "Download"]])))) 
+      {:status 302
+       :headers {"Location" "/csv/download/export.csv"}
+       :body ""}))) 
+
+(defn download-csv [filename]
+  (println filename)
+  (file-response filename {:root CSV_ROOT_PATH}))
 
 (defn create [params]
   (j/insert! SQLDB :CSVt_report 
@@ -63,5 +66,6 @@
 (defn payment-report []
   (pages
    [:dl.txtcont
+
     [:dt [:div.ltit [:strong "Export"]] [:div.clear]]
     [:div.fc_con {:style "margin-top: 15px;"} [:dd [:a {:href "/csv/export"} [:img {:src "/images/export.png"}]]]]]))

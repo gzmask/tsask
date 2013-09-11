@@ -27,6 +27,7 @@
   (GET "/csv/export" {session :session} (wrap-session-verify (csv/export) session))
   (GET "/csv/new" {session :session} (wrap-session-verify (csv/new) session))
   (GET "/csv/payment-report" {session :session} (wrap-session-verify (csv/payment-report) session))
+  (GET "/csv/download/:filename" {params :params session :session} (wrap-session-verify (csv/download-csv (:filename params)) session))
   (POST "/csv/create" {params :params session :session} (wrap-session-verify (csv/create params) session)))
 
 (def app
