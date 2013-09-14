@@ -3,6 +3,7 @@
         tsask.env
         tsask.wrap
         tsask.pages.template-pg
+        hiccup.page
         ring.util.response)
   (:require [clojure.java.jdbc :as j]
             [clojure.java.jdbc.sql :as sql]
@@ -31,8 +32,9 @@
        :body ""}))) 
 
 (defn download-csv [filename]
-  (println filename)
-  (file-response filename {:root CSV_ROOT_PATH}))
+  {:status 200
+   :headers {"Content-Disposition" "attachment; filename=export.csv"}
+   :body (io/file "resources/public/export.csv")})
 
 (defn create [params]
   (j/insert! SQLDB :CSVt_report 
@@ -50,22 +52,21 @@
 
 (defn new []
   (pages
-   [:div
-    [:form {:action "/csvs/create" :method "post"}
-     [:table {}
-      (map (fn [lable input] [:tr [:td [:lable lable]] [:td [:input {:type "text" :name (name input)}]]])
-           (map #(str (name %) ": ")
-                [:app_name :address :phone :email :app_type :app_detail :invoice_id :paid_by :card_type :payment_amt])
-           [:app_name :address :phone :email :app_type :app_detail :invoice_id :paid_by :card_type :payment_amt])
-      [:tr
-       [:td {:colspan "2" :align ""}
-        [:input {:type "submit" :value "submit"}]]]]]]
-   "/css/form.css"))
+    [:div
+     [:form {:action "/csvs/create" :method "post"}
+      [:table {}
+       (map (fn [lable input] [:tr [:td [:lable lable]] [:td [:input {:type "text" :name (name input)}]]])
+            (map #(str (name %) ": ")
+                 [:app_name :address :phone :email :app_type :app_detail :invoice_id :paid_by :card_type :payment_amt])
+            [:app_name :address :phone :email :app_type :app_detail :invoice_id :paid_by :card_type :payment_amt])
+       [:tr
+        [:td {:colspan "2" :align ""}
+         [:input {:type "submit" :value "submit"}]]]]]]
+    :css-files ["/css/form.css"]))
 
 
 (defn payment-report []
   (pages
    [:dl.txtcont
-
     [:dt [:div.ltit [:strong "Export"]] [:div.clear]]
     [:div.fc_con {:style "margin-top: 15px;"} [:dd [:a {:href "/csv/export"} [:img {:src "/images/export.png"}]]]]]))
