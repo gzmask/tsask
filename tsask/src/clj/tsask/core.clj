@@ -17,20 +17,28 @@
               [ring.middleware.json :as json]
 
               [tsask.csv.crud :as csv]
-              [tsask.session.log :as log]))
+              [tsask.session.log :as log]
+              [tsask.form.crud :as form]))
+
+(defn test-url [request]
+  (clojure.pprint/pprint request))
 
 (defroutes app-routes
   (route/resources "/")
+  (GET "/" [] tsask.pages.template-pg/home-pg)
+  (GET "/test-url" request (test-url request))
+
   (GET "/login" [] (log/login))
   (POST "/check" {{username :username password :password} :params session :session} (log/check username password session))
   (GET "/check" {{x :x y :y} :params session :session} (log/check-tsask x y session))
+
+  (GET "/forms" {{sort :sort sort-type :sort_type} :params} (form/index sort sort-type))
+
   (GET "/csv/export" {session :session} (wrap-session-verify (csv/export) session))
   (GET "/csv/new" {session :session} (wrap-session-verify (csv/new) session))
   (GET "/csv/payment-report" {session :session} (wrap-session-verify (csv/payment-report) session))
   (GET "/csv/download/:filename" {params :params session :session} (wrap-session-verify (csv/download-csv (:filename params)) session))
-  (POST "/csv/create" {params :params session :session} (wrap-session-verify (csv/create params) session))
-
-  )
+  (POST "/csv/create" {params :params session :session} (wrap-session-verify (csv/create params) session)))
 
 (def app
     (params/wrap-params (session/wrap-session (handler/site app-routes))))

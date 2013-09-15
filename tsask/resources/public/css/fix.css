@@ -16,3 +16,5 @@
  background:url(/images/bg_blur.jpg) repeat-x;
  cursor:pointer;}
 .sf_admin_action_list a{ background:url(/images/bg_edit.jpg) repeat-x; }
+.sf_admin_list_th {font-size: 20px; color: #0079c2; text-align: center;}
+.sf_admin_list_th a{font-size: 20px; color: #0079c2; text-align: center;}
