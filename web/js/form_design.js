@@ -96,6 +96,8 @@ function rebindAction(){
 		bindAction($(this));
 		if($(this).hasClass('control_check_box')){
 			rebindActionCheckBox($(this));
+		}else if ($(this).hasClass('control_tos')){
+			rebindActionTOS($(this));
 		}else if ($(this).hasClass('control_drop_down')){
 			rebindActionDropDown($(this));
 		}else if ($(this).hasClass('control_radio_button')){
@@ -127,6 +129,8 @@ function saveForm(){
 			content=content+saveBirthDatePicker($(this));
 		}else if ($(this).hasClass('control_check_box')){
 			content=content+saveCheckBox($(this));
+		}else if ($(this).hasClass('control_tos')){
+			content=content+saveTOS($(this));
 		}else if ($(this).hasClass('control_date_time')){
 			content=content+saveDateTime($(this));
 		}else if ($(this).hasClass('control_drop_down')){
@@ -170,6 +174,8 @@ function saveForm(){
 			published=published+makeBirthDatePicker($(this));
 		}else if ($(this).hasClass('control_check_box')){
 			published=published+makeCheckBox($(this));
+		}else if ($(this).hasClass('control_tos')){
+			published=published+makeTOS($(this));
 		}else if ($(this).hasClass('control_date_time')){
 			published=published+makeDateTime($(this));
 		}else if ($(this).hasClass('control_drop_down')){
