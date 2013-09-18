@@ -24,9 +24,9 @@
 ) ;; comment end
 
 (defmacro wrap-session-verify
-  [handle-body session]
+  [session & handler-bodys]
   `(if (:login ~session)
-     ~handle-body
+     ~@handler-bodys
      {:status 302
       :headers {"Location" "/login"}
       :body ""}))

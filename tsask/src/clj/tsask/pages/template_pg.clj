@@ -44,7 +44,6 @@
    "/js/layout.js"
    "/js/jquery-1.7.2.js"
    "/js/form_design.js"
-   "/js/DD_belatedPNG.js"
    "/js/login.js"
    "/js/highlight-active-tab.js"
    "/js/form_commit.js"
@@ -86,7 +85,7 @@
    [:head
     (include-css "/css/common.css")
     (include-css "/css/fix.css")
-    ;;(apply include-js js-file-list)
+    (apply include-js js-file-list)
     (apply include-css css-files)
     (apply include-js js-files)
     [:title "technical safety authority interface design_login"]]

@@ -15,6 +15,7 @@
                  [mysql/mysql-connector-java "5.1.25"]
                  [org.clojure/java.jdbc "0.3.0-alpha4"]
                  [org.clojure/clojure "1.5.1"]
+                 [scriptjure "0.1.24"]
                  [enfocus "2.0.0-beta1"]]
   :source-paths ["src/clj"]
   :ring {:handler tsask.core/app
