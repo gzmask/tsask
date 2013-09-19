@@ -2,7 +2,8 @@ function rebindActionFormTOS(obj){
 	
 }
 
-function formTOS(obj, sm) {//Éú³ÉÇ°¶Ë
+//WTF is this stil in use?
+function formTOS(obj, sm) {
 	var form_tos_text=obj.find("#form_tos_text").text();
 	var control='';
 	control=control+'<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fulln_tab form_control form_tos">';
