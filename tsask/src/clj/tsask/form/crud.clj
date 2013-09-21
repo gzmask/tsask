@@ -35,15 +35,15 @@
           (for [form forms]
             [:tr
              [:td [:input.sf_admin_batch_checkbox {:type "checkbox" :value (:id form) :name "ids[]"}]]
-             [:td.sf_admin_text.sf_admin_list_td_id [:a {:href (str "/forms/" (:id form) "/edit")} (:id form)]]
+             [:td.sf_admin_text.sf_admin_list_td_id [:a {:href (str "/form/" (:id form) "/edit")} (:id form)]]
              [:td.sf_admin_text.sf_admin_list_td_form_name (:form_name form)]
              [:td.sf_admin_text.sf_admin_list_td_created_at (:created_at form)]
              [:td.sf_admin_text.sf_admin_list_td_updated_at (:updated_at form)]
              [:td [:ul.sf_admin_td_actions
-                   [:li.sf_admin_action_view [:a {:href (str "/forms/" (:id form) "/preview")} "View"]]
+                   [:li.sf_admin_action_view [:a {:href (str "/form/" (:id form) "/view")} "View"]]
                    [:li.sf_admin_action_delete [:a {:href (str "/form/" (:id form) "/delete")
                                                     :onclick (js (return (confirm "are you sure")))} "Delete"]]
-                   [:li.sf_admin_action_edit [:a {:href (str "/forms/" (:id form) "/edit")} "Edit"]]]]])]]]]])))
+                   [:li.sf_admin_action_edit [:a {:href (str "/form/" (:id form) "/edit")} "Edit"]]]]])]]]]])))
 
 
 (defn delete [id]
@@ -57,7 +57,6 @@
   (let [form (first (j/query SQLDB
                              (sql/select [:form_name :form_content] :sa_forms
                                          (sql/where {:id id}))))]
-    (println form)
     (pages
      [:form {:method "post" :action (str "/form/" id)}
       [:input {:type "hidden" :name "sf_method" :value "put"}]
@@ -100,3 +99,17 @@
           [:div.clear]]]]]
       [:input {:type "hidden" :name "form_content" :value ""}]
       [:input {:type "hidden" :name "form_published" :value "11"}]])))
+
+
+(defn view [id]
+  (let [form (first (j/query SQLDB
+                             (sql/select [:form_name :form_published] :sa_forms
+                                         (sql/where {:id id}))))]
+    (pages
+     [:dl.txtcont.requtxt
+      ;; title
+      [:dt [:div.ltit [:strong (:form_name :form)]] [:div.clear]]
+      ;; main content
+      [:dd (:form_published form)]]
+     :main-nav [:div.mainnav]
+     :sub-nav nil)))

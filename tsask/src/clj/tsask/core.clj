@@ -37,6 +37,7 @@
   (GET "/forms" {{sort :sort sort-type :sort_type} :params} (form/index sort sort-type))
   (GET "/form/:id/delete" {{id :id} :params} (form/delete id))
   (GET "/form/:id/edit" {{id :id} :params} (form/edit id))
+  (GET "/form/:id/view" {{id :id} :params} (form/view id))
 
   (GET "/csv/export" {session :session} (wrap-session-verify session (csv/export)))
   (GET "/csv/new" {session :session} (wrap-session-verify session (csv/new)))

@@ -96,7 +96,7 @@
        [:a {:href "#" :title "technical safety authority interface design"}
         [:img {:src "/images/icon_logo.jpg" :alt "technical safety authority interface design"}]]]
       [:div.icon_exit
-       [:a {:href "#!" :title "log out"}]]]
+       [:a {:href "#!" :title "log out"} "log out"]]]
      [:div.container
       main-nav
       (include-js "/js/highlight-active-tab.js")

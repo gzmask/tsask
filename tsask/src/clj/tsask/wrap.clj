@@ -32,7 +32,7 @@
       :body ""}))
 
 
-(defmacro wrapped-by-try-catch
+(defmacro wrap-with-try-catch
   [handler & error-handlers]
   `(try
      ~handler
@@ -47,7 +47,7 @@
 
 (defmacro wrap-error-handler
   [handler]
-  `(wrapped-by-try-catch ~handler (err-handler)))
+  `(wrap-with-try-catch ~handler (err-handler)))
 
 (defmacro wrap-error-handler+session-verify
   [handler session]
