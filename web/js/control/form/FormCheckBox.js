@@ -2,7 +2,7 @@ function rebindActionFormCheckBox(obj){
 	
 }
 
-function formCheckBox(obj, sm) {//Éú³ÉÇ°¶Ë
+function formCheckBox(obj, sm) {
 	var form_check_box_text=obj.find("#form_check_box_text").text();
 	var control='';
 	control=control+'<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fulln_tab form_control form_check_box">';

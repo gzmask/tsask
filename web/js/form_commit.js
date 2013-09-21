@@ -1,3 +1,4 @@
+//WTF stil in use ?
 var timer;
 
 function commitOrder(){
@@ -21,6 +22,9 @@ function commitOrder(){
 		}	
 		if($(this).hasClass('form_birth_date_picker')){
 			content=content+formBirthDatePicker($(this));	
+		}		
+		if($(this).hasClass('form_tos')){
+			content=content+formTOS($(this));	
 		}		
 		if($(this).hasClass('form_check_box')){
 			content=content+formCheckBox($(this));	
