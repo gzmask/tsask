@@ -119,7 +119,6 @@ function rebindAction(){
 function saveForm(){
 	var content='';
 	var published='';
-
 	$('.fbc_list li').each(function(){
 		if($(this).hasClass('control_address')){
 			content=content+saveAddress($(this));

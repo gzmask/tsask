@@ -3,61 +3,10 @@
         hiccup.page
         hiccup.util))
 
-(def js-file-list
-  [
-   "/js/control/RadioButton.js"
-   "/js/control/DropDown.js"
-   "/js/control/FileUpload.js"
-   "/js/control/Payment.js"
-   "/js/control/SubmitButton.js"
-   "/js/control/TextBox.js"
-   "/js/control/Email.js"
-   "/js/control/Phone.js"
-   "/js/control/TextArea.js"
-   "/js/control/Number.js"
-   "/js/control/Address.js"
-   "/js/control/Heading.js"
-   "/js/control/ClientEmail.js"
-   "/js/control/CheckBox.js"
-   "/js/control/DateTime.js"
-   "/js/control/BirthDatePicker.js"
-   "/js/control/UniqueId.js"
-   "/js/control/FullName.js"
-   "/js/control/form/ContentUniqueId.js"
-   "/js/control/form/ContentNumber.js"
-   "/js/control/form/FormEmail.js"
-   "/js/control/form/ContentPayment.js"
-   "/js/control/form/FormRadioButton.js"
-   "/js/control/form/FormTextBox.js"
-   "/js/control/form/ContentHeading.js"
-   "/js/control/form/FormBirthDatePicker.js"
-   "/js/control/form/FormFullName.js"
-   "/js/control/form/FormPhone.js"
-   "/js/control/form/FormDropDown.js"
-   "/js/control/form/ContentTextArea.js"
-   "/js/control/form/FormAddress.js"
-   "/js/control/form/FormCheckBox.js"
-   "/js/control/form/ContentDateTime.js"
-   "/js/control/form/FormClientEmail.js"
-   "/js/control/ResetButton.js"
-   "/js/jquery.min.js"
-   "/js/layout.js"
-   "/js/jquery-1.7.2.js"
-   "/js/form_design.js"
-   "/js/login.js"
-   "/js/highlight-active-tab.js"
-   "/js/form_commit.js"
-   ])
+(def ^:dynamic *js-files* nil)
+(def ^:dynamic *css-files* nil)
 
-(defn include
-  [& files]
-  (for [f files]
-    (if (.endsWith f "js")
-      [:script {:type "text/javascript" :src (to-uri f)}]
-      [:link {:type "text/css" :href (to-uri f) :rel "stylesheet"}])))
-
-
-(def main-nav
+(def ^:dynamic *main-nav*
   (let [nav-list [{:id "forms" :content "Form" :title "forms" :href "http://www.tsaskforms.ca/backend.php/forms"}
                   {:id "orders" :content "Order" :title "orders" :href "http://www.tsaskforms.ca/backend.php/orders"}
                   {:id "users" :content "User" :title "users" :href "http://www.tsaskforms.ca/backend.php/users"}
@@ -71,23 +20,18 @@
            (map-indexed vector nav-list))]
      [:div.clear]]))
 
-(def sub-nav
+(def ^:dynamic *sub-nav*
   [:div.subnav
-   [:a.newform {:href "http://www.tsaskforms.ca/backend.php/forms/new" :title "new form"} "New Form"]
-   [:a.newuser {:href "http://www.tsaskforms.ca/backend.php/users/new" :title "new user"} "New User"]])
+   [:a.newform {:href "http://www.tsaskforms.ca/backend.php/form/new" :title "new form"} "New Form"]
+   [:a.newuser {:href "http://www.tsaskforms.ca/backend.php/user/new" :title "new user"} "New User"]])
 
 (defn pages 
   "get page by pagename"
-  [page & {:keys [main-nav sub-nav css-files js-files]
-            :or {main-nav main-nav
-                 sub-nav sub-nav}}]
+  [page]
   (html5
    [:head
-    (include-css "/css/common.css")
-    (include-css "/css/fix.css")
-    (apply include-js js-file-list)
-    (apply include-css css-files)
-    (apply include-js js-files)
+    (apply include-css *css-files*)
+    (apply include-js *js-files*)
     [:title "technical safety authority interface design_login"]]
    [:body
     [:div.wrapper
@@ -98,11 +42,55 @@
       [:div.icon_exit
        [:a {:href "#!" :title "log out"} "log out"]]]
      [:div.container
-      main-nav
+      *main-nav*
       (include-js "/js/highlight-active-tab.js")
       [:div.mainbox
-       sub-nav
+       *sub-nav*
        page]]]]))
+
+(defn form-design-pages [& [form]]
+  (pages
+   [:form {:method "post" :action (.replace (str "/form/" (:id form) "/create") "//" "/")}
+    [:input {:type "hidden" :name "sf_method" :value "put"}]
+    [:dl.txtcont
+     [:dt
+      [:div.ltit [:strong "Forms Builder"]]
+      [:div.rbtns
+       [:a.bsave {:href "#!" :title "save" :onclick "saveForm()"} "SAVE"]
+       [:a.bcancle {:href "/forms" :title "cancel"} "CANCLE"]]
+      [:div.clear]]
+     [:dd
+      [:div.forms_cont
+       [:div.fc_tit
+        [:table.fct_tab {:width "100%" :border "0" :cellspacing "0" :cellpadding "0"}
+         [:tr
+          [:th {:width "190"} "Form Tools"]
+          [:th "Form Design Area"]]]]
+       [:div.fc_con.formbuil_box
+        [:div.fbnav
+         [:div.fbn_list
+          (let [elements ["Heading" "TextBox" "TextArea" "DropDown" "RadioButton" "CheckBox" "FileUpload"
+                          "SubmitButton" "ResetButton" "FullName" "ClientEmail" "Email" "Address" "Phone"
+                          "BirthDatePicker" "Number" "DataTime" "UniqueId" "Payment"]
+                classes ["icon_heading" "icon_textb" "icon_texta" "icon_dropd" "icon_radio" "icon_check"
+                         "icon_file" "icon_submit" "icon_reset" "icon_fullname" "icon_email" "icon_email"
+                         "icon_addr" "icon_phone" "icon_bdp" "icon_numb" "icon_datet" "icon_uniid" "icon_pay"]] 
+            (for [i (range (count elements))]
+              (let [element (get elements i)
+                    class (get classes i)]
+                [:li {:onclick (str "javascript:add" element "();")}
+                 [:img {:src "/images/blank.gif" :class class}]
+                 (clojure.string/replace element #"(?<=[a-z])(?=[A-Z])" " ")])))]]
+        [:div.fb_cont
+         [:ul.fbc_head
+          [:li.form_name
+           [:div.fbc_bar [:div.bar_tit "Form Name"]]
+           [:div.fbc_txt
+            [:input#form_name.fbc_txt {:name "form_name" :value (:form_name form)}]]]]
+         [:ul.fbc_list (:form_content form)]]
+        [:div.clear]]]]]
+    [:input#form_content {:type "hidden" :name "form_content" :value ""}]
+    [:input#form_published {:type "hidden" :name "form_published" :value ""}]]))
 
 (def home-pg (pages nil))
 
