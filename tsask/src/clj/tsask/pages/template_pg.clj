@@ -4,7 +4,8 @@
         hiccup.util))
 
 (def ^:dynamic *js-files* nil)
-(def ^:dynamic *css-files* nil)
+(def ^:dynamic *css-files* ["/css/common.css" 
+                            "/css/fix.css"])
 
 (def ^:dynamic *main-nav*
   (let [nav-list [{:id "forms" :content "Form" :title "forms" :href "http://www.tsaskforms.ca/backend.php/forms"}
