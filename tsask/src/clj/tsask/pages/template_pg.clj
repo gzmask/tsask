@@ -3,7 +3,30 @@
         hiccup.page
         hiccup.util))
 
-(def ^:dynamic *js-files* nil)
+(def ^:dynamic *js-files* [
+ "/js/jquery-1.7.2.js"
+ "/js/control/Address.js"
+ "/js/control/BirthDatePicker.js"
+ "/js/control/BirthDatePicker.js"
+ "/js/control/CheckBox.js"
+ "/js/control/ClientEmail.js"
+ "/js/control/DateTime.js"
+ "/js/control/DropDown.js"
+ "/js/control/Email.js"
+ "/js/control/FileUpload.js"
+ "/js/control/FullName.js"
+ "/js/control/Heading.js"
+ "/js/control/Number.js"
+ "/js/control/Payment.js"
+ "/js/control/Phone.js"
+ "/js/control/RadioButton.js"
+ "/js/control/ResetButton.js"
+ "/js/control/SubmitButton.js"
+ "/js/control/TOS.js"
+ "/js/control/TextArea.js"
+ "/js/control/TextBox.js"
+ "/js/control/UniqueId.js"])
+
 (def ^:dynamic *css-files* ["/css/common.css" 
                             "/css/fix.css"])
 
@@ -70,10 +93,10 @@
        [:div.fc_con.formbuil_box
         [:div.fbnav
          [:div.fbn_list
-          (let [elements ["Heading" "TextBox" "TextArea" "DropDown" "RadioButton" "CheckBox" "FileUpload"
+          (let [elements ["Heading" "TextBox" "TextArea" "DropDown" "RadioButton" "CheckBox" "TOS" "FileUpload"
                           "SubmitButton" "ResetButton" "FullName" "ClientEmail" "Email" "Address" "Phone"
-                          "BirthDatePicker" "Number" "DataTime" "UniqueId" "Payment"]
-                classes ["icon_heading" "icon_textb" "icon_texta" "icon_dropd" "icon_radio" "icon_check"
+                          "BirthDatePicker" "Number" "DateTime" "UniqueId" "Payment"]
+                classes ["icon_heading" "icon_textb" "icon_texta" "icon_dropd" "icon_radio" "icon_check" "icon_check"
                          "icon_file" "icon_submit" "icon_reset" "icon_fullname" "icon_email" "icon_email"
                          "icon_addr" "icon_phone" "icon_bdp" "icon_numb" "icon_datet" "icon_uniid" "icon_pay"]] 
             (for [i (range (count elements))]
