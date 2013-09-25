@@ -2,7 +2,7 @@ function controlTOSItem(str_tos_item_value,str_tos_item_label_text){
 	if (typeof str_tos_item_value == 'undefined')str_tos_item_value='';
 	if (typeof str_tos_item_label_text == 'undefined')str_tos_item_label_text='';
 	
-	var item_tos=	
+	var item_tos=
 	'  <tr class="item_tos">'+
 	'    <td>'+
 	'        <label>'+
@@ -15,12 +15,8 @@ function controlTOSItem(str_tos_item_value,str_tos_item_label_text){
 }
 
 function controlTOS(str_tos_name,str_tos_text,str_tos_items) {
-        var tos_default = "Template Terms of Service\n"+
-          "This is a collection of forms prepared by tsaskforms's developers designed to be used as a template for your applications, privacy policy and copyright policy. They are important legal documents and we recommend you get a qualified legal opinion before applying them to your own services and apps. We will occasionally update these documents to keep them up-to-date. To facilitate transparent discussion, we encourage users to create issues and/or submit pull requests with your feedback. Our general process is to incorporate user feedback on a roughly quarterly basis based on review with our legal team.\n"+
-          "License\n"+
-          "The tsaskforms terms of use and associated documents are available to you under the CC BY-SA 3.0 Creative Commons license. You acknowledge and agree that we neither make any representations or warranties with respect to the documents nor assume any liability with respect to the documents (including their use). These documents were created for general informational purposes only and do not constitute advertising, a solicitation or legal advice. Neither the availability, operation, transmission, receipt nor use of the documents is for the purpose of requesting legal advice, securing legal services, or retaining a lawyer nor is intended to create, or constitutes the formation of any attorney-client relationship or other special relationship or privilege.\n"+
-          "Contact\n"+
-          "If you have feedback which you would like to make available privately, please email support@tsaskforms.ca.\n";
+        var tos_default = "Consent\n"+
+          "To the best of my knowledge, this application and all supporting documents are accurate. I understand that a false or misleading statement in this application or in any of the reference or other evidence or qualification submitted by myself or on my behalf may result in the Chielf Inspector denying this application.\n";
 
 	if (typeof str_tos_name == 'undefined')
           str_tos_name='Terms of Services';
@@ -55,9 +51,9 @@ function controlTOS(str_tos_name,str_tos_text,str_tos_items) {
 	'  <tr>'+
 	'  <td>&nbsp;</td>'+
 	'  </tr>'+
-	'<input type="radio" name="tos_response" value="yes">Accep'+
-        '&nbsp;'+
-	'<input type="radio" name="tos_response" value="no">Decline'+
+	'<input type="radio" name="tos_response" value="yes">&nbsp;by checking this box, I hereby agree to the terms stated above.'+
+        '&nbsp;<br />'+
+	'<input type="radio" name="tos_response" value="no">&nbsp;I decline'+
 	str_tos_items	+
 	'</table>'+
 	'    </div>'+
@@ -119,9 +115,10 @@ function makeTOS(obj, sm) {
 	if(''!=tos_text){
           control=control+'    <textarea id="form_tos_text" style="min-height: 150px; width: 30%; Vertical-align:Top;" class="fulln_tab form_control form_tos">'+tos_text+'</textarea></br>';	
         }
-	control=control+'<input type="radio" name="tos_response" value="yes">Accept';
+	control=control+'<input type="radio" name="tos_response" value="yes">&nbsp;by checking this box, I hereby agree to the terms stated above.';
         control=control+'&nbsp;';
-	control=control+'<input type="radio" name="tos_response" value="no">Decline';
+        control=control+'<br />';
+	control=control+'<input type="radio" name="tos_response" value="no">&nbsp;I decline';
 	control=control+'</div>';
         /*
 	control=control+'<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fulln_tab form_control form_tos">';

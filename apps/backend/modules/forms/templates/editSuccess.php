@@ -26,6 +26,7 @@
     <li onclick="javascript:addDropDown();"><img src="/images/blank.gif" class="icon_dropd" />Drop Down</li>
     <li onclick="javascript:addRadioButton();"><img src="/images/blank.gif" class="icon_radio" />Radio Button</li>
     <li onclick="javascript:addCheckBox();"><img src="/images/blank.gif" class="icon_check" />Check Box</li>
+    <li onclick="javascript:addTOS();"><img src="/images/blank.gif" class="icon_check" />TOS</li>
     <li onclick="javascript:addFileUpload();"><img src="/images/blank.gif" class="icon_file" />File Upload</li>
     <li onclick="javascript:addSubmitButton();"><img src="/images/blank.gif" class="icon_submit" />Submit Button</li>
     <li onclick="javascript:addResetButton();"><img src="/images/blank.gif" class="icon_reset" />Reset Button</li>
