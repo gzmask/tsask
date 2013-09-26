@@ -20,8 +20,6 @@
      :session (assoc session :login (= password (:password user)))
      :headers {"Location" "/csv/new"}}))
 
-
-
 (defn check-tsask [x y session]
   (let [x (Integer/parseInt x)
         y (Integer/parseInt y)]

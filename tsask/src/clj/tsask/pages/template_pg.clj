@@ -4,6 +4,7 @@
         hiccup.util))
 
 (def ^:dynamic *js-files* [
+ "/js/form_design.js"
  "/js/jquery-1.7.2.js"
  "/js/control/Address.js"
  "/js/control/BirthDatePicker.js"
