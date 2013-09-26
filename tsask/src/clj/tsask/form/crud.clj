@@ -16,7 +16,8 @@
                        (sql/select [:id :form_name :created_at :updated_at] :sa_forms
                                    (if sort (sql/order-by {(keyword sort) (keyword sort-type)}))))
         opposite-sort-type {"desc" "asc", "asc" "desc", nil "asc"}]
-    (binding [*js-files* (.split (slurp "form-design-js-files") "\n")]
+    (binding [*js-files* (.split (slurp "form-design-js-files") "\n")
+              *css-files* ["/css/common.css" "/css/fix.css" "/css/main.css"]]
       (pages
        [:dl.txtcont
         [:dt [:div.ltit [:strong "Froms List"]] [:div.clear]]
@@ -107,3 +108,8 @@
               :updated_at	(java.util.Date.)}
              (sql/where {:id (:id params)}))
   (redirect "/forms"))
+
+(defn commit [params]
+  (binding [*main-nav* [:div.mainnav] *sub-nav* nil 
+            *css-files* ["/css/common.css" "/css/main.css"]]
+  (pages [:div (pr-str params)])))

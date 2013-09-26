@@ -5,6 +5,7 @@
            [clojure.java.jdbc.sql :as sql]))
 
 (defn login []
+  (binding [*css-files* ["/css/common.css" "/css/main.css"]]
   (pages
    [:div
     [:form {:action "/check" :method "post"}
@@ -12,7 +13,7 @@
      [:br]
      [:input {:name "password" :type "password"}]
      [:br]
-     [:input {:type "submit" :value "submit"}]]]))
+     [:input {:type "submit" :value "submit"}]]])))
 
 (defn check [username password session]
   (let [user (first (j/query SQLDB (sql/select * :user (sql/where {:username username}))))]

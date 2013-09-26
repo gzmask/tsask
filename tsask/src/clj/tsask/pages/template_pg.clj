@@ -3,33 +3,9 @@
         hiccup.page
         hiccup.util))
 
-(def ^:dynamic *js-files* [
- "/js/form_design.js"
- "/js/jquery-1.7.2.js"
- "/js/control/Address.js"
- "/js/control/BirthDatePicker.js"
- "/js/control/BirthDatePicker.js"
- "/js/control/CheckBox.js"
- "/js/control/ClientEmail.js"
- "/js/control/DateTime.js"
- "/js/control/DropDown.js"
- "/js/control/Email.js"
- "/js/control/FileUpload.js"
- "/js/control/FullName.js"
- "/js/control/Heading.js"
- "/js/control/Number.js"
- "/js/control/Payment.js"
- "/js/control/Phone.js"
- "/js/control/RadioButton.js"
- "/js/control/ResetButton.js"
- "/js/control/SubmitButton.js"
- "/js/control/TOS.js"
- "/js/control/TextArea.js"
- "/js/control/TextBox.js"
- "/js/control/UniqueId.js"])
+(def ^:dynamic *js-files* nil)
 
-(def ^:dynamic *css-files* ["/css/common.css" 
-                            "/css/fix.css"])
+(def ^:dynamic *css-files* nil)
 
 (def ^:dynamic *main-nav*
   (let [nav-list [{:id "forms" :content "Form" :title "forms" :href "http://www.tsaskforms.ca/backend.php/forms"}
@@ -74,6 +50,8 @@
        page]]]]))
 
 (defn form-design-pages [& [form]]
+  (binding [*js-files* (.split (slurp "form-design-js-files") "\n")
+            *css-files* ["/css/common.css" "/css/main.css"]]
   (pages
    [:form {:method "post" :action (.replace (str "/form/" (:id form) "/create") "//" "/")}
     [:input {:type "hidden" :name "sf_method" :value "put"}]
@@ -115,7 +93,7 @@
          [:ul.fbc_list (:form_content form)]]
         [:div.clear]]]]]
     [:input#form_content {:type "hidden" :name "form_content" :value ""}]
-    [:input#form_published {:type "hidden" :name "form_published" :value ""}]]))
+    [:input#form_published {:type "hidden" :name "form_published" :value ""}]])))
 
 (def home-pg (pages nil))
 

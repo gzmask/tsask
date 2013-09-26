@@ -10,4 +10,4 @@
   [& [opts]]
   error-page)
 
-(def CSV_ROOT_PATH "resources/public")
+(def CSV_ROOT_PATH "resources")
