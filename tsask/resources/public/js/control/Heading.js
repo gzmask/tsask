@@ -1,5 +1,6 @@
 function controlHeading(str_heading_text){
-	if (typeof str_heading_text == 'undefined')str_heading_text='Click to edit this text...';
+	if (typeof str_heading_text == 'undefined')
+          str_heading_text='Click to edit this text...';
 	
 	var control_heading='    <li class="control control_heading">'+
 	'    <div class="fbc_bar">'+

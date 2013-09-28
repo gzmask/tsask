@@ -1,6 +1,7 @@
 /js/control/form/FormAddress.js
 /js/control/form/FormBirthDatePicker.js
 /js/control/form/FormCheckBox.js
+/js/control/form/FormTOS.js
 /js/control/form/ContentDateTime.js
 /js/control/form/FormDropDown.js
 /js/control/form/FormClientEmail.js

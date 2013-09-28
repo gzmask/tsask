@@ -4,6 +4,7 @@
         hiccup.util))
 
 (def ^:dynamic *js-files* nil)
+
 (def ^:dynamic *css-files* nil)
 
 (def ^:dynamic *main-nav*
@@ -51,6 +52,8 @@
        page]]]]))
 
 (defn form-design-pages [& [form]]
+  (binding [*js-files* (.split (slurp "form-design-js-files") "\n")
+            *css-files* ["/css/common.css" "/css/main.css"]]
   (pages
    [:form {:method "post" :action (.replace (str "/form/" (:id form) "/create") "//" "/")}
     [:input {:type "hidden" :name "sf_method" :value "put"}]
@@ -71,10 +74,10 @@
        [:div.fc_con.formbuil_box
         [:div.fbnav
          [:div.fbn_list
-          (let [elements ["Heading" "TextBox" "TextArea" "DropDown" "RadioButton" "CheckBox" "FileUpload"
+          (let [elements ["Heading" "TextBox" "TextArea" "DropDown" "RadioButton" "CheckBox" "TOS" "FileUpload"
                           "SubmitButton" "ResetButton" "FullName" "ClientEmail" "Email" "Address" "Phone"
-                          "BirthDatePicker" "Number" "DataTime" "UniqueId" "Payment"]
-                classes ["icon_heading" "icon_textb" "icon_texta" "icon_dropd" "icon_radio" "icon_check"
+                          "BirthDatePicker" "Number" "DateTime" "UniqueId" "Payment"]
+                classes ["icon_heading" "icon_textb" "icon_texta" "icon_dropd" "icon_radio" "icon_check" "icon_check"
                          "icon_file" "icon_submit" "icon_reset" "icon_fullname" "icon_email" "icon_email"
                          "icon_addr" "icon_phone" "icon_bdp" "icon_numb" "icon_datet" "icon_uniid" "icon_pay"]] 
             (for [i (range (count elements))]
@@ -92,7 +95,7 @@
          [:ul.fbc_list (:form_content form)]]
         [:div.clear]]]]]
     [:input#form_content {:type "hidden" :name "form_content" :value ""}]
-    [:input#form_published {:type "hidden" :name "form_published" :value ""}]]))
+    [:input#form_published {:type "hidden" :name "form_published" :value ""}]])))
 
 (def home-pg (pages nil))
 

@@ -26,7 +26,7 @@
                        "card type," "payment amount," "\n") 
                   csv_rows)]
     (do
-      (spit "resources/public/export.csv" csv_str :append false)
+      (spit (str CSV_ROOT_PATH "/export.csv") csv_str :append false)
       {:status 302
        :headers {"Location" "/csv/download/export.csv"}
        :body ""}))) 
@@ -34,7 +34,7 @@
 (defn download-csv [filename]
   {:status 200
    :headers {"Content-Disposition" "attachment; filename=export.csv"}
-   :body (io/file "resources/public/export.csv")})
+   :body (io/file (str CSV_ROOT_PATH "/export.csv"))})
 
 (defn create [params]
   (j/insert! SQLDB :CSVt_report 
@@ -51,6 +51,7 @@
 
 
 (defn new []
+  (binding [*css-files* ["/css/form.css" "/css/common.css" "/css/main.css"]]
   (pages
     [:div
      [:form {:action "/csvs/create" :method "post"}
@@ -61,12 +62,12 @@
             [:app_name :address :phone :email :app_type :app_detail :invoice_id :paid_by :card_type :payment_amt])
        [:tr
         [:td {:colspan "2" :align ""}
-         [:input {:type "submit" :value "submit"}]]]]]]
-    :css-files ["/css/form.css"]))
+         [:input {:type "submit" :value "submit"}]]]]]])))
 
 
 (defn payment-report []
+  (binding [*css-files* ["/css/common.css" "/css/main.css"]]
   (pages
    [:dl.txtcont
     [:dt [:div.ltit [:strong "Export"]] [:div.clear]]
-    [:div.fc_con {:style "margin-top: 15px;"} [:dd [:a {:href "/csv/export"} [:img {:src "/images/export.png"}]]]]]))
+    [:div.fc_con {:style "margin-top: 15px;"} [:dd [:a {:href "/csv/export"} [:img {:src "/images/export.png"}]]]]])))

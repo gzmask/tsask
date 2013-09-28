@@ -42,6 +42,7 @@
   (GET "/form/new" [] (form/new))
   (POST "/form/create" {params :params} (form/create params))
   (POST "/form/:id/create" {params :params} (form/update params))
+  (POST "/form/commit" {params :params} (form/commit params))
 
   (GET "/csv/export" {session :session} (wrap-session-verify session (csv/export)))
   (GET "/csv/new" {session :session} (wrap-session-verify session (csv/new)))
