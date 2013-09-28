@@ -2,7 +2,8 @@
   (:use tsask.env
         tsask.pages.template-pg
         com.reasonr.scriptjure
-        hiccup.page)
+        hiccup.page
+        hiccup.core)
   (:require [clojure.java.jdbc :as j]
             [clojure.java.jdbc.sql :as sql]))
 
@@ -107,3 +108,10 @@
               :updated_at	(java.util.Date.)}
              (sql/where {:id (:id params)}))
   (redirect "/forms"))
+
+
+(defn test [sort sort-type]
+  (let [forms 
+        (j/query SQLDB
+                 (sql/select [:id :form_name :created_at :updated_at] :sa_forms
+                             (if sort (sql/order-by {(keyword sort) (keyword sort-type)}))))]))

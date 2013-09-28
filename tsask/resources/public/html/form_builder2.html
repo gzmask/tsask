@@ -1,0 +1,273 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>technical safety authority interface design</title>
+<link rel="stylesheet" type="text/css" href="../css/common.css"/>
+<!--[if lte IE 6]>
+<script src="../js/DD_belatedPNG.js" mce_src="../js/DD_belatedPNG.js"></script>
+<script type="text/javascript">     /* EXAMPLE */   DD_belatedPNG.fix('div,h3,li,h1,a,h6,input,h4,span,img');   /* 此处添加应用透明PNG的CSS选择器即可*/   </script>
+<![endif]-->
+
+</head>
+<body>
+<div class="wrapper">
+  <div class="header">
+    <div class="icon_logo"><a href="#" title="technical safety authority interface design"><img src="../images/icon_logo.jpg" alt="technical safety authority interface design"/></a></div>
+    <div class="icon_exit"><a href="#!" title="logOut">Log Out</a></div>
+  </div>
+  <div class="container">
+  <div class="mainnav">
+<ul class="navlist">
+<li><a href="#!" title="form" class="nav1"><span>Form</span></a></li>
+<li><a href="#!" title="orders" class="nav2"><span>orders</span></a></li>
+<li><a href="#!" title="users" class="nav3_on"><span>users</span></a></li>
+<li><a href="#!" title="Payment Report" class="nav4"><span>Payment Report</span></a></li>
+</ul>
+<div class="clear"></div>
+</div>
+<div class="mainbox">
+<div class="subnav">
+<a href="#!" title="new form" class="newform">New Form</a>
+<a href="#!" title="new user" class="newuser">New User</a>
+</div>
+<dl class="txtcont">
+<dt>
+<div class="ltit"><strong>Users Builder</strong></div>
+<div class="rbtns"><a href="#!" title="save" class="bsave">SAVE</a><a href="#!" title="cancle" class="bcancle">CANCLE</a></div>
+<div class="clear"></div>
+</dt>
+<dd>
+<div class="forms_cont">
+<div class="fc_tit">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fct_tab">
+  <tr>
+    <th width="190">Form Tools</th>
+    <th>Form Design Area</th>
+    </tr>
+</table>
+</div>
+<div class="fc_con formbuil_box">
+    <div class="fbnav">
+    <ul class="fbn_list">
+    <li class="cur"><img src="../images/blank.gif" class="icon_heading"/>Heading</li>
+    <li><img src="../images/blank.gif" class="icon_textb"/>Text Box</li>
+    <li><img src="../images/blank.gif" class="icon_texta"/>Text Area</li>
+    <li><img src="../images/blank.gif" class="icon_dropd"/>Drop Down</li>
+    <li><img src="../images/blank.gif" class="icon_radio"/>Radio Button</li>
+    <li><img src="../images/blank.gif" class="icon_check"/>Check Box</li>
+    <li><img src="../images/blank.gif" class="icon_file"/>File Upload</li>
+    <li><img src="../images/blank.gif" class="icon_submit"/>Submit Button</li>
+    <li><img src="../images/blank.gif" class="icon_reset"/>Reset Button</li>
+    <li><img src="../images/blank.gif" class="icon_fullname"/>Full Name</li>
+    <li><img src="../images/blank.gif" class="icon_email"/>E-mail</li>
+    <li><img src="../images/blank.gif" class="icon_addr"/>Address</li>
+    <li><img src="../images/blank.gif" class="icon_phone"/>Phone</li>
+    <li><img src="../images/blank.gif" class="icon_bdp"/>Birth Date Picker</li>
+    <li><img src="../images/blank.gif" class="icon_numb"/>Number</li>
+    <li><img src="../images/blank.gif" class="icon_datet"/>DateTime</li>
+    <li><img src="../images/blank.gif" class="icon_uniid"/>Unique Id</li>
+    <li><img src="../images/blank.gif" class="icon_pay"/>Payment</li>
+    </ul>
+    </div>
+    <div class="fb_cont">
+    <ul class="fbc_list">
+    <li>
+    <div class="fbc_bar">
+    <div class="bar_tit">Full Name</div>
+    <div class="bar_btns"><span>
+    <a href="#!" title="ARROW DOWN" class="btn_down" ></a>
+    <a href="#!" title="ARROW UP" class="btn_up"></a>
+    <a href="#!" title="ARROW BOTTOM" class="btn_bottom"></a>
+    <a href="#!" title="ARROW TOP" class="btn_top"></a>
+    <a href="#!" title="DELETE" class="btn_del"></a>
+    </span></div>
+    </div>
+    <div class="fbc_txt"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="fulln_tab">
+  <tr>
+    <td width="98" valign="top"><input class="intxt" value="Full Name" style="width:80px;"/></td>
+    <td width="251" align="left" valign="top"><input class="intxt" value="" style="width:235px;"/>
+      <br />
+      <span class="fonti">First Name</span></td>
+    <td align="left" valign="top"><input class="intxt" value="" style="width:235px;"/>
+     <br />
+      <span class="fonti">Last Name</span></td>
+  </tr>
+</table>
+    </div>
+    </li>
+    <li>
+    <div class="fbc_bar">
+    <div class="bar_tit">E-mail</div>
+    <div class="bar_btns"><span>
+    <a href="#!" title="ARROW DOWN" class="btn_down" ></a>
+    <a href="#!" title="ARROW UP" class="btn_up"></a>
+    <a href="#!" title="ARROW BOTTOM" class="btn_bottom"></a>
+    <a href="#!" title="ARROW TOP" class="btn_top"></a>
+    <a href="#!" title="DELETE" class="btn_del"></a>
+    </span></div>
+    </div>
+    <div class="fbc_txt">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="fulln_tab">
+  <tr>
+    <td width="98"><input class="intxt" value="E-mail" style="width:80px;"/></td>
+    <td align="left"><input class="intxt" value="" style="width:500px;"/></td>
+  </tr>
+</table>
+    </div>
+    </li>
+    <li>
+    <div class="fbc_bar">
+    <div class="bar_tit">Address</div>
+    <div class="bar_btns"><span>
+    <a href="#!" title="ARROW DOWN" class="btn_down" ></a>
+    <a href="#!" title="ARROW UP" class="btn_up"></a>
+    <a href="#!" title="ARROW BOTTOM" class="btn_bottom"></a>
+    <a href="#!" title="ARROW TOP" class="btn_top"></a>
+    <a href="#!" title="DELETE" class="btn_del"></a>
+    </span></div>
+    </div>
+    <div class="fbc_txt">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="fulln_tab">
+  <tr>
+    <td width="98" valign="top"><input class="intxt" value="Address" style="width:80px;"/></td>
+    <td colspan="2" align="left" valign="top"><input class="intxt" value="" style="width:500px;" /><br />
+<span class="fonti">Street Address</span></td>
+  </tr>
+  <tr>
+    <td width="98" valign="top">&nbsp;</td>
+    <td colspan="2" align="left" valign="top"><input class="intxt" value="" style="width:500px;" /><br />
+<span class="fonti">Street Address Line2</span></td>
+  </tr>
+  <tr>
+    <td width="98" valign="top">&nbsp;</td>
+    <td width="251" align="left" valign="top"><input class="intxt" value="" style="width:235px;" /><br />
+<span class="fonti">City</span></td>
+    <td align="left" valign="top"><input class="intxt" value="" style="width:235px;" /><br />
+<span class="fonti">State/Province</span></td>
+  </tr>
+  <tr>
+    <td width="98" valign="top">&nbsp;</td>
+    <td width="235" align="left" valign="top"><input class="intxt" value="" style="width:235px;" /><br />
+<span class="fonti">Postal/Zip Code</span></td>
+    <td align="left" valign="top"><div class="countrys">
+     <input name="searchdomain" type="hidden" value="">
+     <input id="countrySearchType" name="searchType" type="hidden" value="playlist">
+     <div class="selSearch">
+    <div class="nowSearch" id="countrySlected" onclick="if(document.getElementById('countrySel').style.display=='none'){document.getElementById('countrySel').style.display='block';}else {document.getElementById('countrySel').style.display='none';};return false;" onmouseout="drop_mouseout('country');"></div>
+    <div class="btnSel"><a href="#" onclick="if(document.getElementById('countrySel').style.display=='none'){document.getElementById('countrySel').style.display='block';}else {document.getElementById('countrySel').style.display='none';};return false;" onmouseout="drop_mouseout('country');"></a></div>
+    <div class="clear"></div>
+    <ul class="selOption" id="countrySel" style="display:none;">
+    <li><a href="#" onclick="return search_show('country','cn',this)" onmouseover="drop_mouseover('country');" onmouseout="drop_mouseout('country');">Contryname</a></li>
+    </ul>
+     </div>
+   </div><br />
+<span class="fonti">Country</span></td>
+  </tr>
+</table>
+    </div>
+    </li>
+    <li>
+    <div class="fbc_bar">
+    <div class="bar_tit">Phone</div>
+    <div class="bar_btns"><span>
+    <a href="#!" title="ARROW DOWN" class="btn_down" ></a>
+    <a href="#!" title="ARROW UP" class="btn_up"></a>
+    <a href="#!" title="ARROW BOTTOM" class="btn_bottom"></a>
+    <a href="#!" title="ARROW TOP" class="btn_top"></a>
+    <a href="#!" title="DELETE" class="btn_del"></a>
+    </span></div>
+    </div>
+    <div class="fbc_txt">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="fulln_tab">
+  <tr>
+    <td width="98" valign="top"><input class="intxt" value="Phone" style="width:80px;"/></td>
+    <td width="136" align="left" valign="top"><input class="intxt" value="" style="width:120px;"/><br />
+<span class="fonti">Area Code</span></td>
+    <td width="10" align="center" valign="middle"><span class="fontc2">-</span><br />
+<span class="fonti">&nbsp;</span></td>
+    <td align="left" valign="top"><input class="intxt" value="" style="width:160px;"/><br />
+<span class="fonti">Phone Number</span></td>
+  </tr>
+</table>
+    </div>
+    </li>
+    <li>
+    <div class="fbc_bar">
+    <div class="bar_tit">Birth Date Picker</div>
+    <div class="bar_btns"><span>
+    <a href="#!" title="ARROW DOWN" class="btn_down" ></a>
+    <a href="#!" title="ARROW UP" class="btn_up"></a>
+    <a href="#!" title="ARROW BOTTOM" class="btn_bottom"></a>
+    <a href="#!" title="ARROW TOP" class="btn_top"></a>
+    <a href="#!" title="DELETE" class="btn_del"></a>
+    </span></div>
+    </div>
+    <div class="fbc_txt">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="fulln_tab">
+  <tr>
+    <td width="98" valign="top"><input class="intxt" value="Birth Date" style="width:80px;"/></td>
+    <td width="222" align="left" valign="top">
+    <div class="hoptions op_month">
+     <input name="searchdomain" type="hidden" value="">
+     <input id="monthSearchType" name="searchType" type="hidden" value="playlist">
+     <div class="selSearch">
+    <div class="nowSearch" id="monthSlected" onclick="if(document.getElementById('monthSel').style.display=='none'){document.getElementById('monthSel').style.display='block';}else {document.getElementById('monthSel').style.display='none';};return false;" onmouseout="drop_mouseout('month');"></div>
+    <div class="btnSel"><a href="#" onclick="if(document.getElementById('monthSel').style.display=='none'){document.getElementById('monthSel').style.display='block';}else {document.getElementById('monthSel').style.display='none';};return false;" onmouseout="drop_mouseout('month');"></a></div>
+    <div class="clear"></div>
+    <ul class="selOption" id="monthSel" style="display:none;">
+    <li><a href="#" onclick="return search_show('month','cn',this)" onmouseover="drop_mouseover('month');" onmouseout="drop_mouseout('month');">Monthname</a></li>
+    </ul>
+     </div>
+   </div>
+    <br />
+<span class="fonti">Month</span></td>
+    <td width="136" align="left" valign="middle">
+    <div class="hoptions op_day">
+     <input name="searchdomain" type="hidden" value="">
+     <input id="daySearchType" name="searchType" type="hidden" value="playlist">
+     <div class="selSearch">
+    <div class="nowSearch" id="daySlected" onclick="if(document.getElementById('daySel').style.display=='none'){document.getElementById('daySel').style.display='block';}else {document.getElementById('daySel').style.display='none';};return false;" onmouseout="drop_mouseout('day');"></div>
+    <div class="btnSel"><a href="#" onclick="if(document.getElementById('daySel').style.display=='none'){document.getElementById('daySel').style.display='block';}else {document.getElementById('daySel').style.display='none';};return false;" onmouseout="drop_mouseout('day');"></a></div>
+    <div class="clear"></div>
+    <ul class="selOption" id="daySel" style="display:none;">
+    <li><a href="#" onclick="return search_show('day','cn',this)" onmouseover="drop_mouseover('day');" onmouseout="drop_mouseout('day');">Dayname</a></li>
+    </ul>
+     </div>
+   </div>
+   <br />
+<span class="fonti">Day</span></td>
+    <td align="left" valign="top">
+    <div class="hoptions op_year">
+     <input name="searchdomain" type="hidden" value="">
+     <input id="yearSearchType" name="searchType" type="hidden" value="playlist">
+     <div class="selSearch">
+    <div class="nowSearch" id="yearSlected" onclick="if(document.getElementById('yearSel').style.display=='none'){document.getElementById('yearSel').style.display='block';}else {document.getElementById('yearSel').style.display='none';};return false;" onmouseout="drop_mouseout('year');"></div>
+    <div class="btnSel"><a href="#" onclick="if(document.getElementById('yearSel').style.display=='none'){document.getElementById('yearSel').style.display='block';}else {document.getElementById('yearSel').style.display='none';};return false;" onmouseout="drop_mouseout('year');"></a></div>
+    <div class="clear"></div>
+    <ul class="selOption" id="yearSel" style="display:none;">
+    <li><a href="#" onclick="return search_show('year','cn',this)" onmouseover="drop_mouseover('year');" onmouseout="drop_mouseout('year');">Yearname</a></li>
+    </ul>
+     </div>
+   </div>
+    <br />
+<span class="fonti">Year</span></td>
+  </tr>
+</table>
+    </div>
+    </li>
+    </ul>
+    </div>
+    <div class="clear"></div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="footer"></div>
+</div>
+</body>
+</html>
+<script src="../js/jquery-1.7.2.js" language="javascript"></script>
+<script src="../js/layout.js" language="javascript"></script>

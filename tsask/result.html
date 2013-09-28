@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="/css/common.css" rel="stylesheet" type="text/css">
+<link href="/css/fix.css" rel="stylesheet" type="text/css">
+<script src="/js/jquery-1.7.2.js" type="text/javascript"></script>
+<script src="/js/layout.js" type="text/javascript"></script>
+<script src="/js/login.js" type="text/javascript"></script>
+<script src="/js/form_design.js" type="text/javascript"></script>
+<script src="/js/control/Address.js" type="text/javascript"></script>
+<script src="/js/control/BirthDatePicker.js" type="text/javascript"></script>
+<script src="/js/control/CheckBox.js" type="text/javascript"></script>
+<script src="/js/control/TOS.js" type="text/javascript"></script>
+<script src="/js/control/DateTime.js" type="text/javascript"></script>
+<script src="/js/control/DropDown.js" type="text/javascript"></script>
+<script src="/js/control/ClientEmail.js" type="text/javascript"></script>
+<script src="/js/control/Email.js" type="text/javascript"></script>
+<script src="/js/control/FileUpload.js" type="text/javascript"></script>
+<script src="/js/control/FullName.js" type="text/javascript"></script>
+<script src="/js/control/Heading.js" type="text/javascript"></script>
+<script src="/js/control/Number.js" type="text/javascript"></script>
+<script src="/js/control/Payment.js" type="text/javascript"></script>
+<script src="/js/control/Phone.js" type="text/javascript"></script>
+<script src="/js/control/RadioButton.js" type="text/javascript"></script>
+<script src="/js/control/ResetButton.js" type="text/javascript"></script>
+<script src="/js/control/SubmitButton.js" type="text/javascript"></script>
+<script src="/js/control/TextArea.js" type="text/javascript"></script>
+<script src="/js/control/TextBox.js" type="text/javascript"></script>
+<script src="/js/control/UniqueId.js" type="text/javascript"></script>
+
+<title>technical safety authority interface design_login</title>
+</head>
+<body>
+<div class="wrapper">
+  <div class="header">
+    <div class="icon_logo"><a href="#" title="technical safety authority interface design"><img alt="technical safety authority interface design" src="/images/icon_logo.jpg"></a></div>
+    <div class="icon_exit"><a href="#!" title="log out">log out</a></div>
+  </div>
+  <div class="container">
+    <div class="mainnav">
+      <ul class="navlist">
+        <li><a class="nav1" href="http://www.tsaskforms.ca/backend.php/forms#forms" id="forms" title="forms"><span>Form</span></a></li>
+        <li><a class="nav2" href="http://www.tsaskforms.ca/backend.php/orders#orders" id="orders" title="orders"><span>Order</span></a></li>
+        <li><a class="nav3" href="http://www.tsaskforms.ca/backend.php/users#users" id="users" title="users"><span>User</span></a></li>
+        <li><a class="nav4" href="/csv/payment-report#payment-report" id="payment-report" title="payment report"><span>Payment Report</span></a></li>
+      </ul>
+      <div class="clear"></div>
+    </div>
+    <script src="/js/highlight-active-tab.js" type="text/javascript"></script>
+    <div class="mainbox">
+      <div class="subnav"><a class="newform" href="http://www.tsaskforms.ca/backend.php/form/new" title="new form">New Form</a><a class="newuser" href="http://www.tsaskforms.ca/backend.php/user/new" title="new user">New User</a></div>
+      <dl class="txtcont">
+        <dt>
+        <div class="ltit"><strong>Froms List</strong></div>
+        <div class="clear"></div>
+        </dt>
+        <form action="/forms/batch/action" method="post">
+          <dd>
+          <div class="fc_con">
+            <table border="0" cellspacing="0" cesspadding="0" class="fcc_tab" width="100%">
+              <tr>
+                <th id="sf_admin_list_batch_actions"><input id="sf_admin_list_batch_checkbox" onclick="checkAll()" type="checkbox"></th>
+                <th class="sf_admin_text sf_admin_list_th"><a href="/forms?sort=id&amp;sort_type=asc">Id</a></th>
+                <th class="sf_admin_text sf_admin_list_th"><a href="/forms?sort=form_name&amp;sort_type=asc">Form Name</a></th>
+                <th class="sf_admin_text sf_admin_list_th"><a href="/forms?sort=created_at&amp;sort_type=asc">Created At</a></th>
+                <th class="sf_admin_text sf_admin_list_th"><a href="/forms?sort=updated_at&amp;sort_type=asc">Updated At</a></th>
+                <th class="sf_admin_list_th">Actions</th>
+              </tr>
+              <tr>$form.get("msg")</tr>
+              #(for [form $forms] (html
+              <li>good news</li>
+              ))
+              <tr>
+                <td><input class="sf_admin_batch_checkbox" name="ids[]" type="checkbox" value="11"></td>
+                <td class="sf_admin_text sf_admin_list_td_id"><a href="/form/11/edit">11</a></td>
+                <td class="sf_admin_text sf_admin_list_td_form_name">ray test form 2</td>
+                <td class="sf_admin_text sf_admin_list_td_created_at">2013-07-02 16:19:27.0</td>
+                <td class="sf_admin_text sf_admin_list_td_updated_at">2013-07-02 16:23:46.0</td>
+                <td>
+                  <ul class="sf_admin_td_actions">
+                    <li class="sf_admin_action_view"><a href="/form/11/view">View</a></li>
+                    <li class="sf_admin_action_delete"><a href="/form/11/delete" onclick="return confirm(&quot;are you sure&quot;);
+                      ">Delete</a></li>
+                    <li class="sf_admin_action_edit"><a href="/form/11/edit">Edit</a></li>
+                  </ul>
+                </td>
+              </tr>
+            </table>
+          </div>
+          </dd>
+        </form>
+        <script type="text/javascript">var checkAll;
+checkAll = function () {
+  var checkboxes;
+  checkboxes = document.getElementsByName("ids[]");
+  for (i in checkboxes) { 
+    checkboxes[i].checked = document.getElementById("sf_admin_list_batch_checkbox").checked;
+
+  };
+}
+        </script>
+      </dl>
+    </div>
+  </div>
+</div>
+</body>
+</html>

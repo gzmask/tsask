@@ -30,6 +30,8 @@
   [page]
   (html5
    [:head
+    (include-css "/css/common.css")
+    (include-css "/css/fix.css")
     (apply include-css *css-files*)
     (apply include-js *js-files*)
     [:title "technical safety authority interface design_login"]]

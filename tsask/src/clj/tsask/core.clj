@@ -29,6 +29,7 @@
   (route/resources "/")
   (GET "/" [] tsask.pages.template-pg/home-pg)
   (GET "/test-url" request (test-url request))
+  (GET "/test" {{sort :sort sort-type :sort-type} :params} (form/test sort sort-type))
 
   (GET "/login" [] (log/login))
   (POST "/check" {{username :username password :password} :params session :session} (log/check username password session))
