@@ -1,34 +1,68 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="title" content="technical safety authority interface design" />
 <title>technical safety authority interface design</title>
-<link rel="stylesheet" type="text/css" href="../css/common.css"/>
+<link rel="stylesheet" type="text/css" media="screen" href="/css/common.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="/css/fix.css" />
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/js/DD_belatedPNG.js"></script>
+<script type="text/javascript" src="/js/layout.js"></script>
+<script type="text/javascript" src="/js/login.js"></script>
 </head>
 <body>
 <div class="wrapper">
-<div class="header">
-<div class="icon_logo"><a href="#" title="technical safety authority interface design"><img src="../images/icon_logo.jpg" alt="technical safety authority interface design"/></a></div>
-<div class="icon_exit"><a href="#!" title="logOut">log Out</a></div>
-</div>
-<div class="container">
+  <div class="header">
+
+    <div class="icon_logo"><a href="#" title="technical safety authority interface design"><img src="/images/icon_logo.jpg" alt="technical safety authority interface design"/></a></div>
+
+    <div class="icon_exit"><a href="/backend.php/logout" title="logOut">log Out</a></div>
+
+  </div>
+
+    <div class="container">
 <div class="mainnav">
-<ul class="navlist">
-<li><a href="#!" title="form" class="nav1"><span>Form</span></a></li>
-<li><a href="#!" title="orders" class="nav2_on"><span>orders</span></a></li>
-<li><a href="#!" title="users" class="nav3"><span>users</span></a></li>
-<li><a href="#!" title="Payment Report" class="nav4"><span>Payment Report</span></a></li>
-</ul>
-<div class="clear"></div>
+
+	<ul class="navlist">
+
+	<li><a href="/backend.php/forms" title="form" class="nav1"><span>Form</span></a></li>
+
+	<li><a href="/backend.php/orders" title="orders" class="nav2_on"><span>orders</span></a></li>
+
+	<li><a href="/backend.php/users" title="users" class="nav3"><span>users</span></a></li>
+
+        <li><a class="nav4" href="http://www.tsaskforms.ca:3000/csv/payment-report" title="payment report"><span>Payment Report</span></a></li>
+
+	</ul>
+
+	<div class="clear"></div>
+
 </div>
-<div class="mainbox">
+
+    <div class="mainbox">
 <div class="subnav">
-<a href="#!" title="new form" class="newform">New Form</a>
-<a href="#!" title="new user" class="newuser">New User</a>
-</div>
+
+<a href="/backend.php/forms/new" title="new form" class="newform">New Form</a>
+
+<a href="/backend.php/guard/users/new" title="new user" class="newuser">New User</a>
+
+</div> 
+ 
+ 
+  <div id="sf_admin_header">
+      </div>
 <dl class="txtcont">
 <dt>
-<div class="ltit"><strong>Orders</strong></div>
+  <div class="ltit"><strong>Orders List</strong></div>
+
+  
+
+
+
+<!--
 <div class="sortby">
 <div class="sb_tit">Sort By:</div>
 <div class="chose">
@@ -69,75 +103,225 @@ function search_show(pos,searchType,href){
 }
 </script>
    </div>
-</div>
+</div>-->
 <div class="clear"></div>
 </dt>
-<dd>
+
+
+
+    <form action="/backend.php/orders/batch/action" method="post">
+    <dd>
+<!--
 <div class="forms_cont">
+
+    
 <div class="fc_tit">
-<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fct_tab">
-  <tr>
-    <th width="51" class="td_id">Order#</th>
-    <th width="201" class="td_name">Form Name</th>
-    <th width="174" class="td_name">User Name</th>
-    <th width="101" class="td_tcp">Total Cost Paid</th>
-    <th width="111" class="td_date">Date Completed</th>
-    <th width="81">&nbsp;</th>
-    <th>&nbsp;</th>
-    <th>&nbsp;</th>
-  </tr>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fct_tab">  
+          <tr>
+          <th id="sf_admin_list_batch_actions"><input id="sf_admin_list_batch_checkbox" type="checkbox" onclick="checkAll();" /></th>
+          <th class="sf_admin_text sf_admin_list_th_id">
+      <a href="/backend.php/orders?sort=id&amp;sort_type=asc">Id</a>  </th>
+<th class="sf_admin_text sf_admin_list_th_form_name">
+      <a href="/backend.php/orders?sort=form_name&amp;sort_type=asc">Form name</a>  </th>
+<th class="sf_admin_date sf_admin_list_th_created_at">
+      <a href="/backend.php/orders?sort=created_at&amp;sort_type=asc">Created at</a>    <img alt="desc" title="desc" src="/sfDoctrinePlugin/images/desc.png" />  </th>
+<th class="sf_admin_date sf_admin_list_th_updated_at">
+      <a href="/backend.php/orders?sort=updated_at&amp;sort_type=asc">Updated at</a>  </th>
+          <th id="sf_admin_list_th_actions">Actions</th>
+        </tr>
 </table>
 </div>
+-->
+		
 <div class="fc_con">
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="fcc_tab">
-  <tr>
-    <td width="50" class="td_id">4</td>
-    <td width="200" class="td_name">Title of the Form Goes Here</td>
-    <td width="173" class="td_name">Lastname,Fristname</td>
-    <td width="100" class="td_tcp">$999.99</td>
-    <td width="110" class="td_date"><span class="coltdate">13/08/2012</span></td>
-    <td width="90" class="td_edit"><a href="#!" title="edit" class="btn_edit">Edit</a></td>
-    <td width="90" class="td_export"><a href="#!" title="export" class="btn_export">export</a></td>
-    <td width="50" class="td_del"><a href="#!" title="del" class="btn_del">x</a></td>
-  </tr>
-   <tr class="othercolor">
-    <td class="td_id">3</td>
-    <td class="td_name">Title of the Form Goes Here</td>
-    <td class="td_name">Lastname,Fristname</td>
-    <td class="td_tcp">$999.99</td>
-    <td class="td_date"><span class="coltdate">13/08/2012</span></td>
-    <td class="td_edit"><a href="#!" title="edit" class="btn_edit">Edit</a></td>
-    <td class="td_export"><a href="#!" title="export" class="btn_export">export</a></td>
-    <td class="td_del"><a href="#!" title="del" class="btn_del">x</a></td>
-  </tr>
-  <tr>
-    <td class="td_id">2</td>
-    <td class="td_name">Title of the Form Goes Here</td>
-    <td class="td_name">Lastname,Fristname</td>
-    <td class="td_tcp">$999.99</td>
-    <td class="td_date"><span class="coltdate">13/08/2012</span></td>
-    <td class="td_edit"><a href="#!" title="edit" class="btn_edit">Edit</a></td>
-    <td class="td_export"><a href="#!" title="export" class="btn_export">export</a></td>
-    <td class="td_del"><a href="#!" title="del" class="btn_del">x</a></td>
-  </tr>
-  <tr class="othercolor">
-    <td class="td_id">1</td>
-    <td class="td_name">Title of the Form Goes Here</td>
-    <td class="td_name">Lastname,Fristname</td>
-    <td class="td_tcp">$999.99</td>
-    <td class="td_date"><span class="coltdate">13/08/2012</span></td>
-    <td class="td_edit"><a href="#!" title="edit" class="btn_edit">Edit</a></td>
-    <td class="td_export"><a href="#!" title="export" class="btn_export">export</a></td>
-    <td class="td_del"><a href="#!" title="del" class="btn_del">x</a></td>
-  </tr>
+          <tr>
+          <th id="sf_admin_list_batch_actions"><input id="sf_admin_list_batch_checkbox" type="checkbox" onclick="checkAll();" /></th>
+          <th class="sf_admin_text sf_admin_list_th_id">
+      <a href="/backend.php/orders?sort=id&amp;sort_type=asc">Id</a>  </th>
+<th class="sf_admin_text sf_admin_list_th_form_name">
+      <a href="/backend.php/orders?sort=form_name&amp;sort_type=asc">Form name</a>  </th>
+<th class="sf_admin_date sf_admin_list_th_created_at">
+      <a href="/backend.php/orders?sort=created_at&amp;sort_type=asc">Created at</a>    <img alt="desc" title="desc" src="/sfDoctrinePlugin/images/desc.png" />  </th>
+<th class="sf_admin_date sf_admin_list_th_updated_at">
+      <a href="/backend.php/orders?sort=updated_at&amp;sort_type=asc">Updated at</a>  </th>
+          <th id="sf_admin_list_th_actions">Actions</th>
+        </tr>
+		
+                  <tr class="othercolor">
+            <td>
+  <input type="checkbox" name="ids[]" value="87" class="sf_admin_batch_checkbox" />
+</td>
+            <td class="sf_admin_text sf_admin_list_td_id">
+  <a href="/backend.php/orders/87/edit">87</a></td>
+<td class="sf_admin_text sf_admin_list_td_form_name">
+  Application for Renewal of Power Engineer&#039;s Licence</td>
+<td class="sf_admin_date sf_admin_list_td_created_at">
+  September 25, 2013 11:35 AM</td>
+<td class="sf_admin_date sf_admin_list_td_updated_at">
+  September 25, 2013 11:35 AM</td>
+            <td>
+  <ul class="sf_admin_td_actions">
+    <li class="sf_admin_action_view">
+      <a href="/backend.php/orders/87/view">View</a>    </li>
+    <li class="sf_admin_action_delete"><a onclick="if (confirm('Are you sure?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'post'; f.action = this.href;var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', 'sf_method'); m.setAttribute('value', 'delete'); f.appendChild(m);var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_csrf_token'); m.setAttribute('value', 'fa630d8a4369aab58d7c7b62895d3635'); f.appendChild(m);f.submit(); };return false;" href="/backend.php/orders/87">Delete</a></li>  </ul>
+</td>
+          </tr>
+                  <tr class="even">
+            <td>
+  <input type="checkbox" name="ids[]" value="86" class="sf_admin_batch_checkbox" />
+</td>
+            <td class="sf_admin_text sf_admin_list_td_id">
+  <a href="/backend.php/orders/86/edit">86</a></td>
+<td class="sf_admin_text sf_admin_list_td_form_name">
+  Application for Renewal of Power Engineer&#039;s Licence</td>
+<td class="sf_admin_date sf_admin_list_td_created_at">
+  September 25, 2013 9:57 AM</td>
+<td class="sf_admin_date sf_admin_list_td_updated_at">
+  September 25, 2013 9:57 AM</td>
+            <td>
+  <ul class="sf_admin_td_actions">
+    <li class="sf_admin_action_view">
+      <a href="/backend.php/orders/86/view">View</a>    </li>
+    <li class="sf_admin_action_delete"><a onclick="if (confirm('Are you sure?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'post'; f.action = this.href;var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', 'sf_method'); m.setAttribute('value', 'delete'); f.appendChild(m);var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_csrf_token'); m.setAttribute('value', 'fa630d8a4369aab58d7c7b62895d3635'); f.appendChild(m);f.submit(); };return false;" href="/backend.php/orders/86">Delete</a></li>  </ul>
+</td>
+          </tr>
+                  <tr class="othercolor">
+            <td>
+  <input type="checkbox" name="ids[]" value="85" class="sf_admin_batch_checkbox" />
+</td>
+            <td class="sf_admin_text sf_admin_list_td_id">
+  <a href="/backend.php/orders/85/edit">85</a></td>
+<td class="sf_admin_text sf_admin_list_td_form_name">
+  Request for Examination Remark</td>
+<td class="sf_admin_date sf_admin_list_td_created_at">
+  September 24, 2013 4:46 PM</td>
+<td class="sf_admin_date sf_admin_list_td_updated_at">
+  September 24, 2013 4:46 PM</td>
+            <td>
+  <ul class="sf_admin_td_actions">
+    <li class="sf_admin_action_view">
+      <a href="/backend.php/orders/85/view">View</a>    </li>
+    <li class="sf_admin_action_delete"><a onclick="if (confirm('Are you sure?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'post'; f.action = this.href;var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', 'sf_method'); m.setAttribute('value', 'delete'); f.appendChild(m);var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_csrf_token'); m.setAttribute('value', 'fa630d8a4369aab58d7c7b62895d3635'); f.appendChild(m);f.submit(); };return false;" href="/backend.php/orders/85">Delete</a></li>  </ul>
+</td>
+          </tr>
+                  <tr class="even">
+            <td>
+  <input type="checkbox" name="ids[]" value="84" class="sf_admin_batch_checkbox" />
+</td>
+            <td class="sf_admin_text sf_admin_list_td_id">
+  <a href="/backend.php/orders/84/edit">84</a></td>
+<td class="sf_admin_text sf_admin_list_td_form_name">
+  Request for Examination Remark</td>
+<td class="sf_admin_date sf_admin_list_td_created_at">
+  September 24, 2013 4:44 PM</td>
+<td class="sf_admin_date sf_admin_list_td_updated_at">
+  September 24, 2013 4:44 PM</td>
+            <td>
+  <ul class="sf_admin_td_actions">
+    <li class="sf_admin_action_view">
+      <a href="/backend.php/orders/84/view">View</a>    </li>
+    <li class="sf_admin_action_delete"><a onclick="if (confirm('Are you sure?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'post'; f.action = this.href;var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', 'sf_method'); m.setAttribute('value', 'delete'); f.appendChild(m);var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_csrf_token'); m.setAttribute('value', 'fa630d8a4369aab58d7c7b62895d3635'); f.appendChild(m);f.submit(); };return false;" href="/backend.php/orders/84">Delete</a></li>  </ul>
+</td>
+          </tr>
+                  <tr class="othercolor">
+            <td>
+  <input type="checkbox" name="ids[]" value="82" class="sf_admin_batch_checkbox" />
+</td>
+            <td class="sf_admin_text sf_admin_list_td_id">
+  <a href="/backend.php/orders/82/edit">82</a></td>
+<td class="sf_admin_text sf_admin_list_td_form_name">
+  ray test form</td>
+<td class="sf_admin_date sf_admin_list_td_created_at">
+  September 4, 2013 5:15 PM</td>
+<td class="sf_admin_date sf_admin_list_td_updated_at">
+  September 4, 2013 5:15 PM</td>
+            <td>
+  <ul class="sf_admin_td_actions">
+    <li class="sf_admin_action_view">
+      <a href="/backend.php/orders/82/view">View</a>    </li>
+    <li class="sf_admin_action_delete"><a onclick="if (confirm('Are you sure?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'post'; f.action = this.href;var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', 'sf_method'); m.setAttribute('value', 'delete'); f.appendChild(m);var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_csrf_token'); m.setAttribute('value', 'fa630d8a4369aab58d7c7b62895d3635'); f.appendChild(m);f.submit(); };return false;" href="/backend.php/orders/82">Delete</a></li>  </ul>
+</td>
+          </tr>
+                  <tr class="even">
+            <td>
+  <input type="checkbox" name="ids[]" value="80" class="sf_admin_batch_checkbox" />
+</td>
+            <td class="sf_admin_text sf_admin_list_td_id">
+  <a href="/backend.php/orders/80/edit">80</a></td>
+<td class="sf_admin_text sf_admin_list_td_form_name">
+  ray test form 2</td>
+<td class="sf_admin_date sf_admin_list_td_created_at">
+  September 4, 2013 3:50 PM</td>
+<td class="sf_admin_date sf_admin_list_td_updated_at">
+  September 4, 2013 3:50 PM</td>
+            <td>
+  <ul class="sf_admin_td_actions">
+    <li class="sf_admin_action_view">
+      <a href="/backend.php/orders/80/view">View</a>    </li>
+    <li class="sf_admin_action_delete"><a onclick="if (confirm('Are you sure?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'post'; f.action = this.href;var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', 'sf_method'); m.setAttribute('value', 'delete'); f.appendChild(m);var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_csrf_token'); m.setAttribute('value', 'fa630d8a4369aab58d7c7b62895d3635'); f.appendChild(m);f.submit(); };return false;" href="/backend.php/orders/80">Delete</a></li>  </ul>
+</td>
+          </tr>
+                  <tr class="othercolor">
+            <td>
+  <input type="checkbox" name="ids[]" value="71" class="sf_admin_batch_checkbox" />
+</td>
+            <td class="sf_admin_text sf_admin_list_td_id">
+  <a href="/backend.php/orders/71/edit">71</a></td>
+<td class="sf_admin_text sf_admin_list_td_form_name">
+  Application for Renewal of Power Engineer&#039;s Licence</td>
+<td class="sf_admin_date sf_admin_list_td_created_at">
+  August 7, 2013 10:02 AM</td>
+<td class="sf_admin_date sf_admin_list_td_updated_at">
+  August 7, 2013 10:02 AM</td>
+            <td>
+  <ul class="sf_admin_td_actions">
+    <li class="sf_admin_action_view">
+      <a href="/backend.php/orders/71/view">View</a>    </li>
+    <li class="sf_admin_action_delete"><a onclick="if (confirm('Are you sure?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'post'; f.action = this.href;var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', 'sf_method'); m.setAttribute('value', 'delete'); f.appendChild(m);var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_csrf_token'); m.setAttribute('value', 'fa630d8a4369aab58d7c7b62895d3635'); f.appendChild(m);f.submit(); };return false;" href="/backend.php/orders/71">Delete</a></li>  </ul>
+</td>
+          </tr>
+        		
+		
+        <tr>
+          <th colspan="6">
+            
+            7 results                      </th>
+        </tr>		
+		
 </table>
 </div>
+    
 </div>
 </dd>
-</dl>
-</div>
-</div>
-<div class="footer"></div>
+<script type="text/javascript">
+/* <![CDATA[ */
+function checkAll()
+{
+  var boxes = document.getElementsByTagName('input'); for(var index = 0; index < boxes.length; index++) { box = boxes[index]; if (box.type == 'checkbox' && box.className == 'sf_admin_batch_checkbox') box.checked = document.getElementById('sf_admin_list_batch_checkbox').checked } return true;
+}
+/* ]]> */
+</script>
+<!--    <ul class="sf_admin_actions">
+      <li class="sf_admin_batch_actions_choice">
+  <select name="batch_action">
+    <option value="">Choose an action</option>
+    <option value="batchDelete">Delete</option>
+  </select>
+      <input type="hidden" name="_csrf_token" value="fa630d8a4369aab58d7c7b62895d3635" />
+    <input type="submit" value="go" />
+</li>
+      <li class="sf_admin_action_new"><a href="/backend.php/orders/new">New</a></li>    </ul>
+-->	
+    </form>
+  
+
+</dl>  
+
+ <div id="sf_admin_footer">
+      </div>    </div>
+    </div>
+    <div class="footer"></div>
 </div>
 </body>
 </html>

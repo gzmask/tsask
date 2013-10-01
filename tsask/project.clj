@@ -17,10 +17,9 @@
                  [org.clojure/clojure "1.5.1"]
                  [scriptjure "0.1.24"]
                  [enfocus "2.0.0-beta1"]
-                 [clj-tagsoup "0.3.0"]
-                 [ring.velocity "0.1.2"]
+                 [enlive "1.1.4"]
+                 [clj-http "0.7.7"]
                  [me.raynes/laser "0.1.30"]]
-  :resource-paths ["conf" "templates"]
   :source-paths ["src/clj"]
   :ring {:handler tsask.core/app
          :auto-reload? true

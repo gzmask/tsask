@@ -1,34 +1,68 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="title" content="technical safety authority interface design" />
 <title>technical safety authority interface design</title>
-<link rel="stylesheet" type="text/css" href="../css/common.css"/>
+<link rel="stylesheet" type="text/css" media="screen" href="/css/common.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="/css/fix.css" />
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/js/DD_belatedPNG.js"></script>
+<script type="text/javascript" src="/js/layout.js"></script>
+<script type="text/javascript" src="/js/login.js"></script>
 </head>
 <body>
 <div class="wrapper">
   <div class="header">
-    <div class="icon_logo"><a href="#" title="technical safety authority interface design"><img src="../images/icon_logo.jpg" alt="technical safety authority interface design"/></a></div>
-    <div class="icon_exit"><a href="#!" title="logOut">log Out</a></div>
+
+    <div class="icon_logo"><a href="#" title="technical safety authority interface design"><img src="/images/icon_logo.jpg" alt="technical safety authority interface design"/></a></div>
+
+    <div class="icon_exit"><a href="/backend.php/logout" title="logOut">log Out</a></div>
+
   </div>
-  <div class="container">
-  <div class="mainnav">
-<ul class="navlist">
-<li><a href="#!" title="form" class="nav1"><span>Form</span></a></li>
-<li><a href="#!" title="orders" class="nav2"><span>orders</span></a></li>
-<li><a href="#!" title="users" class="nav3_on"><span>users</span></a></li>
-<li><a href="#!" title="Payment Report" class="nav4"><span>Payment Report</span></a></li>
-</ul>
-<div class="clear"></div>
+
+    <div class="container">
+<div class="mainnav">
+
+	<ul class="navlist">
+
+	<li><a href="/backend.php/forms" title="form" class="nav1"><span>Form</span></a></li>
+
+	<li><a href="/backend.php/orders" title="orders" class="nav2"><span>orders</span></a></li>
+
+	<li><a href="/backend.php/users" title="users" class="nav3_on"><span>users</span></a></li>
+
+        <li><a class="nav4" href="http://www.tsaskforms.ca:3000/csv/payment-report" title="payment report"><span>Payment Report</span></a></li>
+
+	</ul>
+
+	<div class="clear"></div>
+
 </div>
-<div class="mainbox">
+
+    <div class="mainbox">
 <div class="subnav">
-<a href="#!" title="new form" class="newform">New Form</a>
-<a href="#!" title="new user" class="newuser">New User</a>
-</div>
+
+<a href="/backend.php/forms/new" title="new form" class="newform">New Form</a>
+
+<a href="/backend.php/guard/users/new" title="new user" class="newuser">New User</a>
+
+</div> 
+ 
+ 
+  <div id="sf_admin_header">
+      </div>
 <dl class="txtcont">
 <dt>
-<div class="ltit"><strong>Users</strong></div>
+  <div class="ltit"><strong>User list</strong></div>
+
+  
+
+
+
+<!--
 <div class="sortby">
 <div class="sb_tit">Sort By:</div>
 <div class="chose">
@@ -36,11 +70,11 @@
      <input name="searchdomain" type="hidden" value="">
      <input id="headSearchType" name="searchType" type="hidden" value="playlist">
      <div class="selSearch">
-    <div class="nowSearch" id="headSlected" onclick="if(document.getElementById('headSel').style.display=='none'){document.getElementById('headSel').style.display='block';}else {document.getElementById('headSel').style.display='none';};return false;" onmouseout="drop_mouseout('head');">Username</div>
+    <div class="nowSearch" id="headSlected" onclick="if(document.getElementById('headSel').style.display=='none'){document.getElementById('headSel').style.display='block';}else {document.getElementById('headSel').style.display='none';};return false;" onmouseout="drop_mouseout('head');">Newest First</div>
     <div class="btnSel"><a href="#" onclick="if(document.getElementById('headSel').style.display=='none'){document.getElementById('headSel').style.display='block';}else {document.getElementById('headSel').style.display='none';};return false;" onmouseout="drop_mouseout('head');"></a></div>
     <div class="clear"></div>
     <ul class="selOption" id="headSel" style="display:none;">
-    <li><a href="#" onclick="return search_show('head','sn',this)" onmouseover="drop_mouseover('head');" onmouseout="drop_mouseout('head');">Username</a></li>
+    <li><a href="#" onclick="return search_show('head','nf',this)" onmouseover="drop_mouseover('head');" onmouseout="drop_mouseout('head');">Newest First</a></li>
      <li><a href="#" onclick="return search_show('head','sv',this)" onmouseover="drop_mouseover('head');" onmouseout="drop_mouseout('head');">sales volume</a></li>
      <li><a href="#" onclick="return search_show('head','cl',this)" onmouseover="drop_mouseover('head');" onmouseout="drop_mouseout('head');">collect
 </a></li>
@@ -69,70 +103,145 @@ function search_show(pos,searchType,href){
 }
 </script>
    </div>
-</div>
+</div>-->
 <div class="clear"></div>
 </dt>
-<dd>
+
+
+
+    <form action="/backend.php/guard/users/batch/action" method="post">
+    <dd>
+<!--
 <div class="forms_cont">
+
+    
 <div class="fc_tit">
-<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fct_tab">
-  <tr>
-    <th width="61" class="td_id"><input type="checkbox" name="checkbox" id="checkbox" /><img src="../images/icon_imgjian.jpg" alt="" title="delete"/></th>
-    <th width="251" class="td_name">Username</th>
-    <th width="151" class="td_email">Email</th>
-    <th width="149" class="td_ln">Last Name</th>
-    <th width="131" class="td_fn">First Name</th>
-    <th>&nbsp;</th>
-    <th width="51">&nbsp;</th>
-  </tr>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fct_tab">  
+          <tr>
+          <th id="sf_admin_list_batch_actions"><input id="sf_admin_list_batch_checkbox" type="checkbox" onclick="checkAll();" /></th>
+          <th class="sf_admin_text sf_admin_list_th_username">
+      <a href="/backend.php/guard/users?sort=username&amp;sort_type=asc">Username</a>  </th>
+<th class="sf_admin_text sf_admin_list_th_email_address">
+      <a href="/backend.php/guard/users?sort=email_address&amp;sort_type=asc">Email address</a>  </th>
+<th class="sf_admin_text sf_admin_list_th_last_name">
+      <a href="/backend.php/guard/users?sort=last_name&amp;sort_type=asc">Last name</a>  </th>
+<th class="sf_admin_text sf_admin_list_th_first_name">
+      <a href="/backend.php/guard/users?sort=first_name&amp;sort_type=asc">First name</a>  </th>
+          <th id="sf_admin_list_th_actions">Actions</th>
+        </tr>
 </table>
 </div>
+-->
+		
 <div class="fc_con">
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="fcc_tab">
-  <tr>
-    <td width="60" class="td_id"><input type="checkbox" name="checkbox2" id="checkbox2" /></td>
-    <td width="250" class="td_name"><span class="fontc">TSASK Member</span></td>
-    <td width="150" class="td_email">info@tsask.ca</td>
-    <td width="148" class="td_ln">Last Name</td>
-    <td width="130" class="td_fn">First Name</td>
-    <td width="90" class="td_edit"><a href="#!" title="edit" class="btn_edit">Edit</a></td>
-    <td width="50" class="td_del"><a href="#!" title="del" class="btn_del">x</a></td>
-  </tr>
-   <tr>
-    <td width="60" class="td_id"><input type="checkbox" name="checkbox3" id="checkbox3" /></td>
-    <td width="250" class="td_name"><span class="fontc">TSASK Member</span></td>
-    <td width="150" class="td_email">info@tsask.ca</td>
-    <td class="td_ln">Last Name</td>
-    <td width="130" class="td_fn">First Name</td>
-    <td width="90" class="td_edit"><a href="#!" title="edit" class="btn_edit">Edit</a></td>
-    <td width="50" class="td_del"><a href="#!" title="del" class="btn_del">x</a></td>
-  </tr>
-  <tr>
-    <td width="60" class="td_id"><input type="checkbox" name="checkbox4" id="checkbox4" /></td>
-    <td width="250" class="td_name"><span class="fontc">TSASK Member</span></td>
-    <td width="150" class="td_email">info@tsask.ca</td>
-    <td class="td_ln">Last Name</td>
-    <td width="130" class="td_fn">First Name</td>
-    <td width="90" class="td_edit"><a href="#!" title="edit" class="btn_edit">Edit</a></td>
-    <td width="50" class="td_del"><a href="#!" title="del" class="btn_del">x</a></td>
-  </tr>
-  <tr>
-    <td width="60" class="td_id"><input type="checkbox" name="checkbox5" id="checkbox5" /></td>
-    <td width="250" class="td_name"><span class="fontc">TSASK Member</span></td>
-    <td width="150" class="td_email">info@tsask.ca</td>
-    <td class="td_ln">Last Name</td>
-    <td width="130" class="td_fn">First Name</td>
-    <td width="90" class="td_edit"><a href="#!" title="edit" class="btn_edit">Edit</a></td>
-    <td width="50" class="td_del"><a href="#!" title="del" class="btn_del">x</a></td>
-  </tr>
+          <tr>
+          <th id="sf_admin_list_batch_actions"><input id="sf_admin_list_batch_checkbox" type="checkbox" onclick="checkAll();" /></th>
+          <th class="sf_admin_text sf_admin_list_th_username">
+      <a href="/backend.php/guard/users?sort=username&amp;sort_type=asc">Username</a>  </th>
+<th class="sf_admin_text sf_admin_list_th_email_address">
+      <a href="/backend.php/guard/users?sort=email_address&amp;sort_type=asc">Email address</a>  </th>
+<th class="sf_admin_text sf_admin_list_th_last_name">
+      <a href="/backend.php/guard/users?sort=last_name&amp;sort_type=asc">Last name</a>  </th>
+<th class="sf_admin_text sf_admin_list_th_first_name">
+      <a href="/backend.php/guard/users?sort=first_name&amp;sort_type=asc">First name</a>  </th>
+          <th id="sf_admin_list_th_actions">Actions</th>
+        </tr>
+		
+                  <tr class="othercolor">
+            <td>
+  <input type="checkbox" name="ids[]" value="1" class="sf_admin_batch_checkbox" />
+</td>
+            <td class="sf_admin_text sf_admin_list_td_username">
+  <a href="/backend.php/guard/users/1/edit">admin</a></td>
+<td class="sf_admin_text sf_admin_list_td_email_address">
+  john.doe@gmail.com</td>
+<td class="sf_admin_text sf_admin_list_td_last_name">
+  Doe</td>
+<td class="sf_admin_text sf_admin_list_td_first_name">
+  John</td>
+            <td>
+  <ul class="sf_admin_td_actions">
+    <li class="sf_admin_action_edit"><a href="/backend.php/guard/users/1/edit">Edit</a></li>    <li class="sf_admin_action_delete"><a onclick="if (confirm('Are you sure?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'post'; f.action = this.href;var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', 'sf_method'); m.setAttribute('value', 'delete'); f.appendChild(m);var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_csrf_token'); m.setAttribute('value', 'fa630d8a4369aab58d7c7b62895d3635'); f.appendChild(m);f.submit(); };return false;" href="/backend.php/guard/users/1">Delete</a></li>  </ul>
+</td>
+          </tr>
+                  <tr class="even">
+            <td>
+  <input type="checkbox" name="ids[]" value="2" class="sf_admin_batch_checkbox" />
+</td>
+            <td class="sf_admin_text sf_admin_list_td_username">
+  <a href="/backend.php/guard/users/2/edit">maria.cowper@tsask.ca</a></td>
+<td class="sf_admin_text sf_admin_list_td_email_address">
+  maria.cowper@tsask.ca</td>
+<td class="sf_admin_text sf_admin_list_td_last_name">
+  Cowper</td>
+<td class="sf_admin_text sf_admin_list_td_first_name">
+  maria</td>
+            <td>
+  <ul class="sf_admin_td_actions">
+    <li class="sf_admin_action_edit"><a href="/backend.php/guard/users/2/edit">Edit</a></li>    <li class="sf_admin_action_delete"><a onclick="if (confirm('Are you sure?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'post'; f.action = this.href;var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', 'sf_method'); m.setAttribute('value', 'delete'); f.appendChild(m);var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_csrf_token'); m.setAttribute('value', 'fa630d8a4369aab58d7c7b62895d3635'); f.appendChild(m);f.submit(); };return false;" href="/backend.php/guard/users/2">Delete</a></li>  </ul>
+</td>
+          </tr>
+                  <tr class="othercolor">
+            <td>
+  <input type="checkbox" name="ids[]" value="3" class="sf_admin_batch_checkbox" />
+</td>
+            <td class="sf_admin_text sf_admin_list_td_username">
+  <a href="/backend.php/guard/users/3/edit">marina.patzwald@tsask.ca</a></td>
+<td class="sf_admin_text sf_admin_list_td_email_address">
+  marina.patzwald@tsask.ca</td>
+<td class="sf_admin_text sf_admin_list_td_last_name">
+  Patzwald</td>
+<td class="sf_admin_text sf_admin_list_td_first_name">
+  Marina</td>
+            <td>
+  <ul class="sf_admin_td_actions">
+    <li class="sf_admin_action_edit"><a href="/backend.php/guard/users/3/edit">Edit</a></li>    <li class="sf_admin_action_delete"><a onclick="if (confirm('Are you sure?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'post'; f.action = this.href;var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', 'sf_method'); m.setAttribute('value', 'delete'); f.appendChild(m);var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_csrf_token'); m.setAttribute('value', 'fa630d8a4369aab58d7c7b62895d3635'); f.appendChild(m);f.submit(); };return false;" href="/backend.php/guard/users/3">Delete</a></li>  </ul>
+</td>
+          </tr>
+        		
+		
+        <tr>
+          <th colspan="6">
+            
+            3 results                      </th>
+        </tr>		
+		
 </table>
 </div>
+    
 </div>
 </dd>
-</dl>
-</div>
-</div>
-<div class="footer"></div>
+<script type="text/javascript">
+/* <![CDATA[ */
+function checkAll()
+{
+  var boxes = document.getElementsByTagName('input'); for(var index = 0; index < boxes.length; index++) { box = boxes[index]; if (box.type == 'checkbox' && box.className == 'sf_admin_batch_checkbox') box.checked = document.getElementById('sf_admin_list_batch_checkbox').checked } return true;
+}
+/* ]]> */
+</script>
+<!--    <ul class="sf_admin_actions">
+      <li class="sf_admin_batch_actions_choice">
+  <select name="batch_action">
+    <option value="">Choose an action</option>
+    <option value="batchDelete">Delete</option>
+  </select>
+      <input type="hidden" name="_csrf_token" value="fa630d8a4369aab58d7c7b62895d3635" />
+    <input type="submit" value="go" />
+</li>
+      <li class="sf_admin_action_delete">
+  <a href="/backend.php/guard/users/List_delete/action">X</a></li>
+    </ul>
+-->	
+    </form>
+  
+
+</dl>  
+
+ <div id="sf_admin_footer">
+      </div>    </div>
+    </div>
+    <div class="footer"></div>
 </div>
 </body>
 </html>

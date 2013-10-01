@@ -6,6 +6,7 @@
 (def ^:dynamic *js-files* nil)
 
 (def ^:dynamic *css-files* nil)
+(def ^:dynamic *js-css-files* nil)
 
 (def ^:dynamic *main-nav*
   (let [nav-list [{:id "forms" :content "Form" :title "forms" :href "http://www.tsaskforms.ca/backend.php/forms"}
@@ -21,6 +22,19 @@
            (map-indexed vector nav-list))]
      [:div.clear]]))
 
+
+(defn include-js-css [files]
+  (for [f files]
+    (if (.endsWith f "js")
+      (include-js f)
+      (include-css f))))
+
+
+(def form-view-files (.split (slurp "resources/public/html/form-view.files") "\n"))
+(def form-new-files (.split (slurp "resources/public/html/new-form.files") "\n"))
+(def form-edit-files (.split (slurp "resources/public/html/form-edit.files") "\n"))
+(def forms-files (.split (slurp "resources/public/html/forms.files") "\n"))
+
 (def ^:dynamic *sub-nav*
   [:div.subnav
    [:a.newform {:href "http://www.tsaskforms.ca/backend.php/form/new" :title "new form"} "New Form"]
@@ -31,10 +45,9 @@
   [page]
   (html5
    [:head
-    (include-css "/css/common.css")
-    (include-css "/css/fix.css")
     (apply include-css *css-files*)
     (apply include-js *js-files*)
+    (include-js-css *js-css-files*)
     [:title "technical safety authority interface design_login"]]
    [:body
     [:div.wrapper
@@ -52,8 +65,7 @@
        page]]]]))
 
 (defn form-design-pages [& [form]]
-  (binding [*js-files* (.split (slurp "form-design-js-files") "\n")
-            *css-files* ["/css/common.css" "/css/main.css"]]
+  (binding [*js-css-files* form-edit-files]
   (pages
    [:form {:method "post" :action (.replace (str "/form/" (:id form) "/create") "//" "/")}
     [:input {:type "hidden" :name "sf_method" :value "put"}]

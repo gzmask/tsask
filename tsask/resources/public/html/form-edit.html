@@ -1,0 +1,142 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="title" content="technical safety authority interface design" />
+<title>technical safety authority interface design</title>
+<link rel="stylesheet" type="text/css" media="screen" href="/css/common.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="/css/fix.css" />
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/js/DD_belatedPNG.js"></script>
+<script type="text/javascript" src="/js/layout.js"></script>
+<script type="text/javascript" src="/js/login.js"></script>
+<script type="text/javascript" src="/js/form_design.js"></script>
+<script type="text/javascript" src="/js/control/Address.js"></script>
+<script type="text/javascript" src="/js/control/BirthDatePicker.js"></script>
+<script type="text/javascript" src="/js/control/CheckBox.js"></script>
+<script type="text/javascript" src="/js/control/TOS.js"></script>
+<script type="text/javascript" src="/js/control/DateTime.js"></script>
+<script type="text/javascript" src="/js/control/DropDown.js"></script>
+<script type="text/javascript" src="/js/control/ClientEmail.js"></script>
+<script type="text/javascript" src="/js/control/Email.js"></script>
+<script type="text/javascript" src="/js/control/FileUpload.js"></script>
+<script type="text/javascript" src="/js/control/FullName.js"></script>
+<script type="text/javascript" src="/js/control/Heading.js"></script>
+<script type="text/javascript" src="/js/control/Number.js"></script>
+<script type="text/javascript" src="/js/control/Payment.js"></script>
+<script type="text/javascript" src="/js/control/Phone.js"></script>
+<script type="text/javascript" src="/js/control/RadioButton.js"></script>
+<script type="text/javascript" src="/js/control/ResetButton.js"></script>
+<script type="text/javascript" src="/js/control/SubmitButton.js"></script>
+<script type="text/javascript" src="/js/control/TextArea.js"></script>
+<script type="text/javascript" src="/js/control/TextBox.js"></script>
+<script type="text/javascript" src="/js/control/UniqueId.js"></script>
+</head>
+<body>
+<div class="wrapper">
+  <div class="header">
+
+    <div class="icon_logo"><a href="#" title="technical safety authority interface design"><img src="/images/icon_logo.jpg" alt="technical safety authority interface design"/></a></div>
+
+    <div class="icon_exit"><a href="/backend.php/logout" title="logOut">log Out</a></div>
+
+  </div>
+
+    <div class="container">
+<div class="mainnav">
+
+	<ul class="navlist">
+
+	<li><a href="/backend.php/forms" title="form" class="nav1_on"><span>Form</span></a></li>
+
+	<li><a href="/backend.php/orders" title="orders" class="nav2"><span>orders</span></a></li>
+
+	<li><a href="/backend.php/users" title="users" class="nav3"><span>users</span></a></li>
+
+        <li><a class="nav4" href="http://www.tsaskforms.ca:3000/csv/payment-report" title="payment report"><span>Payment Report</span></a></li>
+
+	</ul>
+
+	<div class="clear"></div>
+
+</div>
+
+    <div class="mainbox">
+<div class="subnav">
+
+<a href="/backend.php/forms/new" title="new form" class="newform">New Form</a>
+
+<a href="/backend.php/guard/users/new" title="new user" class="newuser">New User</a>
+
+</div><form method="post" action="/backend.php/forms/1"><input type="hidden" name="sf_method" value="put" /><!--form id="form_design" action="/backend.php/forms/update/action" method="POST"-->
+<dl class="txtcont">
+<dt>
+<div class="ltit"><strong>Forms Builder</strong></div>
+<div class="rbtns"><a href="#!" title="save" class="bsave" onclick="saveForm()">SAVE</a><a href="/backend.php/forms" title="cancle" class="bcancle">CANCLE</a></div>
+<div class="clear"></div>
+</dt>
+<dd>
+<div class="forms_cont">
+<div class="fc_tit">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fct_tab">
+  <tr>
+    <th width="190">Form Tools</th>
+    <th>Form Design Area</th>
+    </tr>
+</table>
+</div>
+<div class="fc_con formbuil_box">
+    <div class="fbnav">
+    <ul class="fbn_list">
+    <li onclick="javascript:addHeading();"><img src="/images/blank.gif" class="icon_heading" />Heading</li>
+    <li onclick="javascript:addTextBox();"><img src="/images/blank.gif" class="icon_textb" />Text Box</li>
+    <li onclick="javascript:addTextArea();"><img src="/images/blank.gif" class="icon_texta" />Text Area</li>
+    <li onclick="javascript:addDropDown();"><img src="/images/blank.gif" class="icon_dropd" />Drop Down</li>
+    <li onclick="javascript:addRadioButton();"><img src="/images/blank.gif" class="icon_radio" />Radio Button</li>
+    <li onclick="javascript:addCheckBox();"><img src="/images/blank.gif" class="icon_check" />Check Box</li>
+    <li onclick="javascript:addTOS();"><img src="/images/blank.gif" class="icon_check" />TOS</li>
+    <li onclick="javascript:addFileUpload();"><img src="/images/blank.gif" class="icon_file" />File Upload</li>
+    <li onclick="javascript:addSubmitButton();"><img src="/images/blank.gif" class="icon_submit" />Submit Button</li>
+    <li onclick="javascript:addResetButton();"><img src="/images/blank.gif" class="icon_reset" />Reset Button</li>
+    <li onclick="javascript:addFullName();"><img src="/images/blank.gif" class="icon_fullname" />Full Name</li>
+    <li onclick="javascript:addClientEmail();"><img src="/images/blank.gif" class="icon_email" />Client E-mail</li>	
+    <li onclick="javascript:addEmail();"><img src="/images/blank.gif" class="icon_email" />E-mail</li>
+    <li onclick="javascript:addAddress();"><img src="/images/blank.gif" class="icon_addr" />Address</li>
+    <li onclick="javascript:addPhone();"><img src="/images/blank.gif" class="icon_phone" />Phone</li>
+    <li onclick="javascript:addBirthDatePicker();"><img src="/images/blank.gif" class="icon_bdp" />Birth Date Picker</li>
+    <li onclick="javascript:addNumber();"><img src="/images/blank.gif" class="icon_numb" />Number</li>
+    <li onclick="javascript:addDateTime();"><img src="/images/blank.gif" class="icon_datet" />DateTime</li>
+    <li onclick="javascript:addUniqueId();"><img src="/images/blank.gif" class="icon_uniid" />Unique Id</li>
+    <li onclick="javascript:addPayment();"><img src="/images/blank.gif" class="icon_pay" />Payment</li>
+    </ul>
+    </div>
+    <div class="fb_cont">
+    <ul class="fbc_head">
+        <li class="form_name">
+            <div class="fbc_bar">
+            <div class="bar_tit">Form Name</div>
+            </div>
+            <div class="fbc_txt">
+            <input class="intxt" id="form_name" name="form_name" value="Request for Examination Remark" onfocus="if(value ==\'Click to edit this text...\'){value =\'\'}" onblur="if (value ==\'\'){value=\'Click to edit this text...\'}"/>
+            </div>
+        </li>
+    </ul>
+    <ul class="fbc_list">
+	      <li class="control control_text_area">    <div class="fbc_bar">    <div class="bar_tit">Text Area</div>    <div class="bar_btns"><span>    <a href="#!" title="ARROW DOWN" class="btn_down" ></a>    <a href="#!" title="ARROW UP" class="btn_up"></a>    <a href="#!" title="ARROW BOTTOM" class="btn_bottom"></a>    <a href="#!" title="ARROW TOP" class="btn_top"></a>    <a href="#!" title="DELETE" class="btn_del"></a>    </span></div>    </div>    <div class="fbc_txt">    <textarea class="intxt" id="text_area_text" onfocus="if(value =='Click to edit this text...'){value =''}" onblur="if (value ==''){value='Click to edit this text...'}">This form must be filled in completely and returned to the Authority with payment. Failure to do so may result in a delay in the processing of your application. Please refer to TSK-0003 Client Authorization Payment form for payment options. You can download all forms at www.tsask.ca. Please fax or email completed application with payment. </textarea>    </div>    </li>    <li class="control control_heading">    <div class="fbc_bar">    <div class="bar_tit">Heading</div>    <div class="bar_btns"><span>    <a href="#!" title="ARROW DOWN" class="btn_down" ></a>    <a href="#!" title="ARROW UP" class="btn_up"></a>    <a href="#!" title="ARROW BOTTOM" class="btn_bottom"></a>    <a href="#!" title="ARROW TOP" class="btn_top"></a>    <a href="#!" title="DELETE" class="btn_del"></a>    </span></div>    </div>    <div class="fbc_txt">    <input class="intxt" id="heading_text" value="I. Personal Information" onfocus="if(value =='Click to edit this text...'){value =''}" onblur="if (value ==''){value='Click to edit this text...'}"/>    </div>    </li>    <li class="control control_text_box">    <div class="fbc_bar">    <div class="bar_tit">Text Box</div>    <div class="bar_btns"><span>    <a href="#!" title="ARROW DOWN" class="btn_down" ></a>    <a href="#!" title="ARROW UP" class="btn_up"></a>    <a href="#!" title="ARROW BOTTOM" class="btn_bottom"></a>    <a href="#!" title="ARROW TOP" class="btn_top"></a>    <a href="#!" title="DELETE" class="btn_del"></a>    </span></div>    </div>    <div class="fbc_txt">    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="fulln_tab">  <tr>    <td width="98">control name:</td>    <td align="left"><input class="intxt" id="text_box_name" value="" style="width:235px;"/></td>  </tr>  <tr>    <td width="98"><input class="intxt" id="text_box_text" value="Name:" style="width:80px;" onfocus="if(value =='Click to edit this text...'){value =''}" onblur="if (value ==''){value='Click to edit this text...'}"/></td>    <td align="left"><input class="intxt" value="" style="width:500px;"/></td>  </tr></table>    </div>    </li>    <li class="control control_address">    <div class="fbc_bar">    <div class="bar_tit">Address</div>    <div class="bar_btns"><span>    <a href="#!" title="ARROW DOWN" class="btn_down" ></a>    <a href="#!" title="ARROW UP" class="btn_up"></a>    <a href="#!" title="ARROW BOTTOM" class="btn_bottom"></a>    <a href="#!" title="ARROW TOP" class="btn_top"></a>    <a href="#!" title="DELETE" class="btn_del"></a>    </span></div>    </div>    <div class="fbc_txt">    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="fulln_tab">  <tr>    <td width="98">control name:</td>    <td align="left"><input class="intxt" id="address_name" value="" style="width:235px;"/></td>  </tr>  </tr>  <tr>    <td width="98" valign="top"><input class="intxt" id="address_text" value="Address:" style="width:80px;"/></td>    <td colspan="2" align="left" valign="top"><input class="intxt" value="" style="width:500px;" /><br /><span class="fonti">Street Address</span></td>  </tr>  <tr>    <td width="98" valign="top">&nbsp;</td>    <td colspan="2" align="left" valign="top"><input class="intxt" value="" style="width:500px;" /><br /><span class="fonti">Street Address Line2</span></td>  </tr>  <tr>    <td width="98" valign="top">&nbsp;</td>    <td width="251" align="left" valign="top"><input class="intxt" value="" style="width:235px;" /><br /><span c
+    </div>
+    <div class="clear"></div>
+</div>
+</div>
+</dd>
+</dl>
+<input type="hidden" value="11" id="form_content" name="form_content" />
+<input type="hidden" value="" id="form_published" name="form_published" />
+</form>
+    </div>
+    </div>
+    <div class="footer"></div>
+</div>
+</body>
+</html>

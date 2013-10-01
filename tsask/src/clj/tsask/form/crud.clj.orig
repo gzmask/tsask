@@ -6,10 +6,7 @@
         hiccup.page
         hiccup.core)
   (:require [clojure.java.jdbc :as j]
-            [clojure.java.jdbc.sql :as sql]
-            [clj-http.client :as client]
-            [net.cgrand.enlive-html :as html]
-            [me.raynes.laser :as l]))
+            [clojure.java.jdbc.sql :as sql]))
 
 (defn- redirect [url]
   {:status 302
@@ -21,7 +18,8 @@
                        (sql/select [:id :form_name :created_at :updated_at] :sa_forms
                                    (if sort (sql/order-by {(keyword sort) (keyword sort-type)}))))
         opposite-sort-type {"desc" "asc", "asc" "desc", nil "asc"}]
-    (binding [*js-css-files* forms-files]
+    (binding [*js-files* (.split (slurp "form-design-js-files") "\n")
+              *css-files* ["/css/common.css" "/css/fix.css" "/css/main.css"]]
       (pages
        [:dl.txtcont
         [:dt [:div.ltit [:strong "Froms List"]] [:div.clear]]
@@ -70,18 +68,19 @@
 
 
 (defn edit [id]
-  (binding [*js-css-files* form-edit-files]
-    (let [form (first (j/query SQLDB
-                               (sql/select [:id :form_name :form_content] :sa_forms
-                                           (sql/where {:id id}))))]
-      (form-design-pages form))))
+  (let [form (first (j/query SQLDB
+                             (sql/select [:id :form_name :form_content] :sa_forms
+                                         (sql/where {:id id}))))]
+    (form-design-pages form)))
 
 
 (defn view [id]
   (let [form (first (j/query SQLDB
                              (sql/select [:form_name :form_published] :sa_forms
                                          (sql/where {:id id}))))]
-    (binding [*js-css-files* form-view-files]
+    (binding [*main-nav* [:div.mainnav] *sub-nav* nil
+              *css-files* ["/css/common.css" "/css/main.css"]
+              *js-files* (.split (slurp "form-view-js-files") "\n")]
       (pages
        [:form {:method "post" :action "/form/commit" :id "form_user"}
         [:dl.txtcont.requtxt
@@ -91,10 +90,8 @@
          [:dd (:form_published form)]
          (include-js "/js/jquery.min.js" "/js/layout.js" "/js/form_commit.js")]]))))
 
-
 (defn new []
-  (binding [*js-css-files* form-new-files]
-    (form-design-pages)))
+  (form-design-pages))
 
 (defn create [params]
   (j/insert! SQLDB :sa_forms
@@ -114,22 +111,7 @@
              (sql/where {:id (:id params)}))
   (redirect "/forms"))
 
-(defmacro apply-macro [macro coll]
-  (cons macro coll))
-
 (defn commit [params]
   (binding [*main-nav* [:div.mainnav] *sub-nav* nil 
             *css-files* ["/css/common.css" "/css/main.css"]]
-    (let [record {:app_name    (:app_name    params) 
-                  :address     (:address     params) 
-                  :phone       (:phone       params) 
-                  :email       (:email       params) 
-                  :app_type    (:app_type    params) 
-                  :app_detail  (:app_detail  params) 
-                  :invoice_id  (empty-to-nil (:invoice_id  params)) 
-                  :paid_by     (:paid_by     params) 
-                  :card_type   (:card_type   params) 
-                  :payment_amt (empty-to-nil (:payment_amt params))}]
-      (client/post "/csv/create"
-                   :client-params record)
-      (pages [:div (pr-str params)]))))
+  (pages [:div (pr-str params)])))
