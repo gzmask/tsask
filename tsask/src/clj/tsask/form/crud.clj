@@ -122,8 +122,8 @@
   (cons macro coll))
 
 (defn commit [params]
-  (binding [*main-nav* [:div.mainnav] *sub-nav* nil 
-            *css-files* ["/css/common.css" "/css/main.css"]]
+  (binding [*js-css-files* form-view-files] 
+    (println params)
     (let [record {:app_name    (:ordName    params) 
                   :address     (str (:ordAddress1 params) \space (:ordAddress2 params)) 
                   :phone       (:ordPhoneNumber       params) 
