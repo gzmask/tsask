@@ -3,9 +3,13 @@
         tsask.util
         tsask.pages.template-pg
         com.reasonr.scriptjure
+        postal.core
+
         hiccup.page
         hiccup.core)
-  (:require [clojure.java.jdbc :as j]
+  (:require [tsask.csv.crud :as csv]
+            [clojure.java.jdbc :as j]
+            [tsask.order.crud :as order]
             [clojure.java.jdbc.sql :as sql]
             [clj-http.client :as client]
             [net.cgrand.enlive-html :as html]
@@ -120,16 +124,34 @@
 (defn commit [params]
   (binding [*main-nav* [:div.mainnav] *sub-nav* nil 
             *css-files* ["/css/common.css" "/css/main.css"]]
-    (let [record {:app_name    (:app_name    params) 
-                  :address     (:address     params) 
-                  :phone       (:phone       params) 
-                  :email       (:email       params) 
-                  :app_type    (:app_type    params) 
+    (let [record {:app_name    (:ordName    params) 
+                  :address     (str (:ordAddress1 params) \space (:ordAddress2 params)) 
+                  :phone       (:ordPhoneNumber       params) 
+                  :email       (:ordEmailAddress       params) 
+                  :app_type    (:form_name   params) 
                   :app_detail  (:app_detail  params) 
-                  :invoice_id  (empty-to-nil (:invoice_id  params)) 
-                  :paid_by     (:paid_by     params) 
-                  :card_type   (:card_type   params) 
-                  :payment_amt (empty-to-nil (:payment_amt params))}]
-      (client/post "/csv/create"
-                   :client-params record)
-      (pages [:div (pr-str params)]))))
+                  :invoice_id  (not-empty (:invoice_id  params)) 
+                  :paid_by     (:trnCardOwner     params) 
+                  :card_type   (:trnCardType   params) 
+                  :payment_amt (not-empty (:trnAmount params))}]
+      (csv/create record)
+      (order/create {:order_content (:order_content params)
+                     :form_name (:form_name params)})
+      ;; just use for log, so I comment it
+      #_(if (every? #(not-empty (key %)) record)
+          ;; need payment
+        (->
+         (client/get "https://www.beanstream.com/scripts/process_transaction.asp" (:query-params params))
+         (clojure.string/replace "&" "<br/>")
+         (str "requestType=BACKEND&merchant_id=257900000&"
+              (clojure.string/join "&" (for [[k v] params]
+                                         (str (name k) "=" v)))))
+        ;; need no payment
+        "commit success")
+      ;; mail to client, I'm sorry, It's need you to finish
+      (send-message
+       (assoc MAIL_TEMPLATE
+         :to "clientEmail"
+         :subject "subject"
+         :body "body")) 
+      (pages [:div "the order's information sent to you inbox already, please check it later!"]))))

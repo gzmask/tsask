@@ -7,7 +7,7 @@
                               :password "121212"})
 
 
-(def SQLDB {:subprotocol "mysql"
+#_(def SQLDB {:subprotocol "mysql"
                               :subname "//127.0.0.1:3306/isaac"
                               :user "isaac"
                               :password "F=ma"})
@@ -17,3 +17,9 @@
   error-page)
 
 (def CSV_ROOT_PATH "resources")
+
+(def MAIL_TEMPLATE
+  ^{:host "smtp.melcher.ca"
+    :user "ray"
+    :pass "password need you to complete"}
+  {:from "Ray Lei"})

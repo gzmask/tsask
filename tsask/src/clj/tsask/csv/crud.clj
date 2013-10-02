@@ -37,7 +37,7 @@
    :body (io/file (str CSV_ROOT_PATH "/export.csv"))})
 
 (defn create [params]
-  (j/insert! SQLDB :CSVt_report 
+  (j/insert! SQLDB :CSV_report 
              {:app_name    (:app_name    params) 
               :address     (:address     params) 
               :phone       (:phone       params) 

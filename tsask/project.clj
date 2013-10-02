@@ -11,6 +11,7 @@
                  [ring/ring-json "0.2.0"]
                  [me.raynes/laser "1.1.1"]
                  [hiccup "1.0.3"]
+                 [com.draines/postal "1.11.0"]
                  [compojure "1.1.5"]
                  [mysql/mysql-connector-java "5.1.25"]
                  [org.clojure/java.jdbc "0.3.0-alpha4"]
