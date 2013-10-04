@@ -152,17 +152,17 @@
                           :trnCardNumber   (:trnCardNumber params)
                           :trnExpMonth     (:trnExpMonth params)
                           :trnExpYear      (:trnExpYear params)}]
-        (println query-params)
         (if (every? #(not-empty (val %)) query-params)
           (let [response (client/get "https://www.beanstream.com/scripts/process_transaction.asp" {:query-params (assoc query-params :requestType "BACKEND" :merchant_id "257900000")})]
-            (println response))))
-
-      ;; mail to client, I'm sorry, It's need you to finish
-      #_(send-message
-       (assoc MAIL_TEMPLATE
-         :to "clientEmail"
-         :subject "subject"
-         :body "body")) 
-      (pages [:div "the order's information sent to you inbox already, please check it later!"]))))
+            (if (.contains (:body response) "invlid")
+              (pages [:div "pay failed"])
+              ;; mail to client, It's need you to finish
+              #_(send-message
+                 (assoc MAIL_TEMPLATE
+                   :to "clientEmail"
+                   :subject "subject"
+                   :body "body")) 
+              (pages [:div "pay success"])))
+          (pages [:div "need to payment"]))))))
 
 
