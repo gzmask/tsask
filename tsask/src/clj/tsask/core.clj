@@ -22,9 +22,14 @@
               [tsask.form.crud :as form]))
 
 
+(defn test-get [params]
+  {:status 200
+   :headers {"Content-Type" "text/html"}
+   :body (str "Hello, " (:name params))})
 (defroutes app-routes
   (route/resources "/")
   (GET "/" [] tsask.pages.template-pg/home-pg)
+  (GET "/test-get" {params :params} (test-get params))
 
   (GET "/login" [] (log/login))
   (POST "/check" {{username :username password :password} :params session :session} (log/check username password session))

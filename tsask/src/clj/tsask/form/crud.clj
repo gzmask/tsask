@@ -123,35 +123,46 @@
 
 (defn commit [params]
   (binding [*js-css-files* form-view-files] 
-    (println params)
-    (let [record {:app_name    (:ordName    params) 
-                  :address     (str (:ordAddress1 params) \space (:ordAddress2 params)) 
-                  :phone       (:ordPhoneNumber       params) 
-                  :email       (:ordEmailAddress       params) 
-                  :app_type    (:form_name   params) 
-                  :app_detail  (:app_detail  params) 
-                  :invoice_id  (not-empty (:invoice_id  params)) 
-                  :paid_by     (:trnCardOwner     params) 
-                  :card_type   (:trnCardType   params) 
-                  :payment_amt (not-empty (:trnAmount params))}]
-      (csv/create record)
+    (let [payment-info {:app_name    (:ordName    params) 
+                        :address     (str (:ordAddress1 params) \space (:ordAddress2 params)) 
+                        :phone       (:ordPhoneNumber       params) 
+                        :email       (:ordEmailAddress       params) 
+                        :app_type    (:form_name   params) 
+                        :app_detail  (:app_detail  params) 
+                        :invoice_id  (not-empty (:invoice_id  params)) 
+                        :paid_by     (:trnCardOwner     params) 
+                        :card_type   (:trnCardType   params) 
+                        :payment_amt (not-empty (:trnAmount params))}]
+      (csv/create payment-info)
       (order/create {:order_content (:order_content params)
                      :form_name (:form_name params)})
-      ;; just use for log, so I comment it
-      #_(if (every? #(not-empty (key %)) record)
-          ;; need payment
-        (->
-         (client/get "https://www.beanstream.com/scripts/process_transaction.asp" (:query-params params))
-         (clojure.string/replace "&" "<br/>")
-         (str "requestType=BACKEND&merchant_id=257900000&"
-              (clojure.string/join "&" (for [[k v] params]
-                                         (str (name k) "=" v)))))
-        ;; need no payment
-        "commit success")
+      (let [query-params {:ordName         (:ordName params)
+                          :ordPhoneNumber  (:ordPhoneNumber params)
+                          :ordAddress      (str (:ordAddress1 params)
+                                                (:ordAddress2 params))
+                          :ordCity         (:ordCity params)
+                          :ordProvince     (:ordProvince params)
+                          :ordPostalCode   (:ordPostalCode params)
+                          :ordCountry      (:ordCountry params)
+                          :ordEmailAddress (:ordEmailAddress params)
+                          :trnOrderNumber  (:trnOrderNumber params)
+                          :trnAmount       (:trnAmount params)
+                          :trnCardOwner    (:trnCardOwner params)
+                          :trnCardType     (:trnCardType params)
+                          :trnCardNumber   (:trnCardNumber params)
+                          :trnExpMonth     (:trnExpMonth params)
+                          :trnExpYear      (:trnExpYear params)}]
+        (println query-params)
+        (if (every? #(not-empty (val %)) query-params)
+          (let [response (client/get "https://www.beanstream.com/scripts/process_transaction.asp" {:query-params (assoc query-params :requestType "BACKEND" :merchant_id "257900000")})]
+            (println response))))
+
       ;; mail to client, I'm sorry, It's need you to finish
-      (send-message
+      #_(send-message
        (assoc MAIL_TEMPLATE
          :to "clientEmail"
          :subject "subject"
          :body "body")) 
       (pages [:div "the order's information sent to you inbox already, please check it later!"]))))
+
+
