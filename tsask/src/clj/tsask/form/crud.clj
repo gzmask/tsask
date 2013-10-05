@@ -132,37 +132,34 @@
                         :invoice_id  (not-empty (:invoice_id  params)) 
                         :paid_by     (:trnCardOwner     params) 
                         :card_type   (:trnCardType   params) 
-                        :payment_amt (not-empty (:trnAmount params))}]
-      (csv/create payment-info)
-      (order/create {:order_content (:order_content params)
-                     :form_name (:form_name params)})
-      (let [query-params {:ordName         (:ordName params)
-                          :ordPhoneNumber  (:ordPhoneNumber params)
-                          :ordAddress      (str (:ordAddress1 params)
-                                                (:ordAddress2 params))
-                          :ordCity         (:ordCity params)
-                          :ordProvince     (:ordProvince params)
-                          :ordPostalCode   (:ordPostalCode params)
-                          :ordCountry      (:ordCountry params)
-                          :ordEmailAddress (:ordEmailAddress params)
-                          :trnOrderNumber  (:trnOrderNumber params)
-                          :trnAmount       (:trnAmount params)
-                          :trnCardOwner    (:trnCardOwner params)
-                          :trnCardType     (:trnCardType params)
-                          :trnCardNumber   (:trnCardNumber params)
-                          :trnExpMonth     (:trnExpMonth params)
-                          :trnExpYear      (:trnExpYear params)}]
-        (if (every? #(not-empty (val %)) query-params)
-          (let [response (client/get "https://www.beanstream.com/scripts/process_transaction.asp" {:query-params (assoc query-params :requestType "BACKEND" :merchant_id "257900000")})]
-            (if (.contains (:body response) "invlid")
-              (pages [:div "pay failed"])
-              ;; mail to client, It's need you to finish
-              #_(send-message
-                 (assoc MAIL_TEMPLATE
-                   :to "clientEmail"
-                   :subject "subject"
-                   :body "body")) 
-              (pages [:div "pay success"])))
-          (pages [:div "need to payment"]))))))
+                        :payment_amt (not-empty (:trnAmount params))}
+          csv_record   (csv/create payment-info) 
+          order_record (order/create {:order_content (:order_content params) 
+                                      :form_name (:form_name params)}) 
+          query-params {:ordName         (:ordName params) 
+                        :ordPhoneNumber  (:ordPhoneNumber params)
+                        :ordAddress      (str (:ordAddress1 params) 
+                                              (:ordAddress2 params))
+                        :ordCity         (:ordCity params)
+                        :ordProvince     (:ordProvince params)
+                        :ordPostalCode   (:ordPostalCode params)
+                        :ordCountry      (:ordCountry params)
+                        :ordEmailAddress (:ordEmailAddress params)
+                        :trnOrderNumber  (:trnOrderNumber params)
+                        :trnAmount       (:trnAmount params)
+                        :trnCardOwner    (:trnCardOwner params)
+                        :trnCardType     (:trnCardType params)
+                        :trnCardNumber   (:trnCardNumber params)
+                        :trnExpMonth     (:trnExpMonth params)
+                        :trnExpYear      (:trnExpYear params)}
+          response (client/get "https://www.beanstream.com/scripts/process_transaction.asp" {:query-params (assoc query-params :requestType "BACKEND" :merchant_id "257900000")})
+          email (send-message 
+                  (assoc MAIL_TEMPLATE 
+                         :to "gzmask@gmail.com" 
+                         :subject "subject" 
+                         :body "body"))]
+            (if (.contains (:body response) "Invalid")
+              (pages [:div (:body response)]) 
+              (pages [:div (:body response)])))))
 
 
