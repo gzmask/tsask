@@ -1,4 +1,3 @@
-//WTF stil in use ?
 var timer;
 
 function commitOrder(){
@@ -71,9 +70,9 @@ function commitOrder(){
 	});	
 
 	if(is_heading_start){content+='</div>';}	
-	//alert(content);
+	//console.log(content);
 	$('#order_content').val(content);
-	document.forms[0].submit(); 	
+	//document.forms[0].submit(); 	
 }
 
 function bindActionSelectedItem(obj,bindItem,searchType,selectItem,selectedItem){
@@ -149,6 +148,8 @@ function rebindActionForm(){
 			rebindActionFormBirthDatePicker($(this));
 		}else if ($(this).hasClass('form_drop_down')){
 			rebindActionFormDropDown($(this));
+		}else if ($(this).hasClass('form_tos')){
+			rebindActionFormTOS($(this));
 		}		
 	
 	});
@@ -156,7 +157,17 @@ function rebindActionForm(){
 
 $(document).ready(function(){
 	rebindActionForm();
-	$(":submit").click(function(){
+	$(":submit").click(function(e){
 		commitOrder();
 	});
 });
+
+function validateForm(){
+  var flag = true;
+  $('.container .form_control').each(function(){	
+    if ($(this).hasClass('form_tos')){
+      flag = flag && validateFormTOS($(this));
+    }
+  });
+  return flag;
+}

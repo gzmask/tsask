@@ -21,7 +21,7 @@
     <div class="icon_exit"></div>
   </div>
   
-<form id="form_user" action="<?php echo url_for('forms/commit') ?>" method="POST">
+<form id="form_user" action="<?php echo url_for('forms/commit') ?>" method="POST" onsubmit="return validateForm()">
 <div class="container">
 <div class="mainnav"></div>
 <div class="mainbox">
