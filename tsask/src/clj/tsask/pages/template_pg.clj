@@ -9,9 +9,9 @@
 (def ^:dynamic *js-css-files* nil)
 
 (def ^:dynamic *main-nav*
-  (let [nav-list [{:id "forms" :content "Form" :title "forms" :href "http://www.tsaskforms.ca/backend.php/forms"}
-                  {:id "orders" :content "Order" :title "orders" :href "http://www.tsaskforms.ca/backend.php/orders"}
-                  {:id "users" :content "User" :title "users" :href "http://www.tsaskforms.ca/backend.php/users"}
+  (let [nav-list [{:id "forms" :content "Form" :title "forms" :href "https://www.tsaskforms.ca/backend.php/forms"}
+                  {:id "orders" :content "Order" :title "orders" :href "https://www.tsaskforms.ca/backend.php/orders"}
+                  {:id "users" :content "User" :title "users" :href "https://www.tsaskforms.ca/backend.php/users"}
                   {:id "payment-report" :content "Payment Report" :title "payment report" :href "/csv/payment-report"}]]
     [:div.mainnav
      [:ul.navlist

@@ -25,5 +25,5 @@
   (let [x (Integer/parseInt x)
         y (Integer/parseInt y)]
     {:status 302
-     :headers {"Location" "http://www.tsaskforms.ca/backend.php"}
+     :headers {"Location" "https://www.tsaskforms.ca/backend.php"}
      :session (assoc session :login (= x (int (/ 314 y))))}))
