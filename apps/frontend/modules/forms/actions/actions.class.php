@@ -649,6 +649,10 @@ class formsActions extends sfActions
           // Now POST the transaction. $txResult will contain Beanstream's response
           $this->txResult = str_replace("&","<br>",urldecode(curl_exec( $ch )));
           $this->txResult.= $request_string;
+          if (strpos($this->txResult, 'Invalid')) 
+            $this->txResult='Credit card information is invalid';
+          else
+            $this->txResult='Payment successful!';
           $this->order_content=$this->getRequestParameter('order_content');
           $this->form_name=$this->getRequestParameter('form_name');
           $my_order=new saOrders();
@@ -663,11 +667,11 @@ class formsActions extends sfActions
           $my_order['order_content']=$this->order_content;	
           $my_order['form_name']=$this->form_name;
           $my_order->save();
-          $this->txResult ='commit success';
+          $this->txResult ='Committed form without payment!';
 	}
 
 	$this->logMessage('$this->order_content  '.$this->sa_forms['order_content']);
-    $this->getRequest()->setParameter('txResult', $this->txResult);	
+        $this->getRequest()->setParameter('txResult', $this->txResult);	
 	$this->logMessage('txResult  '.$this->txResult);
 	//start send info email
 	$mydate=getdate(date("U"));

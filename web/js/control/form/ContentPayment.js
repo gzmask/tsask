@@ -1,3 +1,12 @@
+function validateFormPayment(obj){
+  if ($('#ordName').val()) {
+    alert("You need to enter order name to in the payment form.");
+    return false;
+  } else {
+    return true;
+  }
+}
+
 function formPayment(obj, sm) {
 	var ordName=obj.find("#ordName").val();
 	var ordPhoneNumber=obj.find("#ordPhoneNumber").val();	

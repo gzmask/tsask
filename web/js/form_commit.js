@@ -167,6 +167,8 @@ function validateForm(){
   $('.container .form_control').each(function(){	
     if ($(this).hasClass('form_tos')){
       flag = flag && validateFormTOS($(this));
+    } else if ($(this).hasClass('form_tos')){
+      flag = flag && validateFormPayment($(this));
     }
   });
   return flag;
