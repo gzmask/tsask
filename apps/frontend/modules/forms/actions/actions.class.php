@@ -560,7 +560,7 @@ class formsActions extends sfActions
           $csv_phone = $this->reqOrdPhoneNumber;
           $csv_email = $this->reqOrdEmailAddress;
           $csv_app_type = $this->getRequestParameter('form_name');
-          $csv_app_detail = $ap_type;
+          $csv_app_detail = $this->getRequestParameter('app_detail');
           $csv_paid_by = $this->reqTrnCardOwner;
           $csv_card_type = $this->reqTrnCardType;
           $csv_payment_amt = $this->getRequestParameter('trnAmount');
@@ -649,6 +649,7 @@ class formsActions extends sfActions
           // Now POST the transaction. $txResult will contain Beanstream's response
           $this->txResult = str_replace("&","<br>",urldecode(curl_exec( $ch )));
           $this->txResult.= $request_string;
+          //this is toally wrong!
           if (strpos($this->txResult, 'Invalid')) 
             $this->txResult='Credit card information is invalid';
           else

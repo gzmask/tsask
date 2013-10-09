@@ -48,7 +48,9 @@ function saveUniqueId(obj, sm) {
 
 function makeUniqueId(obj, sm) {
 	var unique_id_name=obj.find("#unique_id_name").val();
+	var unique_id_name=obj.find("#unique_id_text").val();
 	var unique_id_value=obj.find("#unique_id_value").val();
 	var control='<input name="'+unique_id_name+'" type=hidden id="unique_id" class="form_control form_unique_id" value="'+unique_id_value+'" />';	
+	control=control+'<input name="'+unique_id_text+'" type=hidden id="unique_id" class="form_control form_unique_id" value="'+unique_id_value+'" />';	
 	return control;
 }

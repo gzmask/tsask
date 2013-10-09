@@ -48,7 +48,7 @@
   (GET "/csv/new" {session :session} (wrap-session-verify session (csv/new)))
   (GET "/csv/payment-report" {session :session} (wrap-session-verify session (csv/payment-report)))
   (GET "/csv/download/:filename" {params :params session :session} (wrap-session-verify session (csv/download-csv (:filename params))))
-  (POST "/csv/create" {params :params session :session} (wrap-session-verify session (csv/create params))))
+  (POST "/csv/create" {params :params} (csv/create params)))
 
 (def app
     (params/wrap-params (session/wrap-session (handler/site app-routes))))
