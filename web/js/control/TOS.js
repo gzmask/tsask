@@ -15,11 +15,10 @@ function controlTOSItem(str_tos_item_value,str_tos_item_label_text){
 }
 
 function controlTOS(str_tos_name,str_tos_text,str_tos_items) {
-        var tos_default = "Consent\n"+
-          "To the best of my knowledge, this application and all supporting documents are accurate. I understand that a false or misleading statement in this application or in any of the reference or other evidence or qualification submitted by myself or on my behalf may result in the Chielf Inspector denying this application.\n";
+        var tos_default = "To the best of my knowledge, this application and all supporting documents are accurate. I understand that a false or misleading statement in this application or in any of the reference or other evidence or qualification submitted by myself or on my behalf may result in the Chief Inspector denying this application.\n";
 
 	if (typeof str_tos_name == 'undefined')
-          str_tos_name='Terms of Services';
+          str_tos_name='Consent the Terms of Services';
 	if (typeof str_tos_text == 'undefined')
           str_tos_text=tos_default;
 	if (typeof str_tos_items == 'undefined')
@@ -111,31 +110,17 @@ function makeTOS(obj, sm) {
 	var tos_name=obj.find("#tos_name").val();	
 	var tos_text=obj.find("#tos_text").val();
 	var control='';
-	control=control+'<div>';
+	control=control+'<div class="requf_cont fulln_tab form_control form_tos">';
+	if(''!=tos_name){
+          control=control+"<div class=\"requf_tit form_control form_heading\" id=\"form_heading_label\"><b>"+
+            tos_name+"</b></div>";}
 	if(''!=tos_text){
-          control=control+'    <textarea id="form_tos_text" style="min-height: 150px; width: 30%; Vertical-align:Top;" class="fulln_tab form_control form_tos">'+tos_text+'</textarea></br>';	
-        }
+          control=control+'<div class="requ_desc form_control form_text_area"><b><font color="#2554C7">'+
+            tos_text+'</font></b></div>';}
 	control=control+'<input type="radio" name="tos_response" value="yes">&nbsp;by checking this box, I hereby agree to the terms stated above.';
         control=control+'&nbsp;';
         control=control+'<br />';
 	control=control+'<input type="radio" name="tos_response" value="no">&nbsp;I decline';
 	control=control+'</div>';
-        /*
-	control=control+'<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fulln_tab form_control form_tos">';
-	control=control+'  <tr>';
-	if(''!=tos_text){
-	control=control+'    <td width="70" id="form_tos_text" style="Vertical-align:Top;">'+tos_text+'</td>';	
-	}
-	control=control+'    <td style="Vertical-align:Top;">';		
-	control=control+'      <table width="100%" border="0" cellspacing="0" cellpadding="0">';
-	obj.find("#item_tos_label").each(function(){
-		control=control+'<tr><td id="form_tos_item" ><input id="form_tos_value" name="" type="checkbox" value="" /><label id="form_tos_label">';
-		control=control+$(this).val()+'</label></td></tr>';
-	});
-	control=control+'      </table>';
-	control=control+'    </td>';			
-	control=control+'  </tr>';
-	control=control+'</table>';
-        */
 	return control;
 }

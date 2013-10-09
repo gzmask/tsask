@@ -1,6 +1,6 @@
 function validateFormPayment(obj){
-  if ($('#ordName').val()) {
-    alert("You need to enter order name to in the payment form.");
+  if ($('#ordName').val().length < 1) {
+    alert("You need to enter your name in the payment form.");
     return false;
   } else {
     return true;
@@ -77,7 +77,6 @@ control=control+'	';
 control=control+'	<br><table border=0><tr><td></td></tr></table>';
 
 control=control+'	<P>';
-control=control+'	<script language="JavaScript" type="text/javascript">addLoadEvent(CountryUpdatePayment);</script>';
 control=control+'		</td>';
 control=control+'	</tr>';
 control=control+'</table>';

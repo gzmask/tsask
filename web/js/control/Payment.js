@@ -154,7 +154,7 @@ control=control+'		<tr><td><font face=Arial size=2 color=000000><span id="ordCou
 control=control+'		<tr>';
 control=control+'   			<td><font face=Arial size=2 color=000000>Country:</font></td>';
 control=control+'   			<td>';
-control=control+'				<select id="ordCountry" name="ordCountry" style="width:203" onChange="CountryUpdate(this, document.getElementById(\'frmPayment\').ordProvince);">   					';
+control=control+'				<select id="ordCountry" name="ordCountry" style="width:203">   					';
 control=control+'					<option value="AF">Afghanistan</option>';
 control=control+'					<option value="AX">?land Islands</option>';
 control=control+'					<option value="AL">Albania</option>';
@@ -458,7 +458,6 @@ control=control+'	';
 control=control+'	<br><table border=0><tr><td></td></tr></table>';
 
 control=control+'	<P>';
-control=control+'	<script language="JavaScript" type="text/javascript">addLoadEvent(CountryUpdatePayment);</script>';
 control=control+'		</td>';
 control=control+'	</tr>';
 control=control+'</table>';
