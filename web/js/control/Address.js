@@ -248,11 +248,11 @@ function controlAddressCountry() {
 }
 
 function controlAddress(str_address_name,str_address_text) {
-	if (typeof str_address_name == 'undefined')str_address_name='';
-	if (typeof str_address_text == 'undefined')str_address_text='Address:';	
+	if (typeof str_address_name == 'undefined')str_address_name='ship_address';
+	if (typeof str_address_text == 'undefined')str_address_text='Shipping Address:';	
 	var control_address='    <li class="control control_address">'+
 	'    <div class="fbc_bar">'+
-	'    <div class="bar_tit">Address</div>'+
+	'    <div class="bar_tit">Shipping Address</div>'+
 	'    <div class="bar_btns"><span>'+
 	'    <a href="#!" title="ARROW DOWN" class="btn_down" ></a>'+
 	'    <a href="#!" title="ARROW UP" class="btn_up"></a>'+
@@ -396,8 +396,8 @@ function saveAddress(obj, sm) {
 function makeAddress(obj, sm) {
 	var address_name=obj.find("#address_name").val();
 	var title_text=obj.find("#address_text").val();
-	if('Click to edit this text...'==title_text){
-		title_text='';
+	if(title_text == ''){
+		title_text='Shipping Address';
 	}
 	var control='';
 	control=control+'<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fulln_tab form_control form_address">';

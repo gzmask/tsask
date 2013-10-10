@@ -33,7 +33,7 @@
     <li onclick="javascript:addFullName();"><img src="/images/blank.gif" class="icon_fullname" />Full Name</li>
     <li onclick="javascript:addClientEmail();"><img src="/images/blank.gif" class="icon_email" />Client E-mail</li>	
     <li onclick="javascript:addEmail();"><img src="/images/blank.gif" class="icon_email" />E-mail</li>
-    <li onclick="javascript:addAddress();"><img src="/images/blank.gif" class="icon_addr" />Address</li>
+    <li onclick="javascript:addAddress();"><img src="/images/blank.gif" class="icon_addr" />Shipping Address</li>
     <li onclick="javascript:addPhone();"><img src="/images/blank.gif" class="icon_phone" />Phone</li>
     <li onclick="javascript:addBirthDatePicker();"><img src="/images/blank.gif" class="icon_bdp" />Birth Date Picker</li>
     <li onclick="javascript:addNumber();"><img src="/images/blank.gif" class="icon_numb" />Number</li>
