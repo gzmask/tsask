@@ -1,6 +1,28 @@
 function validateFormPayment(obj){
+  var phone_regex = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
   if ($('#ordName').val().length < 1) {
     alert("You need to enter your name in the payment form.");
+    return false;
+  } else if (!$('#ordPhoneNumber').val().match(phone_regex) ) {
+    alert("Please enter an valid phone number.");
+    return false;
+  } else if ($('#ordAddress1').val().length < 1) {
+    alert("Please enter an valid Billing address.");
+    return false;
+  } else if ($('#ordCity').val().length < 1) {
+    alert("Please enter your city.");
+    return false;
+  } else if ($('#ordPostalCode').val().length < 1) {
+    alert("Please enter your postal code.");
+    return false;
+  } else if ($('#ordEmailAddress').val().length < 1) {
+    alert("Please enter your email address.");
+    return false;
+  } else if ($('#trnCardOwner').val().length < 1) {
+    alert("Please enter your Name on card.");
+    return false;
+  } else if ($('#trnCardNumber').val().length < 1) {
+    alert("Please enter your Credit card number.");
     return false;
   } else {
     return true;

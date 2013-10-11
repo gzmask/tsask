@@ -32,6 +32,7 @@ class formsActions extends sfActions
     //$this->sa_forms = Doctrine_Core::getTable('saForms')->find(array($request->getParameter('id')));
     //$this->forward404Unless($this->sa_forms);
 
+    /*
 
           $countryId[0]="AF";
           $countryId[1]="AR";
@@ -514,7 +515,8 @@ class formsActions extends sfActions
           $countryName[237]="Yemen";
           $countryName[238]="Zambia";
           $countryName[239]="Zimbabwe";
-          
+          */
+
           $needPayment=true;
           
           $this->reqClientEmail=$this->getRequestParameter('form_client_email_value');
@@ -538,6 +540,7 @@ class formsActions extends sfActions
           $this->reqTrnExpYear=$this->getRequestParameter('trnExpYear');
 
           if($this->reqOrdName=='' or $this->reqOrdName==null)$needPayment=false;
+          /*
           if($this->reqOrdPhoneNumber=='' or $this->reqOrdPhoneNumber==null)$needPayment=false;
           if($this->reqOrdAddress1=='' or $this->reqOrdAddress1==null)$needPayment=false;
           if($this->reqOrdCity=='' or $this->reqOrdCity==null)$needPayment=false;
@@ -553,6 +556,7 @@ class formsActions extends sfActions
           if($this->reqTrnCardNumber=='' or $this->reqTrnCardNumber==null)$needPayment=false;
           if($this->reqTrnExpMonth=='' or $this->reqTrnExpMonth==null)$needPayment=false;
           if($this->reqTrnExpYear=='' or $this->reqTrnExpYear==null)$needPayment=false;
+           */
 
           //store csv exporter data
           $csv_app_name =  $this->reqOrdName;
@@ -647,13 +651,13 @@ class formsActions extends sfActions
           // These are the transaction parameters that we will POST	
           curl_setopt( $ch, CURLOPT_POSTFIELDS,  $request_string);
           // Now POST the transaction. $txResult will contain Beanstream's response
-          $this->txResult = str_replace("&","<br>",urldecode(curl_exec( $ch )));
-          $this->txResult.= $request_string;
-          //this is toally wrong!
-          if (strpos($this->txResult, 'Invalid')) 
-            $this->txResult='Credit card information is invalid';
+          //$this->txResult = urldecode(curl_exec( $ch ));
+          //$this->txResult.= $request_string;
+          parse_str(urldecode(curl_exec( $ch )), $txResult);
+          if ($txResult['trnApproved'] == '0') 
+            $this->txResult='Payment attempt failed due to reason of: '.$txResult['messageText'];
           else
-            $this->txResult='Payment successful!';
+            $this->txResult='Thank you, your payment is successful! Tsask will process your request shortly.';
           $this->order_content=$this->getRequestParameter('order_content');
           $this->form_name=$this->getRequestParameter('form_name');
           $my_order=new saOrders();
@@ -668,7 +672,7 @@ class formsActions extends sfActions
           $my_order['order_content']=$this->order_content;	
           $my_order['form_name']=$this->form_name;
           $my_order->save();
-          $this->txResult ='Committed form without payment!';
+          $this->txResult ='Form Committed without payment!';
 	}
 
 	$this->logMessage('$this->order_content  '.$this->sa_forms['order_content']);

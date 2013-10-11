@@ -1,6 +1,6 @@
 function controlPayment(str_payment_name,str_payment_text, str_form_payment_amount) {
 	if (typeof str_payment_name == 'undefined')str_payment_name='';
-	if (typeof str_payment_text == 'undefined')str_payment_text='Click to edit this text...';	
+	if (typeof str_payment_text == 'undefined')str_payment_text='001';	
 	if (typeof str_form_payment_amount == 'undefined')str_form_payment_amount='';
 
 	var control_payment='    <li class="control control_payment">'+
@@ -23,7 +23,7 @@ function controlPayment(str_payment_name,str_payment_text, str_form_payment_amou
 	'  </tr>'+	
 	
 	'  <tr>'+
-	'    <td width="118" valign="top"><input class="intxt" id="payment_text" value="'+str_payment_text+'" onfocus="if(value ==\'Click to edit this text...\'){value =\'\'}" onblur="if (value ==\'\'){value=\'Click to edit this text...\'}" style="width:100px;"/></td>'+
+	'    <td width="118" valign="top">Order Number:<input class="intxt" id="payment_text" value="'+str_payment_text+'" onfocus="if(value ==\'Click to edit this text...\'){value =\'\'}" onblur="if (value ==\'\'){value=\'Click to edit this text...\'}" style="width:100px;"/></td>'+
 	'    <td align="left" valign="top"><input class="intxt" id="form_payment_amount" value="'+str_form_payment_amount+'"  style="width:235px;"/><br /><span class="fonti">Amount</span></td>'+
 	'  </tr>'+
 	'</table>'+
@@ -408,7 +408,7 @@ control=control+'   		</tr>';
 control=control+'		<tr><td><font face=Arial size=2 color=000000>Email:</font></td><td><input type="text" id="ordEmailAddress" name="ordEmailAddress" value="" size=30 maxlength=64 autocomplete="off" ></td>   		</tr>';
 control=control+'		<tr><td colspan=3 height=0><input type="hidden" name="shipName" value=""><input type="hidden" name="shipEmailAddress" value=""><input type="hidden" name="shipPhoneNumber" value=""><input type="hidden" name="shipAddress1" value=""><input type="hidden" name="shipAddress2" value=""><input type="hidden" name="shipCity" value=""><input type="hidden" name="shipProvince" value=""><input type="hidden" name="shipPostalCode" value=""><input type="hidden" name="shipCountry" value=""></td></tr><tr><td colspan=3><br></td></tr>';
 control=control+'   		<tr><td colspan="3" height="45px" valign="top"><div style="float:left;"><font face=Arial size=3 color=000066><b>Payment Information</b></font></div></td></tr>';
-control=control+'   		<tr><td rowspan=7>&nbsp;</td><td><font face=Arial size=2 color=000000>Invoice/Order Number:</font></td><td><input type="text" id="trnOrderNumber" name="trnOrderNumber" value="" size=30 maxlength=30 autocomplete="off" ></td></tr>';
+control=control+'   		<tr><td rowspan=7>&nbsp;</td><td><font face=Arial size=2 color=000000>Invoice/Order Number:</font></td><td><input type="text" id="trnOrderNumber" name="trnOrderNumber" value="'+payment_text+'" disabled size=30 maxlength=30 autocomplete="off" ></td></tr>';
 control=control+'		<tr><td><font face=Arial size=2 color=000000>Amount (CAD):</font></td><td><input type="text" id="trnAmount" name="trnAmount" value="'+form_payment_amount+'" readonly size=30 maxlength=32 onBlur="if (PositiveInteger(this) == true) {FormatAmount(this);}" autocomplete="off" ></td></tr>';
 control=control+'   		';
 control=control+'   		';
