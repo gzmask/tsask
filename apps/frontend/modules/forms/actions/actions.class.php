@@ -655,9 +655,9 @@ class formsActions extends sfActions
           //$this->txResult.= $request_string;
           parse_str(urldecode(curl_exec( $ch )), $txResult);
           if ($txResult['trnApproved'] == '0') 
-            $this->txResult='Payment attempt failed due to reason of: '.$txResult['messageText'];
+            $this->txResult='Payment attempt failed due to reason: '.$txResult['messageText'].' Please contact us and we will help you to submit your payment.';
           else
-            $this->txResult='Thank you, your payment is successful! Tsask will process your request shortly.';
+            $this->txResult='"Thank you, your payment is successful! Tsask will process your request shortly.  If you have not received confirmation in a few days please contact us.';
           $this->order_content=$this->getRequestParameter('order_content');
           $this->form_name=$this->getRequestParameter('form_name');
           $my_order=new saOrders();
