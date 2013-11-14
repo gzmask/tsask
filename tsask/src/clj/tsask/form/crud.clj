@@ -59,7 +59,8 @@
                      [:li.sf_admin_action_view [:a {:href (str "/form/" (:id form) "/view")} "View"]]
                      [:li.sf_admin_action_delete [:a {:href (str "/form/" (:id form) "/delete")
                                                       :onclick (js (return (confirm "are you sure")))} "Delete"]]
-                     [:li.sf_admin_action_edit [:a {:href (str "/form/" (:id form) "/edit")} "Edit"]]]]])]]]]
+                     [:li.sf_admin_action_edit [:a {:href (str "/form/" (:id form) "/edit")} "Edit"]]
+                     [:li.sf_admin_action_copy [:a {:href (str "/form/" (:id form) "/copy")} "Copy"]]]]])]]]]
         [:script {:type "text/javascript"}
          (js (fn checkAll []
                (var checkboxes (.getElementsByName document "ids[]"))
@@ -80,6 +81,16 @@
                                            (sql/where {:id id}))))]
       (form-design-pages form))))
 
+(defn copy [id]
+  (let [form (first (j/query SQLDB
+                             (sql/select [:form_name :form_content :form_published] :sa_forms
+                                         (sql/where {:id id}))))]
+    (j/insert! SQLDB :sa_forms {:form_name        (:form_name form)
+                                :form_content     (:form_content form)
+                                :form_published   (:form_published form)
+                                :created_at       (java.util.Date.)
+                                :updated_at       (java.util.Date.)}))
+    (redirect "/forms"))
 
 (defn view [id]
   (let [form (first (j/query SQLDB
@@ -90,7 +101,7 @@
        [:form {:method "post" :action "/form/commit" :id "form_user"}
         [:dl.txtcont.requtxt
          ;; title
-         [:dt [:div.ltit [:strong (:form_name form)]] [:div.clear]]
+         [:dt [:div.ltit [:strong (:form_name form)]] [:input#form_name {:type "hidden" :value (:form_name form) :name "form_name"}] [:input#order_content {:type "hidden" :name "order_content"}] [:div.clear]]
          ;; main content
          [:dd (:form_published form)]
          (include-js "/js/jquery.min.js" "/js/layout.js" "/js/form_commit.js")]]))))
@@ -127,19 +138,20 @@
                         :address     (str (:ordAddress1 params) \space (:ordAddress2 params)) 
                         :phone       (:ordPhoneNumber       params) 
                         :email       (:ordEmailAddress       params) 
+                        :reg_class   (:reg_class   params)
                         :app_type    (:form_name   params) 
                         :app_detail  (:app_detail  params) 
                         :invoice_id  (not-empty (:invoice_id  params)) 
                         :paid_by     (:trnCardOwner     params) 
                         :card_type   (:trnCardType   params) 
                         :payment_amt (not-empty (:trnAmount params))}
-          csv_record   (csv/create payment-info) 
+          csv_record   (csv/create payment-info)
           order_record (order/create {:order_content (:order_content params) 
                                       :form_name (:form_name params)}) 
           query-params {:ordName         (:ordName params) 
                         :ordPhoneNumber  (:ordPhoneNumber params)
-                        :ordAddress      (str (:ordAddress1 params) 
-                                              (:ordAddress2 params))
+                        :ordAddress1     (:ordAddress1 params)
+                        :ordAddress2     (:ordAddress2 params)
                         :ordCity         (:ordCity params)
                         :ordProvince     (:ordProvince params)
                         :ordPostalCode   (:ordPostalCode params)
@@ -155,11 +167,9 @@
           response (client/get "https://www.beanstream.com/scripts/process_transaction.asp" {:query-params (assoc query-params :requestType "BACKEND" :merchant_id "257900000")})
           email (send-message 
                   (assoc MAIL_TEMPLATE 
-                         :to "gzmask@gmail.com" 
+                         :to "chao@melcher.com" 
                          :subject "subject" 
                          :body "body"))]
             (if (.contains (:body response) "Invalid")
-              (pages [:div (:body response)]) 
+              (pages [:div (:body csv_record)]) 
               (pages [:div (:body response)])))))
-
-

@@ -1,4 +1,3 @@
-//WTF stil in use ?
 var timer;
 
 function commitOrder(){
@@ -71,7 +70,6 @@ function commitOrder(){
 	});	
 
 	if(is_heading_start){content+='</div>';}	
-	//alert(content);
 	$('#order_content').val(content);
 	document.forms[0].submit(); 	
 }
@@ -104,7 +102,7 @@ function bindActionSelectedItem(obj,bindItem,searchType,selectItem,selectedItem)
 
 function bindActionSelectList(obj,selectedItem,selectButton,selectItem){
 	var c=obj;	
-	c.find(selectedItem).click(function(){//下拉框
+	c.find(selectedItem).click(function(){
 		if("none"==c.find(selectItem).css("display")){
 				c.find(selectItem).css("display","block");
 		}else{
@@ -113,7 +111,7 @@ function bindActionSelectList(obj,selectedItem,selectButton,selectItem){
 		return false;
 	});	
 	
-	c.find(selectedItem).mouseout(function(){//下拉框
+	c.find(selectedItem).mouseout(function(){
 		if("block"==c.find(selectItem).css("display")){
 			timer=setTimeout(function() {
 				c.find(selectItem).css("display","none");	
@@ -122,7 +120,7 @@ function bindActionSelectList(obj,selectedItem,selectButton,selectItem){
 		}
 	});	
 	
-	c.find(selectButton).click(function(){//下拉按钮
+	c.find(selectButton).click(function(){
 		if("none"==c.find(selectItem).css("display")){
 				c.find(selectItem).css("display","block");		
 		}else{
@@ -156,7 +154,7 @@ function rebindActionForm(){
 
 $(document).ready(function(){
 	rebindActionForm();
-	$(":submit").click(function(){
+	$(":submit").click(function(e){
 		commitOrder();
 	});
 });

@@ -9,15 +9,15 @@
 (def ^:dynamic *js-css-files* nil)
 
 (def ^:dynamic *main-nav*
-  (let [nav-list [{:id "forms" :content "Form" :title "forms" :href "https://www.tsaskforms.ca/backend.php/forms"}
-                  {:id "orders" :content "Order" :title "orders" :href "https://www.tsaskforms.ca/backend.php/orders"}
-                  {:id "users" :content "User" :title "users" :href "https://www.tsaskforms.ca/backend.php/users"}
+  (let [nav-list [{:id "forms" :content "Form" :title "forms" :href "/forms"}
+                  {:id "orders" :content "Order" :title "orders" :href "/orders"}
+                  {:id "users" :content "User" :title "users" :href "/users"}
                   {:id "payment-report" :content "Payment Report" :title "payment report" :href "/csv/payment-report"}]]
     [:div.mainnav
      [:ul.navlist
       (map (fn [nav] (let [nav-ele (second nav)] 
                        [:li [(keyword (str "a.nav" (+ 1 (first nav))))
-                             {:id (:id nav-ele) :href (str (:href nav-ele) "#" (:id nav-ele)) :title  (:title nav-ele)}
+                             {:id (:id nav-ele) :href (:href nav-ele) :title (:title nav-ele)}
                              [:span (:content nav-ele)]]]))
            (map-indexed vector nav-list))]
      [:div.clear]]))
@@ -34,11 +34,13 @@
 (def form-new-files (.split (slurp "resources/public/html/new-form.files") "\n"))
 (def form-edit-files (.split (slurp "resources/public/html/form-edit.files") "\n"))
 (def forms-files (.split (slurp "resources/public/html/forms.files") "\n"))
+(def orders-files (.split (slurp "resources/public/html/orders.files") "\n"))
+(def order-view-files (.split (slurp "resources/public/html/form-view.files") "\n"))
 
 (def ^:dynamic *sub-nav*
   [:div.subnav
-   [:a.newform {:href "http://www.tsaskforms.ca/backend.php/form/new" :title "new form"} "New Form"]
-   [:a.newuser {:href "http://www.tsaskforms.ca/backend.php/user/new" :title "new user"} "New User"]])
+   [:a.newform {:href "/form/new" :title "new form"} "New Form"]
+   [:a.newuser {:href "/user/new" :title "new user"} "New User"]])
 
 (defn pages 
   "get page by pagename"

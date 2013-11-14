@@ -19,7 +19,7 @@
   (let [user (first (j/query SQLDB (sql/select * :user (sql/where {:username username}))))]
     {:status 302
      :session (assoc session :login (= password (:password user)))
-     :headers {"Location" "/csv/new"}}))
+     :headers {"Location" "/csv/payment-report"}}))
 
 (defn check-tsask [x y session]
   (let [x (Integer/parseInt x)

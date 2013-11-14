@@ -10,17 +10,19 @@
             [me.raynes.laser :as l]
             [clojure.java.io :as io]))
 
-(defn export []
-  (let [reports 
-        (j/query SQLDB (sql/select * :CSV_report))
-        csv_rows (for [r reports] (str (:id r) "," (:app_name r) "," (:address r) "," 
-                                       (:phone r) "," (:email r) "," (:app_type r) "," 
-                                       (:app_detail r) "," (:invoice_id r) "," (:paid_by r) "," 
-                                       (:card_type r) "," (:payment_amt r) ",\n"))
+(defn export [params]
+  (let [begin (if (empty? (:begin params)) "2013-01-01 00:00:00" (str (:begin params) " 00:00:00"))
+        end (if (empty? (:end params)) "9999-01-01 00:00:00" (str (:end params) " 23:59:59"))
+        reports 
+        (j/query SQLDB ["select * from CSV_report where created_at > ? and created_at < ?" begin  end])
+        csv_rows (for [r reports] (str (:id r) "," (:app_name r) "," (:reg_class r) "," 
+                                       (:address r) "," (:phone r) "," (:email r) "," 
+                                       (:app_type r) "," (:app_detail r) "," (:invoice_id r) "," 
+                                       (:paid_by r) "," (:card_type r) "," (:payment_amt r) ",\n"))
         csv_str (reduce 
                   (fn [r1 r2] 
                     (str r1 r2)) 
-                  (str "id," "applicant name," "address," 
+                  (str "id," "applicant name," "registration class," "address," 
                        "phone number," "email address," "application type," 
                        "application detail," "invoice id," "paid by," 
                        "card type," "payment amount," "\n") 
@@ -37,17 +39,21 @@
    :body (io/file (str CSV_ROOT_PATH "/export.csv"))})
 
 (defn create [params]
-  (j/insert! SQLDB :CSV_report 
+  (let [info (first (j/query SQLDB ["show table status like 'sa_orders'"]))]
+    (j/insert! SQLDB :CSV_report 
              {:app_name    (:app_name    params) 
               :address     (:address     params) 
               :phone       (:phone       params) 
               :email       (:email       params) 
+              :reg_class   (:reg_class   params)
               :app_type    (:app_type    params) 
               :app_detail  (:app_detail  params) 
               :invoice_id  (empty-to-nil (:invoice_id  params)) 
               :paid_by     (:paid_by     params) 
               :card_type   (:card_type   params) 
-              :payment_amt (empty-to-nil (:payment_amt params))}))
+              :payment_amt (empty-to-nil (:payment_amt params))
+              :created_at  (java.util.Date.)
+              :o_id        (:auto_increment info)})))
 
 
 (defn new []
@@ -66,8 +72,15 @@
 
 
 (defn payment-report []
-  (binding [*css-files* ["/css/common.css" "/css/main.css"]]
+  (binding [*css-files* ["/css/common.css" "/css/main.css" "//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"]]
   (pages
    [:dl.txtcont
     [:dt [:div.ltit [:strong "Export"]] [:div.clear]]
-    [:div.fc_con {:style "margin-top: 15px;"} [:dd [:a {:href "/csv/export"} [:img {:src "/images/export.png"}]]]]])))
+    [:form {:method "get" :action "/csv/export"}
+      [:label "Begin date: "]
+      [:input#begin {:type "text" :name "begin"}] 
+      [:label "End date: "]
+      [:input#end {:type "text" :name "end"}]
+      [:div.fc_con {:style "margin-top: 15px;"} 
+        [:dd [:input {:type "submit" :value "" :style "background: url(/images/export.png); width:89px; height:29px; border: none;"}]]]]
+     (include-js "//code.jquery.com/jquery-1.9.1.js" "//code.jquery.com/ui/1.10.3/jquery-ui.js" "/js/main.js")])))

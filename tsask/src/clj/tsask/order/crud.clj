@@ -1,8 +1,72 @@
 (ns tsask.order.crud
   (:use tsask.env
-        tsask.util)
+        tsask.util
+        tsask.pages.template-pg
+        com.reasonr.scriptjure)
   (:require [clojure.java.jdbc :as j]
             [clojure.java.jdbc.sql :as sql]))
+
+(defn- redirect [url]
+  {:status 302
+   :headers {"Location" url}
+   :body ""})
+
+(defn index [sort sort-type]
+  (let [orders (j/query SQLDB
+                        (sql/select [:id :form_name :created_at :updated_at] :sa_orders
+                                    (if sort(sql/order-by {(keyword sort) (keyword sort-type)}))))
+        opposite-sort-type {"desc" "asc", "asc" "desc", nil "asc"}]
+    (binding [*js-css-files* orders-files]
+      (pages
+        [:dl.txtcont
+         [:dt [:div.ltit [:strong "Orders List"]] [:div.clear]]
+         [:form {:method "post" :action "/order/delete-selected"}
+          [:input {:value " Delete Selected " :type "submit" :onclick "updateCheckedIds()"}]
+          [:input {:value "0" :type "hidden" :id "selected_ids" :name "ids"}]
+          [:dd
+           [:div.fc_con
+            [:table.fcc_tab {:width "100%" :cellspacing "0" :cellpadding "0" :border "0"}
+             [:tr
+              [:th#sf_admin_list_batch_actions [:input#sf_admin_list_batch_checkbox {:type "checkbox" :onclick "checkAll()"}]]
+              [:th.sf_admin_text.sf_admin_list_th
+               [:a {:href (str "/orders?sort=id&sort_type=" (opposite-sort-type sort-type))} "Id"]
+               (if (= sort "id") [:img {:src (str "/images/" sort-type ".png")}])]
+              [:th.sf_admin_text.sf_admin_list_th
+               [:a {:href (str "/orders?sort=fort_name&sort_type=" (opposite-sort-type sort-type))} "Form Name"]
+               (if (= sort "form_name") [:img {:src (str "/images/" sort-type ".png")}])]
+              [:th.sf_admin_text.sf_admin_list_th
+               [:a {:href (str "/orders?sort=created_at&sort_type=" (opposite-sort-type sort-type))} "Created At"]
+               (if (= sort "created_at") [:img {:src (str "/images/" sort-type ".png")}])]
+              [:th.sf_admin_text.sf_admin_list_th
+               [:a {:href (str "/orders?sort=updated_at&sort_type=" (opposite-sort-type sort-type))} "Updated At"]
+               (if (= sort "updated_at") [:img {:src (str "/images/" sort-type ".png")}])]
+              [:th.sf_admin_list_th "Actions"]]
+             (for [order orders]
+              [:tr
+               [:td [:input.sf_admin_batch_checkbox {:type "checkbox" :value (:id order) :name "ids[]"}]]
+               [:td.sf_admin_text.sf_admin_list_td_id [:a (:id order)]]
+               [:td.sf_admin_text.sf_admin_list_td_form_name (:form_name order)]
+               [:td.sf_admin_text.sf_admin_list_td_created_at (:created_at order)]
+               [:td.sf_admin_text.sf_admin_list_td_updated_at (:updated_at order)]
+               [:td [:ul.sf_admin_td_actions
+                     [:li.sf_admin_action_view [:a {:href (str "/order/" (:id order) "/view")} "View"]]
+                     [:li.sf_admin_action_delete [:a {:href (str "/order/" (:id order) "/delete") :onclick (js (return (confirm "are you sure")))} "Delete"]]]]])]]]]
+        [:script {:type "text/javascript"}
+         (js (fn checkAll []
+               (var checkboxes (.getElementsByName document "ids[]"))
+               (doseq [i checkboxes]
+                 (set! (.. (aget checkboxes i) checked)
+                       (.. (.getElementById document "sf_admin_list_batch_checkbox") checked))))
+             (fn updateCheckedIds []
+               (var ids_ary [])
+               (var j 0)
+               (var checkboxes (.getElementsByName document "ids[]"))
+               (var hidden (.getElementById document "selected_ids"))
+               (doseq [i checkboxes]
+                 (if (.. (aget checkboxes i) checked)
+                   (.push ids_ary (.. (aget checkboxes i) value))))
+               (var ids (.join ids_ary))
+               (set! (.. hidden value) ids)))]]))))
 
 (defn create [params]
   (j/insert! SQLDB :sa_orders
@@ -10,3 +74,28 @@
               :form_name (:form_name params)
               :created_at (java.util.Date.)
               :updated_at (java.util.Date.)}))
+
+(defn delete [id]
+  (j/delete! SQLDB :sa_orders (sql/where {:id id}))
+  (j/delete! SQLDB :CSV_report (sql/where {:o_id id}))
+  (redirect "/orders"))
+
+(defn view [id]
+  (let [order (first (j/query SQLDB
+                              (sql/select [:form_name :order_content] :sa_orders
+                                          (sql/where {:id id}))))]
+    (binding [*js-css-files* order-view-files]
+      (pages
+        [:div
+          [:h2 (:form_name order)]
+          [:div.requf_tit.form_control.form_head (:order_content order)]]))))
+
+(defn delete-selected [params]
+  (if (empty? (:ids params)) (redirect "/orders")
+    (let [ids_ary (clojure.string/split (:ids params) #",")]
+      (for [i (range 0 (+ (count ids_ary) 1))]
+        (if (= i (count ids_ary))
+          (redirect "/orders")
+          (do 
+            (j/delete! SQLDB :sa_orders (sql/where {:id (get ids_ary i)}))
+            (j/delete! SQLDB :CSV_report (sql/where {:o_id (get ids_ary i)}))))))))

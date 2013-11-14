@@ -111,7 +111,7 @@ function makeCheckBox(obj, sm) {//Éú³ÉÇ°¶Ë
 	control=control+'    <td style="Vertical-align:Top;">';		
 	control=control+'      <table width="100%" border="0" cellspacing="0" cellpadding="0">';
 	obj.find("#item_check_box_label").each(function(){
-		control=control+'<tr><td id="form_check_box_item" ><input id="form_check_box_value" name="" type="checkbox" value="" /><label id="form_check_box_label">';
+		control=control+'<tr><td id="form_check_box_item" ><input id="form_check_box_value" name="'+check_box_name+'" type="checkbox" value="'+$(this).val()+'" /><label id="form_check_box_label">';
 		control=control+$(this).val()+'</label></td></tr>';
 	});
 	control=control+'      </table>';

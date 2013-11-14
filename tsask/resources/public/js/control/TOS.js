@@ -15,11 +15,10 @@ function controlTOSItem(str_tos_item_value,str_tos_item_label_text){
 }
 
 function controlTOS(str_tos_name,str_tos_text,str_tos_items) {
-        var tos_default = "Consent\n"+
-          "To the best of my knowledge, this application and all supporting documents are accurate. I understand that a false or misleading statement in this application or in any of the reference or other evidence or qualification submitted by myself or on my behalf may result in the Chielf Inspector denying this application.\n";
+        var tos_default = "To the best of my knowledge, this application and all supporting documents are accurate. I understand that a false or misleading statement in this application or in any of the reference or other evidence or qualification submitted by myself or on my behalf may result in the Chielf Inspector denying this application.\n";
 
 	if (typeof str_tos_name == 'undefined')
-          str_tos_name='Terms of Services';
+          str_tos_name='Consent the Terms of Services';
 	if (typeof str_tos_text == 'undefined')
           str_tos_text=tos_default;
 	if (typeof str_tos_items == 'undefined')
@@ -43,7 +42,7 @@ function controlTOS(str_tos_name,str_tos_text,str_tos_items) {
 	'    	</div>'+	
 	'    </div>'+		
 	'    <div class="fbc_txt">'+
-	'      <textarea class="intxt inhalf" id="tos_text">'+str_tos_text+'</textarea>'+
+	'      <textarea class="intxt" id="tos_text">'+str_tos_text+'</textarea>'+
 	'      </div>'+
 	'    <div class="fbc_txt">'+
 	'    <div class="oplist">'+
@@ -113,7 +112,7 @@ function makeTOS(obj, sm) {
 	var control='';
 	control=control+'<div>';
 	if(''!=tos_text){
-          control=control+'    <textarea id="form_tos_text" style="min-height: 150px; width: 30%; Vertical-align:Top;" class="fulln_tab form_control form_tos">'+tos_text+'</textarea></br>';	
+          control=control+'    <textarea id="form_tos_text" style="min-height: 150px; width: 100%; Vertical-align:Top;" class="fulln_tab form_control form_tos">'+tos_text+'</textarea></br>';	
         }
 	control=control+'<input type="radio" name="tos_response" value="yes">&nbsp;by checking this box, I hereby agree to the terms stated above.';
         control=control+'&nbsp;';

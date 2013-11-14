@@ -19,7 +19,8 @@
 
               [tsask.csv.crud :as csv]
               [tsask.session.log :as log]
-              [tsask.form.crud :as form]))
+              [tsask.form.crud :as form]
+              [tsask.order.crud :as order]))
 
 
 (defn test-get [params]
@@ -39,12 +40,18 @@
   (GET "/form/:id/delete" {{id :id} :params} (form/delete id))
   (GET "/form/:id/edit" {{id :id} :params} (form/edit id))
   (GET "/form/:id/view" {{id :id} :params} (form/view id))
+  (GET "/form/:id/copy" {{id :id} :params} (form/copy id))
   (GET "/form/new" [] (form/new))
   (POST "/form/create" {params :params} (form/create params))
   (POST "/form/:id/create" {params :params} (form/update params))
   (POST "/form/commit" {params :params} (form/commit params))
 
-  (GET "/csv/export" {session :session} (wrap-session-verify session (csv/export)))
+  (GET "/orders" {{sort :sort sort-type :sort_type} :params} (order/index sort sort-type))
+  (GET "/order/:id/delete" {{id :id} :params} (order/delete id))
+  (GET "/order/:id/view" {{id :id} :params} (order/view id))
+  (POST "/order/delete-selected" {params :params} (order/delete-selected params))
+
+  (GET "/csv/export" {session :session params :params} (wrap-session-verify session (csv/export params)))
   (GET "/csv/new" {session :session} (wrap-session-verify session (csv/new)))
   (GET "/csv/payment-report" {session :session} (wrap-session-verify session (csv/payment-report)))
   (GET "/csv/download/:filename" {params :params session :session} (wrap-session-verify session (csv/download-csv (:filename params))))

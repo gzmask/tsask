@@ -12,7 +12,7 @@ function formCheckBox(obj, sm) {
 	}
 	control=control+'    <td style="Vertical-align:Top;">';		
 	control=control+'      <table width="100%" border="0" cellspacing="0" cellpadding="0">';
-	obj.find("#form_check_box_item").each(function(){
+	obj.find("td#form_check_box_item").each(function(){
 		control=control+'<tr>';
 		control=control+'  <td id="form_check_box_item" >';
 		if($(this).find("#form_check_box_value").attr("checked")==undefined){
