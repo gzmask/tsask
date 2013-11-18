@@ -11,11 +11,15 @@
    :headers {"Location" url}
    :body ""})
 
-(defn index [sort sort-type]
+(defn index [page sort sort-type]
   (let [orders (j/query SQLDB
                         (sql/select [:id :form_name :created_at :updated_at] :sa_orders
                                     (if sort(sql/order-by {(keyword sort) (keyword sort-type)}))))
-        opposite-sort-type {"desc" "asc", "asc" "desc", nil "asc"}]
+        opposite-sort-type {"desc" "asc", "asc" "desc", nil "asc"}
+        total-page (inc (int (/ (count orders) 20.0)))
+        current (if (empty? page) 1 (Integer/parseInt page))
+        start (* (dec current) 20)
+        end (+ start 20)]
     (binding [*js-css-files* orders-files]
       (pages
         [:dl.txtcont
@@ -41,7 +45,8 @@
                [:a {:href (str "/orders?sort=updated_at&sort_type=" (opposite-sort-type sort-type))} "Updated At"]
                (if (= sort "updated_at") [:img {:src (str "/images/" sort-type ".png")}])]
               [:th.sf_admin_list_th "Actions"]]
-             (for [order orders]
+             (for [order orders
+                   :when (and (>= (.indexOf orders order) start) (< (.indexOf orders order) end))]
               [:tr
                [:td [:input.sf_admin_batch_checkbox {:type "checkbox" :value (:id order) :name "ids[]"}]]
                [:td.sf_admin_text.sf_admin_list_td_id [:a (:id order)]]
@@ -50,7 +55,21 @@
                [:td.sf_admin_text.sf_admin_list_td_updated_at (:updated_at order)]
                [:td [:ul.sf_admin_td_actions
                      [:li.sf_admin_action_view [:a {:href (str "/order/" (:id order) "/view")} "View"]]
-                     [:li.sf_admin_action_delete [:a {:href (str "/order/" (:id order) "/delete") :onclick (js (return (confirm "are you sure")))} "Delete"]]]]])]]]]
+                     [:li.sf_admin_action_delete [:a {:href (str "/order/" (:id order) "/delete") :onclick (js (return (confirm "are you sure")))} "Delete"]]]]])
+             [:tr
+              [:th {:colspan "6"}
+               [:div.sf_admin_pagination
+                [:a {:href "/orders?page=1"}
+                 [:img {:alt "Frist Page" :title "First Page" :src "/images/first.png"}] "  "]
+                [:a {:href (str "/orders?page=" (if (> current 1) (dec current) 1))}
+                 [:img {:alt "Previous Page" :title "Previous Page" :src "/images/previous.png"}] "  "]
+                (for [x (range 1 (inc total-page))]
+                  [:a {:href (str "/orders?page=" x)} (str x "  ")])
+                [:a {:href (str "/orders?page=" (if (< current total-page) (inc current) total-page))}
+                 [:img {:alt "Next Page" :title "Next Page" :src "/images/next.png"}] "  "]
+                [:a {:href (str "/orders?page=" total-page)}
+                 [:img {:alt "Last Page" :title "Last Page" :src "/images/last.png"}] "  "]] 
+               (str (count orders) \space "results<br>" "(page " current "/" total-page ")")]]]]]]
         [:script {:type "text/javascript"}
          (js (fn checkAll []
                (var checkboxes (.getElementsByName document "ids[]"))
@@ -93,9 +112,8 @@
 (defn delete-selected [params]
   (if (empty? (:ids params)) (redirect "/orders")
     (let [ids_ary (clojure.string/split (:ids params) #",")]
-      (for [i (range 0 (+ (count ids_ary) 1))]
-        (if (= i (count ids_ary))
-          (redirect "/orders")
-          (do 
-            (j/delete! SQLDB :sa_orders (sql/where {:id (get ids_ary i)}))
-            (j/delete! SQLDB :CSV_report (sql/where {:o_id (get ids_ary i)}))))))))
+      (doseq [id ids_ary]
+        (do 
+          (j/delete! SQLDB :sa_orders (sql/where {:id id}))
+          (j/delete! SQLDB :CSV_report (sql/where {:o_id id}))
+          (if (= (.indexOf ids_ary id) (dec (count ids_ary))) (redirect "orders")))))))

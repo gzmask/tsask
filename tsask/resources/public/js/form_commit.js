@@ -71,7 +71,7 @@ function commitOrder(){
 
 	if(is_heading_start){content+='</div>';}	
 	$('#order_content').val(content);
-	document.forms[0].submit(); 	
+	//document.forms[0].submit(); 	
 }
 
 function bindActionSelectedItem(obj,bindItem,searchType,selectItem,selectedItem){
@@ -158,3 +158,15 @@ $(document).ready(function(){
 		commitOrder();
 	});
 });
+
+function validateForm(){
+        var flag = true;
+        $('.container .form_control').each(function(){  
+                if ($(this).hasClass('form_tos')){
+                        flag = flag && validateFormTOS($(this));
+                } else if ($(this).hasClass('form_payment')){
+                        flag = flag && validateFormPayment($(this));
+                }
+        });
+        return flag;
+}

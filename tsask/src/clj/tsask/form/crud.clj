@@ -98,7 +98,7 @@
                                          (sql/where {:id id}))))]
     (binding [*js-css-files* form-view-files]
       (pages
-       [:form {:method "post" :action "/form/commit" :id "form_user"}
+       [:form {:method "post" :action "/form/commit" :id "form_user" :onsubmit "return validateForm()"}
         [:dl.txtcont.requtxt
          ;; title
          [:dt [:div.ltit [:strong (:form_name form)]] [:input#form_name {:type "hidden" :value (:form_name form) :name "form_name"}] [:input#order_content {:type "hidden" :name "order_content"}] [:div.clear]]

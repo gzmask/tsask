@@ -20,7 +20,8 @@
               [tsask.csv.crud :as csv]
               [tsask.session.log :as log]
               [tsask.form.crud :as form]
-              [tsask.order.crud :as order]))
+              [tsask.order.crud :as order]
+              [tsask.user.crud :as user]))
 
 
 (defn test-get [params]
@@ -29,27 +30,35 @@
    :body (str "Hello, " (:name params))})
 (defroutes app-routes
   (route/resources "/")
-  (GET "/" [] tsask.pages.template-pg/home-pg)
+  (GET "/" {session :session} (wrap-session-verify session tsask.pages.template-pg/home-pg))
   (GET "/test-get" {params :params} (test-get params))
 
   (GET "/login" [] (log/login))
+  (GET "/logout" {session :session} (log/logout session))
   (POST "/check" {{username :username password :password} :params session :session} (log/check username password session))
   (GET "/check" {{x :x y :y} :params session :session} (log/check-tsask x y session))
 
-  (GET "/forms" {{sort :sort sort-type :sort_type} :params} (form/index sort sort-type))
-  (GET "/form/:id/delete" {{id :id} :params} (form/delete id))
-  (GET "/form/:id/edit" {{id :id} :params} (form/edit id))
+  (GET "/forms" {{sort :sort sort-type :sort_type} :params session :session} (wrap-session-verify session (form/index sort sort-type)))
+  (GET "/form/:id/delete" {{id :id} :params session :session} (wrap-session-verify session (form/delete id)))
+  (GET "/form/:id/edit" {{id :id} :params session :session} (wrap-session-verify session (form/edit id)))
   (GET "/form/:id/view" {{id :id} :params} (form/view id))
-  (GET "/form/:id/copy" {{id :id} :params} (form/copy id))
-  (GET "/form/new" [] (form/new))
-  (POST "/form/create" {params :params} (form/create params))
-  (POST "/form/:id/create" {params :params} (form/update params))
+  (GET "/form/:id/copy" {{id :id} :params session :session} (wrap-session-verify session (form/copy id)))
+  (GET "/form/new" {session :session} (wrap-session-verify session (form/new)))
+  (POST "/form/create" {params :params session :session} (wrap-session-verify session (form/create params)))
+  (POST "/form/:id/create" {params :params session :session} (wrap-session-verify session (form/update params)))
   (POST "/form/commit" {params :params} (form/commit params))
 
-  (GET "/orders" {{sort :sort sort-type :sort_type} :params} (order/index sort sort-type))
-  (GET "/order/:id/delete" {{id :id} :params} (order/delete id))
-  (GET "/order/:id/view" {{id :id} :params} (order/view id))
-  (POST "/order/delete-selected" {params :params} (order/delete-selected params))
+  (GET "/orders" {{sort :sort sort-type :sort_type page :page} :params session :session} (wrap-session-verify session (order/index page sort sort-type)))
+  (GET "/order/:id/delete" {{id :id} :params session :session} (wrap-session-verify session (order/delete id)))
+  (GET "/order/:id/view" {{id :id} :params session :session} (wrap-session-verify session (order/view id)))
+  (POST "/order/delete-selected" {params :params session :session} (wrap-session-verify session (order/delete-selected params)))
+
+  (GET "/users" {{sort :sort sort-type :sort_type} :params session :session} (wrap-session-verify session (user/index sort sort-type)))
+  (GET "/user/new" {session :session} (wrap-session-verify session (user/new)))
+  (POST "/user/create" {params :params session :session} (wrap-session-verify session (user/create params)))
+  (POST "/user/:id/create" {params :params session :session} (wrap-session-verify session (user/update params)))
+  (GET "/user/:id/edit" {{id :id} :params session :session} (wrap-session-verify session (user/edit id)))
+  (GET "/user/:id/delete" {{id :id} :params session :session} (wrap-session-verify session (user/delete id)))
 
   (GET "/csv/export" {session :session params :params} (wrap-session-verify session (csv/export params)))
   (GET "/csv/new" {session :session} (wrap-session-verify session (csv/new)))

@@ -20,7 +20,8 @@
                  [enfocus "2.0.0-beta1"]
                  [enlive "1.1.4"]
                  [clj-http "0.7.7"]
-                 [me.raynes/laser "0.1.30"]]
+                 [me.raynes/laser "0.1.30"]
+                 [digest "1.4.3"]]
   :source-paths ["src/clj"]
   :ring {:handler tsask.core/app
          :auto-reload? true

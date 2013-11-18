@@ -457,8 +457,6 @@ control=control+'	</table>';
 control=control+'	';
 control=control+'	<br><table border=0><tr><td></td></tr></table>';
 
-control=control+'	<P>';
-control=control+'	<script language="JavaScript" type="text/javascript">addLoadEvent(CountryUpdatePayment);</script>';
 control=control+'		</td>';
 control=control+'	</tr>';
 control=control+'</table>';

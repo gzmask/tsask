@@ -2,6 +2,14 @@ function rebindActionFormTOS(obj){
 	
 }
 
+function validateFormTOS(obj){
+    if ($('input:radio[name=tos_response]:checked').val() != "yes") {
+          alert("You need to accept our terms to use this form.");
+          return false;
+    } else {
+          return true;
+    }
+}
 //WTF is this stil in use?
 function formTOS(obj, sm) {
 	var form_tos_text=obj.find("#form_tos_text").text();

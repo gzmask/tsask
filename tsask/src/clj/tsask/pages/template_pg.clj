@@ -30,12 +30,14 @@
       (include-css f))))
 
 
+(def home-files (.split (slurp "resources/public/html/home.files") "\n"))
 (def form-view-files (.split (slurp "resources/public/html/form-view.files") "\n"))
 (def form-new-files (.split (slurp "resources/public/html/new-form.files") "\n"))
 (def form-edit-files (.split (slurp "resources/public/html/form-edit.files") "\n"))
 (def forms-files (.split (slurp "resources/public/html/forms.files") "\n"))
 (def orders-files (.split (slurp "resources/public/html/orders.files") "\n"))
 (def order-view-files (.split (slurp "resources/public/html/form-view.files") "\n"))
+(def user-files (.split (slurp "resources/public/html/user.files") "\n"))
 
 (def ^:dynamic *sub-nav*
   [:div.subnav
@@ -55,16 +57,86 @@
     [:div.wrapper
      [:div.header
       [:div.icon_logo
-       [:a {:href "#" :title "technical safety authority interface design"}
+       [:a {:href "/" :title "technical safety authority interface design"}
         [:img {:src "/images/icon_logo.jpg" :alt "technical safety authority interface design"}]]]
       [:div.icon_exit
-       [:a {:href "#!" :title "log out"} "log out"]]]
+       [:a {:href "/logout" :title "log out"} "log out"]]]
      [:div.container
       *main-nav*
       (include-js "/js/highlight-active-tab.js")
       [:div.mainbox
        *sub-nav*
        page]]]]))
+
+(defn user-design-pages [& [user]]
+  (binding [*js-css-files* user-files]
+  (pages
+    [:dl.txtcont
+      [:form#user_form {:method "post" :action (.replace (str "/user/" (:id user) "/create") "//" "/") :onsubmit "return validateForm()"}
+        [:dt
+          [:div.ltit [:strong "User Builder"]]
+          [:div.rbtns
+          [:ul.sf_admin_actions
+            [:li.sf_admin_action_save [:input {:type "submit" :value "SAVE"}]]
+            [:li.sf_admin_action_list [:a {:href "/"} "CANCEL"]]]]
+          [:div.clear]]
+          [:div.forms_cont
+            [:div.fc_tit
+              [:table.fct_tab {:width "100%" :border "0" :cellspacing "0" :cellpadding "0"}
+                [:tr [:th "User information"]]]]
+            [:div.fc_con.userbuil_box
+              [:div.sf_admin_form
+                [:fieldset#sf_fieldset_user
+                  [:div.fc_con.userbuil_box
+                    [:table.ub_tab {:width "100%" :border "0" :cellspacing "0" :cellpadding "0"}
+                      [:tr
+                        [:th {:width "20px"}]
+                        [:td
+                          [:table
+                            [:tr
+                              [:td [:input#sf_guard_user_first_name {:type "text" :name "first_name" :value (:first_name user)}] [:br]
+                              [:span.fonti [:label {:for "sf_guard_user_first_name"} "First Name"]]]
+                              [:div.sf_admin_form_row.sf_admin_text.sf_admin_form_field_first_name]]]]]
+                      [:tr
+                        [:th {:width "20px"}]
+                        [:td
+                          [:table
+                            [:tr
+                              [:td [:input#sf_guard_user_last_name {:type "text" :name "last_name" :value (:last_name user)}] [:br]
+                              [:span.fonti [:label {:for "sf_guard_user_last_name"} "Last Name"]]]
+                              [:div.sf_admin_form_row.sf_admin_text.sf_admin_form_field_last_name]]]]]
+                      [:tr
+                        [:th {:width "20px"}]
+                        [:td
+                          [:table
+                            [:tr
+                              [:td [:input#sf_guard_user_email_address {:type "text" :name "email_address" :value (:email_address user)}] [:br]
+                              [:span.fonti [:label {:for "sf_guard_user_email_address"} "Email Address"]]]
+                              [:div.sf_admin_form_row.sf_admin_text.sf_admin_form_field_email_address]]]]]
+                      [:tr
+                        [:th {:width "20px"}]
+                        [:td
+                          [:table
+                            [:tr
+                              [:td [:input#sf_guard_user_username {:type "text" :name "username" :value (:username user)}] [:br]
+                              [:span.fonti [:label {:for "sf_guard_user_username"} "Username"]]]
+                              [:div.sf_admin_form_row.sf_admin_text.sf_admin_form_field_username]]]]]
+                      [:tr
+                        [:th {:width "20px"}]
+                        [:td
+                          [:table
+                            [:tr
+                              [:td [:input#sf_guard_user_password {:type "password" :name "password"}] [:br]
+                              [:span.fonti [:label {:for "sf_guard_user_password"} "Password"]]]
+                              [:div.sf_admin_form_row.sf_admin_text.sf_admin_form_field_password]]]]]
+                      [:tr
+                        [:th {:width "20px"}]
+                        [:td
+                          [:table
+                            [:tr
+                              [:td [:input#sf_guard_user_password_again {:type "password" :name "password_again"}] [:br]
+                              [:span.fonti [:label {:for "sf_guard_user_password_again"} "Password (again)"]]]
+                              [:div.sf_admin_form_row.sf_admin_text.sf_admin_form_field_password_again]]]]]]]]]]]]])))
 
 (defn form-design-pages [& [form]]
   (binding [*js-css-files* form-edit-files]
@@ -111,7 +183,9 @@
     [:input#form_content {:type "hidden" :name "form_content" :value ""}]
     [:input#form_published {:type "hidden" :name "form_published" :value ""}]])))
 
-(def home-pg (pages nil))
+(def home-pg 
+  (binding [*js-css-files* home-files]
+    (pages nil)))
 
 (def error-page
   (pages
