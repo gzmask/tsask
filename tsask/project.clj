@@ -21,7 +21,8 @@
                  [enlive "1.1.4"]
                  [clj-http "0.7.7"]
                  [me.raynes/laser "0.1.30"]
-                 [digest "1.4.3"]]
+                 [digest "1.4.3"]
+                 [incanter "1.5.4"]]
   :source-paths ["src/clj"]
   :ring {:handler tsask.core/app
          :auto-reload? true

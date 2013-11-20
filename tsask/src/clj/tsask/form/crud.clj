@@ -138,6 +138,7 @@
                         :address     (str (:ordAddress1 params) \space (:ordAddress2 params)) 
                         :phone       (:ordPhoneNumber       params) 
                         :email       (:ordEmailAddress       params) 
+                        :file_no     (:file_no     params)
                         :reg_class   (:reg_class   params)
                         :app_type    (:form_name   params) 
                         :app_detail  (:app_detail  params) 
@@ -170,6 +171,6 @@
                          :to "chao@melcher.com" 
                          :subject "subject" 
                          :body "body"))]
-            (if (.contains (:body response) "Invalid")
-              (pages [:div (:body csv_record)]) 
-              (pages [:div (:body response)])))))
+            (if (.contains (:body response) "trnApproved=0")
+              (commit-page [:div (str "Payment attempt failed due to reason: " (:messageText response) "<br>Please contact us and we will help you to submit your payment.")]) 
+              (commit-page [:div "Thank you, your payment is successful! Tsask will process your request shortly. If you have not received confirmation in a few days please contact us."])))))

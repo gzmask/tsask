@@ -112,8 +112,9 @@
 (defn delete-selected [params]
   (if (empty? (:ids params)) (redirect "/orders")
     (let [ids_ary (clojure.string/split (:ids params) #",")]
-      (doseq [id ids_ary]
-        (do 
-          (j/delete! SQLDB :sa_orders (sql/where {:id id}))
-          (j/delete! SQLDB :CSV_report (sql/where {:o_id id}))
-          (if (= (.indexOf ids_ary id) (dec (count ids_ary))) (redirect "orders")))))))
+      (do
+        (doseq [id ids_ary]
+          (do 
+            (j/delete! SQLDB :sa_orders (sql/where {:id id}))
+            (j/delete! SQLDB :CSV_report (sql/where {:o_id id}))))
+        (redirect "/orders")))))

@@ -70,4 +70,4 @@
     (params/wrap-params (session/wrap-session (handler/site app-routes))))
    
 (defn -main []
-      (run-jetty #'app {:port 3000 :join? false}))
+      (run-jetty #'app {:port 80 :join? false}))

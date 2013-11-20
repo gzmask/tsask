@@ -44,6 +44,20 @@
    [:a.newform {:href "/form/new" :title "new form"} "New Form"]
    [:a.newuser {:href "/user/new" :title "new user"} "New User"]])
 
+(defn commit-page [page]
+   (html5
+    [:head
+     (apply include-css ["/css/common.css" "/css/fix.css"])
+     [:title "technical safety authority of saskatchewan"]]
+    [:body
+     [:div.wrapper
+      [:div.header
+       [:div.icon_logo
+        [:img {:src "/images/icon_logo.jpg" :alt "technical safety authority interface design" :title "technical safety authority interface design"}]]]
+      [:div.container
+       [:div.mainbox
+        page]]]]))
+
 (defn pages 
   "get page by pagename"
   [page]

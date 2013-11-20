@@ -4,12 +4,15 @@
         tsask.util
         tsask.pages.template-pg
         hiccup.page
-        ring.util.response)
+        ring.util.response
+        incanter.core
+        incanter.excel)
   (:require [clojure.java.jdbc :as j]
             [clojure.java.jdbc.sql :as sql]
             [me.raynes.laser :as l]
             [clojure.java.io :as io]))
 
+(comment
 (defn export [params]
   (let [begin (if (empty? (:begin params)) "2013-01-01 00:00:00" (str (:begin params) " 00:00:00"))
         end (if (empty? (:end params)) "9999-01-01 00:00:00" (str (:end params) " 23:59:59"))
@@ -32,11 +35,39 @@
       {:status 302
        :headers {"Location" "/csv/download/export.csv"}
        :body ""}))) 
+)
+
+(defn export [params]
+  (let [begin (if (empty? (:begin params)) "2013-01-01 00:00:00" (str (:begin params) " 00:00:00"))
+        end (if (empty? (:end params)) "9999-01-01 00:00:00" (str (:end params) " 23:59:59"))
+        reports (j/query SQLDB ["select * from CSV_report where created_at > ? and created_at < ?" begin  end])
+        data-set (dataset (vec ["Id" "Applicant Name" "Registration Class" "Address" 
+                                   "Phone Number" "Email Address" "File Number" "Application Type" "Application Detail" 
+                                   "Invoice Id" "Paid By" "Card Type" "Payment Amount" "Created At"]) 
+                             (vec (for [r reports] (vec [(:id r) 
+                                                         (if (empty? (:app_name r)) " " (:app_name r)) 
+                                                         (if (empty? (:reg_class r)) " " (:reg_class r))
+                                                         (if (empty? (:address r)) " " (:address r)) 
+                                                         (if (empty? (:phone r)) " " (:phone r)) 
+                                                         (if (empty? (:email r)) " " (:email r))
+                                                         (if (empty? (:file_no r)) " " (:file_no r))
+                                                         (if (empty? (:app_type r)) " " (:app_type r)) 
+                                                         (if (empty? (:app_detail r)) " " (:app_detail r)) 
+                                                         (if (empty? (:invoice_id r)) " " (:invoice_id r))
+                                                         (if (empty? (:paid_by r)) " " (:paid_by r)) 
+                                                         (if (empty? (:card_type r)) " " (:card_type r)) 
+                                                         (if (nil? (:payment_amt r)) " " (:payment_amt r)) 
+                                                         (:created_at r)]))))]
+    (do
+      (save-xls data-set (str CSV_ROOT_PATH "/export.xls"))
+      {:status 302
+       :headers {"Location" "/csv/download/export.xls"}
+       :body ""}))) 
 
 (defn download-csv [filename]
   {:status 200
-   :headers {"Content-Disposition" "attachment; filename=export.csv"}
-   :body (io/file (str CSV_ROOT_PATH "/export.csv"))})
+   :headers {"Content-Disposition" "attachment; filename=export.xls"}
+   :body (io/file (str CSV_ROOT_PATH "/export.xls"))})
 
 (defn create [params]
   (let [info (first (j/query SQLDB ["show table status like 'sa_orders'"]))]
@@ -45,6 +76,7 @@
               :address     (:address     params) 
               :phone       (:phone       params) 
               :email       (:email       params) 
+              :file_no     (:file_no     params)
               :reg_class   (:reg_class   params)
               :app_type    (:app_type    params) 
               :app_detail  (:app_detail  params) 
