@@ -1,7 +1,9 @@
 (ns tsask.pages.template-pg
   (:use hiccup.core
         hiccup.page
-        hiccup.util))
+        com.reasonr.scriptjure
+        hiccup.util)
+  (:require [net.cgrand.enlive-html :as eh]))
 
 (def ^:dynamic *js-files* nil)
 
@@ -206,3 +208,46 @@
    [:dvi
     [:h1 "Ooooops..."]
     [:h3 "Server is busying..."]]))
+
+(defn- item-model
+  [{:keys [id form_name created_at updated_at] :as item}]
+  (println item)
+  [:tr
+   [:td
+    [:input.sf_admin_batch_checkbox {:name "ids[]" :type "checkbox" :value id}]]
+   [:td.sf_admin_text.sf_admin_list_td_id [:a {:href (str "/form/" id "/edit")} id]]
+   [:td.sf_admin_text.sf_admin_list_form_name form_name]
+   [:td.sf_admin_text.sf_admin_list_created_at created_at]
+   [:td.sf_admin_text.sf_admin_list_updated_at updated_at]
+   [:td [:ul.sf_admin_td_actions
+         [:li.sf_admin_action_view [:a {:href (str "/form/" id "/view")} "View"]]
+         [:li.sf_admin_action_delete [:a {:href (str "/form/" id "/delete")
+                                          :onclick (js (return (confirm "are you sure")))} "Delete"]]
+         [:li.sf_admin_action_edit [:a {:href (str "/form/" id "/edit")} "Edit"]]
+         [:li.sf_admin_action_copy [:a {:href (str "/form/" id "/copy")} "Copy"]]]]])
+
+(def opposite-sort-type {"desc" "asc", "asc" "desc", nil "asc"})
+
+(eh/deftemplate forms "templates/forms.html"
+  [sort-type items]
+  [:div.fc_con [:table eh/first-of-type]]
+    (eh/html-content
+     (html
+      (list
+       [:tr
+        [:th#sf_admin_list_batch_actions [:input#sf_admin_list_batch_checkbox {:type "checkbox" :onclick "checkAll()"}]]
+        [:th.sf_admin_text.sf_admin_list_th
+         [:a {:href (str "/forms?sort=id&sort_type=" (opposite-sort-type sort-type))} "Id"]
+         (if (= sort "id") [:img {:src (str "/images/" sort-type ".png")}])]
+        [:th.sf_admin_text.sf_admin_list_th
+         [:a {:href (str "/forms?sort=form_name&sort_type=" (opposite-sort-type sort-type))} "Form Name"]
+         (if (= sort "form_name") [:img {:src (str "/images/" sort-type ".png")}])]
+        [:th.sf_admin_text.sf_admin_list_th
+         [:a {:href (str "/forms?sort=created_at&sort_type=" (opposite-sort-type sort-type))} "Created At"]
+         (if (= sort "created_at") [:img {:src (str "/images/" sort-type ".png")}])]
+        [:th.sf_admin_text.sf_admin_list_th
+         [:a {:href (str "/forms?sort=updated_at&sort_type=" (opposite-sort-type sort-type))} "Updated At"]
+         (if (= sort "updated_at") [:img {:src (str "/images/" sort-type ".png")}])]
+        [:th.sf_admin_list_th "Actions"]]
+       (map item-model items)))))
+

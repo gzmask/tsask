@@ -28,9 +28,16 @@
   {:status 200
    :headers {"Content-Type" "text/html"}
    :body (str "Hello, " (:name params))})
+
 (defroutes app-routes
   (route/resources "/")
   (GET "/" {session :session} (wrap-session-verify session tsask.pages.template-pg/home-pg))
+  (GET "/test-form" [] (slurp "resources/templates/forms.html"))
+  (GET "/test" [] (tsask.pages.template-pg/forms [{:id 1
+                                                   :fuck "working"
+                                                   :form-name "just a test"
+                                                   :created-at (java.util.Date.)
+                                                   :updated-at (java.util.Date.)}]))
   (GET "/test-get" {params :params} (test-get params))
 
   (GET "/login" [] (log/login))
