@@ -8,9 +8,11 @@
         hiccup.page
         hiccup.core)
   (:require [tsask.csv.crud :as csv]
+            [tsask.file.crud :as file]
             [clojure.java.jdbc :as j]
             [tsask.order.crud :as order]
             [clojure.java.jdbc.sql :as sql]
+            [clojure.java.io :as io]
             [clj-http.client :as client]
             [net.cgrand.enlive-html :as html]
             [me.raynes.laser :as l]))
@@ -97,8 +99,8 @@
                              (sql/select [:form_name :form_published] :sa_forms
                                          (sql/where {:id id}))))]
     (binding [*js-css-files* form-view-files]
-      (pages
-       [:form {:method "post" :action "/form/commit" :id "form_user" :onsubmit "return validateForm()"}
+      (view-pages
+       [:form {:method "post" :action "/form/commit" :enctype "multipart/form-data" :id "form_user" :onsubmit "return validateForm()"}
         [:dl.txtcont.requtxt
          ;; title
          [:dt [:div.ltit [:strong (:form_name form)]] [:input#form_name {:type "hidden" :value (:form_name form) :name "form_name"}] [:input#order_content {:type "hidden" :name "order_content"}] [:div.clear]]
@@ -135,6 +137,7 @@
 (defn commit [params]
   (binding [*js-css-files* form-view-files] 
     (let [payment-info {:app_name    (:ordName    params) 
+                        :invoice_no  (:InvoiceNumber params)
                         :address     (str (:ordAddress1 params) \space (:ordAddress2 params)) 
                         :phone       (:ordPhoneNumber       params) 
                         :email       (:ordEmailAddress       params) 
@@ -146,6 +149,9 @@
                         :paid_by     (:trnCardOwner     params) 
                         :card_type   (:trnCardType   params) 
                         :payment_amt (not-empty (:trnAmount params))}
+          file (:real_input params)
+          info (first (j/query SQLDB ["show table status like 'sa_orders'"]))
+          upload_file  (if (not-empty (:filename file)) (io/copy (io/file (:tempfile file)) (io/file (str "resources/public/files/Invoice-" (:auto_increment info) (if (= "image/jpeg" (:content-type file)) ".jpg" (if (= "application/pdf" (:content-type file)) ".pdf"))))))
           csv_record   (csv/create payment-info)
           order_record (order/create {:order_content (:order_content params) 
                                       :form_name (:form_name params)}) 

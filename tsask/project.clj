@@ -26,6 +26,7 @@
   :source-paths ["src/clj"]
   :ring {:handler tsask.core/app
          :auto-reload? true
+         :adapter {:port 3000}
          :nrepl {:start? true :port 7000}}
   :main tsask.core
   :profiles {:uberjar {:aot :all}})

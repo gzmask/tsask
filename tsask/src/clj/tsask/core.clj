@@ -21,7 +21,8 @@
               [tsask.session.log :as log]
               [tsask.form.crud :as form]
               [tsask.order.crud :as order]
-              [tsask.user.crud :as user]))
+              [tsask.user.crud :as user]
+              [tsask.file.crud :as file]))
 
 
 (defn test-get [params]
@@ -64,10 +65,20 @@
   (GET "/csv/new" {session :session} (wrap-session-verify session (csv/new)))
   (GET "/csv/payment-report" {session :session} (wrap-session-verify session (csv/payment-report)))
   (GET "/csv/download/:filename" {params :params session :session} (wrap-session-verify session (csv/download-csv (:filename params))))
-  (POST "/csv/create" {params :params} (csv/create params)))
+  (POST "/csv/create" {params :params} (csv/create params))
+
+  (GET "/files" {session :session} (wrap-session-verify session (file/files)))
+  (GET "/files/:filename" {params :params session :session} (wrap-session-verify session (file/view-file (:filename params))))
+  (POST "/file/upload" {params :params} (file/upload-file params)))
 
 (def app
     (params/wrap-params (session/wrap-session (handler/site app-routes))))
-   
+
 (defn -main []
-      (run-jetty #'app {:port 80 :join? false}))
+      (run-jetty #'app {:port 80
+                        :join? false 
+                        :ssl? true
+                        :ssl-port 443
+                        :keystore "/etc/keystore"
+                        :key-password "melcher.ca123"
+                        :client-auth :need}))

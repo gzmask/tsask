@@ -67,9 +67,9 @@ function makeFileUpload(obj, sm) {
 	var file_upload_name=obj.find("#file_upload_name").val();
 	var file_upload_text=obj.find("#file_upload_text").val();	
 	var control='';
-	control=control+'<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fulln_tab">';
+	control=control+'<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fulln_tab form_control form_file_upload">';
 	control=control+'  <tr>';
-	control=control+'    <th width="80" valign="top">'+file_upload_text+'</th>';
+	control=control+'    <th id="form_file_upload_label" width="80" valign="top">'+file_upload_text+'</th>';
 	control=control+'    <td><input class="intxt inhalf" value="" name="fake_input"/><input name="real_input" id="real_input" type="file" style="display:none;" onchange="javascript:fake_input.value=value"/></td>';
 	control=control+'    <td class="btn_options" align="left">';
 	control=control+'    <a href="#!" title="Browse" class="btn_ops"  onclick="javascript:real_input.click();" >Browse</a>';

@@ -56,7 +56,7 @@ function addTextBox(obj, sm) {
 };
 
 function saveTextBox(obj, sm) {
-	var text_box_name=obj.find("#text_box_name").val();
+	var text_box_name=obj.find("#text_box_name").val().replace(/ /, '');
 	var text_box_text=obj.find("#text_box_text").val();
 	var control='';
 	control=controlTextBox(text_box_name,text_box_text);
@@ -65,11 +65,16 @@ function saveTextBox(obj, sm) {
 
 function makeTextBox(obj, sm) {
 	var text_box_text=obj.find("#text_box_text").val();
-	var text_box_name=obj.find("#text_box_name").val();	
+	var text_box_name=obj.find("#text_box_name").val().replace(/ /, '');	
 	var control='';
 	control=control+'<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fulln_tab form_control form_text_box">';
 	control=control+'  <tr>';
-	control=control+'    <th id="form_text_box_label" >'+text_box_text+'</th>';
+        if(text_box_name.match(/exam\sdate.*/gi)) {
+            control=control+'    <th id="form_text_box_label" >'+text_box_text+'<br><a target="_blank" href="http://www.tsask.ca/power-engineering/calendar">Calendar</a></th>';
+        }
+        else {
+	    control=control+'    <th id="form_text_box_label" >'+text_box_text+'</th>';
+        }
 	control=control+'    <td colspan="3"><input name="'+text_box_name+'" id="form_text_box_text" class="intxt" value="" style="width:500px;"/></td>';
 	control=control+'  </tr>';
 	control=control+'</table>';

@@ -4,6 +4,7 @@
         tsask.pages.template-pg
         com.reasonr.scriptjure)
   (:require [clojure.java.jdbc :as j]
+            [clojure.java.io :as io]
             [clojure.java.jdbc.sql :as sql]))
 
 (defn- redirect [url]
@@ -14,7 +15,7 @@
 (defn index [page sort sort-type]
   (let [orders (j/query SQLDB
                         (sql/select [:id :form_name :created_at :updated_at] :sa_orders
-                                    (if sort(sql/order-by {(keyword sort) (keyword sort-type)}))))
+                                    (if sort(sql/order-by {(keyword sort) (keyword sort-type)}) (sql/order-by {"created_at" "desc"}))))
         opposite-sort-type {"desc" "asc", "asc" "desc", nil "asc"}
         total-page (inc (int (/ (count orders) 20.0)))
         current (if (empty? page) 1 (Integer/parseInt page))
@@ -95,6 +96,10 @@
               :updated_at (java.util.Date.)}))
 
 (defn delete [id]
+  (if (.exists (io/file (str "resources/public/files/Invoice-" id ".jpg")))
+    (io/delete-file (str "resources/public/files/Invoice-" id ".jpg")))
+    (if (.exists (io/file (str "resources/public/files/Invoice-" id ".pdf")))
+      (io/delete-file (str "resources/public/files/Invoice-" id ".pdf")))
   (j/delete! SQLDB :sa_orders (sql/where {:id id}))
   (j/delete! SQLDB :CSV_report (sql/where {:o_id id}))
   (redirect "/orders"))
@@ -115,6 +120,10 @@
       (do
         (doseq [id ids_ary]
           (do 
+            (if (.exists (io/file (str "resources/public/files/Invoice-" id ".jpg")))
+              (io/delete-file (str "resources/public/files/Invoice-" id ".jpg")))
+              (if (.exists (io/file (str "resources/public/files/Invoice-" id ".pdf")))
+                (io/delete-file (str "resources/public/files/Invoice-" id ".pdf")))
             (j/delete! SQLDB :sa_orders (sql/where {:id id}))
             (j/delete! SQLDB :CSV_report (sql/where {:o_id id}))))
         (redirect "/orders")))))

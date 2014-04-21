@@ -225,3 +225,4 @@ body{ width:100%; background:url(../images/bg_header.jpg) repeat-x;}
 .layoutbox .laym .btn_ok:hover{ color:#dedede;}
 .layoutbox .layb{ background:url(../images/bg_layout_b.png) no-repeat; height:16px; width:444px; overflow:hidden; }
 /*layout end*/
+#form_text_box_label a { color:#0079c2; }

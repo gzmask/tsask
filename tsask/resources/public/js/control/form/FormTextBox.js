@@ -10,3 +10,13 @@ function formTextBox(obj, sm) {
 	control=control+'</table>';
 	return control;	
 }
+
+function validateFormInvoice(obj) {
+        if ($('input[name=InvoiceNumber]').val().length < 1) {
+              alert("You need to enter the invoice number.");
+              return false;
+        }
+        else {
+            return true;
+        }
+}

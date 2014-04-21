@@ -16,6 +16,9 @@ function commitOrder(){
 			content=content+formHeading($(this));	
 			content+='<div class="requf_cont">';			
 		}	
+                if($(this).hasClass('form_file_upload')){
+                        content=content+formFileUpload($(this));
+                }
 		if($(this).hasClass('form_address')){
 			content=content+formAddress($(this));	
 		}	
@@ -47,7 +50,7 @@ function commitOrder(){
 			content=content+formNumber($(this));	
 		}	
 		if($(this).hasClass('form_payment')){
-                        var re = /(Credit\sCard\sNumber:<\/font><\/td><td>)\d+(<\/td><\/tr>)/;
+                        var re = /(Credit\sCard\sNumber:<\/font><\/td><td>).+(<\/td><\/tr>)/;
                         var str = formPayment($(this));
                         var result = str.replace(re, "$1******$2");
 			content=content+result;
@@ -166,6 +169,8 @@ function validateForm(){
                         flag = flag && validateFormTOS($(this));
                 } else if ($(this).hasClass('form_payment')){
                         flag = flag && validateFormPayment($(this));
+                } else if ($('input[name=InvoiceNumber]', this).length > 0) {
+                        flag = flag && validateFormInvoice($(this))
                 }
         });
         return flag;

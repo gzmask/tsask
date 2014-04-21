@@ -82,6 +82,27 @@
        *sub-nav*
        page]]]]))
 
+(defn view-pages
+  "get page by pagename"
+  [page]
+  (html5
+   [:head
+    (apply include-css *css-files*)
+    (apply include-js *js-files*)
+    (include-js-css *js-css-files*)
+    [:title "technical safety authority interface design_login"]]
+   [:body
+    [:div.wrapper
+     [:div.header
+      [:div.icon_logo
+       [:a {:href "/" :title "technical safety authority interface design"}
+        [:img {:src "/images/icon_logo.jpg" :alt "technical safety authority interface design"}]]]]]
+     [:div.container
+      (include-js "/js/highlight-active-tab.js")
+      [:div.mainbox
+       page]]]))
+
+
 (defn user-design-pages [& [user]]
   (binding [*js-css-files* user-files]
   (pages

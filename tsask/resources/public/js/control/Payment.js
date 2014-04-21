@@ -409,7 +409,7 @@ control=control+'		<tr><td><font face=Arial size=2 color=000000>Email:</font></t
 control=control+'		<tr><td colspan=3 height=0><input type="hidden" name="shipName" value=""><input type="hidden" name="shipEmailAddress" value=""><input type="hidden" name="shipPhoneNumber" value=""><input type="hidden" name="shipAddress1" value=""><input type="hidden" name="shipAddress2" value=""><input type="hidden" name="shipCity" value=""><input type="hidden" name="shipProvince" value=""><input type="hidden" name="shipPostalCode" value=""><input type="hidden" name="shipCountry" value=""></td></tr><tr><td colspan=3><br></td></tr>';
 control=control+'   		<tr><td colspan="3" height="45px" valign="top"><div style="float:left;"><font face=Arial size=3 color=000066><b>Payment Information</b></font></div></td></tr>';
 control=control+'   		<tr><td rowspan=7>&nbsp;</td><td><font face=Arial size=2 color=000000>Invoice/Order Number:</font></td><td><input type="text" id="trnOrderNumber" name="trnOrderNumber" value="" size=30 maxlength=30 autocomplete="off" ></td></tr>';
-control=control+'		<tr><td><font face=Arial size=2 color=000000>Amount (CAD):</font></td><td><input type="text" id="trnAmount" name="trnAmount" value="'+form_payment_amount+'" readonly size=30 maxlength=32 onBlur="if (PositiveInteger(this) == true) {FormatAmount(this);}" autocomplete="off" ></td></tr>';
+control=control+'		<tr><td><font face=Arial size=2 color=000000>Amount (CAD):</font></td><td><input type="text" id="trnAmount" name="trnAmount" value="'+form_payment_amount+'" size=30 maxlength=32 onBlur="if (PositiveInteger(this) == true) {FormatAmount(this);}" autocomplete="off" ></td></tr>';
 control=control+'   		';
 control=control+'   		';
 control=control+'		';
