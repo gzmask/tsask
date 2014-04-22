@@ -1,6 +1,0 @@
-# You can find more information about this file on the symfony website:
-# http://www.symfony-project.org/reference/1_4/en/13-View
-
-all:
-#  stylesheets:    [/sfDoctrinePlugin/css/global.css,/sfDoctrinePlugin/css/default.css]
-  javascripts:    [form_design.js,control/Address.js,control/BirthDatePicker.js,control/CheckBox.js,control/TOS.js,control/DateTime.js,control/DropDown.js,control/ClientEmail.js,control/Email.js,control/FileUpload.js,control/FullName.js,control/Heading.js,control/Number.js,control/Payment.js,control/Phone.js,control/RadioButton.js,control/ResetButton.js,control/SubmitButton.js,control/TextArea.js,control/TextBox.js,control/UniqueId.js]
