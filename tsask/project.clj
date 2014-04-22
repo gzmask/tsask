@@ -14,6 +14,7 @@
                  [com.draines/postal "1.11.0"]
                  [compojure "1.1.5"]
                  [mysql/mysql-connector-java "5.1.25"]
+                 [org.xerial/sqlite-jdbc "3.7.2"]
                  [org.clojure/java.jdbc "0.3.0-alpha4"]
                  [org.clojure/clojure "1.5.1"]
                  [scriptjure "0.1.24"]

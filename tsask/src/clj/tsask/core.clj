@@ -29,6 +29,7 @@
   {:status 200
    :headers {"Content-Type" "text/html"}
    :body (str "Hello, " (:name params))})
+
 (defroutes app-routes
   (route/resources "/")
   (GET "/" {session :session} (wrap-session-verify session tsask.pages.template-pg/home-pg))

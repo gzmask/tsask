@@ -1,10 +1,14 @@
 (ns tsask.env
   (:use tsask.pages.template-pg))
 
-(def SQLDB {:subprotocol "mysql"
+(comment def SQLDB {:subprotocol "mysql"
                               :subname "//127.0.0.1:3306/authority"
                               :user "root"
                               :password "121212"})
+
+(def SQLDB {:classname "org.sqlite.JDBC"
+                :subprotocol "sqlite"
+                :subname "resources/db/database.sqlite"})
 
 (defn err-handler
   [& [opts]]
