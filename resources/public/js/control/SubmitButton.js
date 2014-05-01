@@ -13,6 +13,7 @@ function controlSubmitButton() {
 	'    </div>'+
 	'    <div class="fbc_txt">'+
 	'    <div class="submittxt" style="margin:0 auto;"><span>Submit</span></div>'+
+	'    <div class="addcarttxt" style="margin:0 auto;"><span>Add to Cart</span></div>'+
 	'    <div class="btn_options"> <a href="#!" title="Options" id="op2" class="btn_ops">Options</a>'+
 	'      <div class="layoutbox" id="cont_op2">'+
 	'        <div class="laym">'+
@@ -78,7 +79,7 @@ function bindActionSubmitButtonOptionListItem(obj){
 
 function bindActionSubmitButtonOptionList(obj){
 	var c=obj;	
-	c.find(".nowSearch").click(function(){//ÏÂÀ­¿ò
+	c.find(".nowSearch").click(function(){
 		if("none"==c.find("#subtxtSel").css("display")){
 				c.find("#subtxtSel").css("display","block");
 		}else{
@@ -152,6 +153,7 @@ function saveSubmitButton(obj, sm) {
 function makeSubmitButton(obj, sm) {
 	var control='';
 	control=control+'<div class="resubmit"><input type="submit" value="submit" />';
+	control=control+'<div class="addcart"><input type="submit" value="add to cart" />';
 	control=control+'<a href="#!" title="submit"><!--<img src="/images/btn_submit.jpg" />--></a>';
 	control=control+'</div>';	
 	return control;

@@ -46,10 +46,3 @@
 (defn view-file [filename]
   {:status 200
    :body (io/file (str "resources/public/files/" filename))})
-
-(comment
-(defn upload-file [params]
-  (let [file (get params "file")
-        info (first (j/query SQLDB ["show table status like 'sa_orders'"]))
-        file-name (replace (file :filename) #"^(.*).(.*)$" (str "invoice-" (:auto_increment info) "$2"))]
-    (io/copy (io/file (file :tempfile)) (io/file (format "/files/%s" file-name))))))

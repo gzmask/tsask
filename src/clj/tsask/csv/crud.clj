@@ -72,23 +72,22 @@
    :body (io/file (str CSV_ROOT_PATH "/export.xls"))})
 
 (defn create [params]
-  (let [info (first (j/query SQLDB ["show table status like 'sa_orders'"]))]
-    (j/insert! SQLDB :CSV_report 
-             {:app_name    (:app_name    params) 
-              :invoice_no  (:invoice_no  params)
-              :address     (:address     params) 
-              :phone       (:phone       params) 
-              :email       (:email       params) 
-              :file_no     (:file_no     params)
-              :reg_class   (:reg_class   params)
-              :app_type    (:app_type    params) 
-              :app_detail  (:app_detail  params) 
-              :invoice_id  (empty-to-nil (:invoice_id  params)) 
-              :paid_by     (:paid_by     params) 
-              :card_type   (:card_type   params) 
-              :payment_amt (empty-to-nil (:payment_amt params))
-              :created_at  (java.util.Date.)
-              :o_id        (:auto_increment info)})))
+  (j/insert! SQLDB :CSV_report 
+           {:app_name    (:app_name    params) 
+            :invoice_no  (:invoice_no  params)
+            :address     (:address     params) 
+            :phone       (:phone       params) 
+            :email       (:email       params) 
+            :file_no     (:file_no     params)
+            :reg_class   (:reg_class   params)
+            :app_type    (:app_type    params) 
+            :app_detail  (:app_detail  params) 
+            :invoice_id  (empty-to-nil (:invoice_id  params)) 
+            :paid_by     (:paid_by     params) 
+            :card_type   (:card_type   params) 
+            :payment_amt (empty-to-nil (:payment_amt params))
+            :created_at  (java.util.Date.)
+            :o_id        (:o_id params)}))
 
 
 (defn new []

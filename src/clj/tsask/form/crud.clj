@@ -136,7 +136,9 @@
 
 (defn commit [params]
   (binding [*js-css-files* form-view-files] 
-    (let [payment-info {:app_name    (:ordName    params) 
+    (let [order_record (order/create {:order_content (:order_content params) 
+                                      :form_name (:form_name params)}) 
+          payment-info {:app_name    (:ordName    params) 
                         :invoice_no  (:InvoiceNumber params)
                         :address     (str (:ordAddress1 params) \space (:ordAddress2 params)) 
                         :phone       (:ordPhoneNumber       params) 
@@ -148,13 +150,11 @@
                         :invoice_id  (not-empty (:invoice_id  params)) 
                         :paid_by     (:trnCardOwner     params) 
                         :card_type   (:trnCardType   params) 
-                        :payment_amt (not-empty (:trnAmount params))}
+                        :payment_amt (not-empty (:trnAmount params))
+                        :o_id (:last_insert_rowid() order_record)}
           file (:real_input params)
-          info (first (j/query SQLDB ["show table status like 'sa_orders'"]))
-          upload_file  (if (not-empty (:filename file)) (io/copy (io/file (:tempfile file)) (io/file (str "resources/public/files/Invoice-" (:auto_increment info) (if (= "image/jpeg" (:content-type file)) ".jpg" (if (= "application/pdf" (:content-type file)) ".pdf"))))))
+          upload_file  (if (not-empty (:filename file)) (io/copy (io/file (:tempfile file)) (io/file (str "resources/public/files/Invoice-" (:last_insert_rowid() order_record) (if (= "image/jpeg" (:content-type file)) ".jpg" (if (= "application/pdf" (:content-type file)) ".pdf"))))))
           csv_record   (csv/create payment-info)
-          order_record (order/create {:order_content (:order_content params) 
-                                      :form_name (:form_name params)}) 
           query-params {:ordName         (:ordName params) 
                         :ordPhoneNumber  (:ordPhoneNumber params)
                         :ordAddress1     (:ordAddress1 params)
