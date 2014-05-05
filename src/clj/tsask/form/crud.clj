@@ -4,7 +4,6 @@
         tsask.pages.template-pg
         com.reasonr.scriptjure
         postal.core
-
         hiccup.page
         hiccup.core)
   (:require [tsask.csv.crud :as csv]
@@ -55,8 +54,8 @@
                [:td [:input.sf_admin_batch_checkbox {:type "checkbox" :value (:id form) :name "ids[]"}]]
                [:td.sf_admin_text.sf_admin_list_td_id [:a {:href (str "/form/" (:id form) "/edit")} (:id form)]]
                [:td.sf_admin_text.sf_admin_list_td_form_name (:form_name form)]
-               [:td.sf_admin_text.sf_admin_list_td_created_at (:created_at form)]
-               [:td.sf_admin_text.sf_admin_list_td_updated_at (:updated_at form)]
+               [:td.sf_admin_text.sf_admin_list_td_created_at (strftime "%Y/%m/%d" (:created_at form))]
+               [:td.sf_admin_text.sf_admin_list_td_updated_at (strftime "%Y/%m/%d" (:updated_at form))]
                [:td [:ul.sf_admin_td_actions
                      [:li.sf_admin_action_view [:a {:href (str "/form/" (:id form) "/view")} "View"]]
                      [:li.sf_admin_action_delete [:a {:href (str "/form/" (:id form) "/delete")

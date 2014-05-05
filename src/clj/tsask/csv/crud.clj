@@ -38,9 +38,9 @@
 )
 
 (defn export [params]
-  (let [begin (if (empty? (:begin params)) "2013-01-01 00:00:00" (str (:begin params) " 00:00:00"))
-        end (if (empty? (:end params)) "9999-01-01 00:00:00" (str (:end params) " 23:59:59"))
-        reports (j/query SQLDB ["select * from CSV_report where created_at > ? and created_at < ?" begin  end])
+  (let [begin (if (empty? (:begin params)) 0 (Long. (:begin params)))
+        end (if (empty? (:end params)) 0 (Long. (:end params)))
+        reports (j/query SQLDB ["select * from CSV_report where created_at > ? and created_at < ?" begin end])
         data-set (dataset (vec ["Id" "Order Id" "Invoice Number" "Applicant Name" "Registration Class" "Address" 
                                    "Phone Number" "Email Address" "File Number" "Application Type" "Application Detail" 
                                    "Invoice Id" "Paid By" "Card Type" "Payment Amount" "Created At"]) 
@@ -59,7 +59,7 @@
                                                          (if (empty? (:paid_by r)) " " (:paid_by r)) 
                                                          (if (empty? (:card_type r)) " " (:card_type r)) 
                                                          (if (nil? (:payment_amt r)) " " (:payment_amt r)) 
-                                                         (:created_at r)]))))]
+                                                         (strftime "%Y/%m/%d" (Long. (:created_at r)))]))))]
     (do
       (save-xls data-set (str CSV_ROOT_PATH "/export.xls"))
       {:status 302
@@ -117,4 +117,4 @@
       [:input#end {:type "text" :name "end"}]
       [:div.fc_con {:style "margin-top: 15px;"} 
         [:dd [:input {:type "submit" :value "" :style "background: url(/images/export.png); width:89px; height:29px; border: none;"}]]]]
-     (include-js "//code.jquery.com/jquery-1.9.1.js" "//code.jquery.com/ui/1.10.3/jquery-ui.js" "/js/main.js")])))
+     (include-js "//code.jquery.com/jquery-1.9.1.js" "//code.jquery.com/ui/1.10.3/jquery-ui.js" "/js/csv.js")])))
