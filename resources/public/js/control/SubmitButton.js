@@ -152,9 +152,9 @@ function saveSubmitButton(obj, sm) {
 
 function makeSubmitButton(obj, sm) {
 	var control='';
-	control=control+'<div class="resubmit"><input type="submit" value="submit" />';
-	control=control+'<div class="addcart"><input type="submit" value="add to cart" />';
-	control=control+'<a href="#!" title="submit"><!--<img src="/images/btn_submit.jpg" />--></a>';
+	control=control+'<div class="resubmit"><button type="submit" name="user_submit" value="submit">Submit</button>';
+	control=control+'<div class="addcart"><button type="submit" name="user_add_cart" value="add_to_cart">Add to Cart</button>';
+	//control=control+'<a href="#!" title="submit"><!--<img src="/images/btn_submit.jpg" />--></a>';
 	control=control+'</div>';	
 	return control;
 }

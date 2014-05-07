@@ -128,7 +128,11 @@
 (defmacro apply-macro [macro coll]
   (cons macro coll))
 
-(defn commit [params]
+(defn add-cart [params]
+  (prn "yo hi mama is awesome ====================gzmask========================")
+  )
+
+(defn submit [params]
   (binding [template/*js-css-files* template/form-view-files] 
     (let [order_record (order/create {:order_content (:order_content params) 
                                       :form_name (:form_name params)}) 
@@ -174,3 +178,7 @@
             (if (.contains (:body response) "trnApproved=0")
               (template/commit-page [:div (str "Payment attempt failed due to reason: " (:messageText response) "<br>Please contact us and we will help you to submit your payment.")]) 
               (template/commit-page [:div "Thank you, your payment is successful! Tsask will process your request shortly. If you have not received confirmation in a few days please contact us."])))))
+
+(defn commit [params]
+  (cond (contains? params :user_add_cart) (add-cart params)
+        (contains? params :user_submit) (submit params)))
