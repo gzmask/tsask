@@ -8,12 +8,12 @@
 
               [ring.middleware.session :as session]
               [ring.middleware.params :as params]
-              [ring.middleware.multipart-params :as mulparams]
-              [ring.middleware.json :as json]
+              ;[ring.middleware.multipart-params :as mulparams]
+              ;[ring.middleware.json :as json]
 
-              [clojure.java.jdbc :as j]
-              [clojure.java.io :as io]
-              [clojure.java.jdbc.sql :as sql]
+              ;[clojure.java.jdbc :as j]
+              ;[clojure.java.io :as io]
+              ;[clojure.java.jdbc.sql :as sql]
 
               [compojure.route :as route]
 

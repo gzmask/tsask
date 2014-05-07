@@ -12,9 +12,7 @@
             [tsask.order.crud :as order]
             [clojure.java.jdbc.sql :as sql]
             [clojure.java.io :as io]
-            [clj-http.client :as client]
-            [net.cgrand.enlive-html :as html]
-            [me.raynes.laser :as l]))
+            [clj-http.client :as client]))
 
 (defn- redirect [url]
   {:status 302
