@@ -48,7 +48,7 @@
   (GET "/form/new" {session :session} (wrap-session-verify session (form/new)))
   (POST "/form/create" {params :params session :session} (wrap-session-verify session (form/create params)))
   (POST "/form/:id/create" {params :params session :session} (wrap-session-verify session (form/update params)))
-  (POST "/form/commit" {params :params} (form/commit params))
+  (POST "/form/commit" {params :params session :session} (form/commit params session))
 
   (GET "/orders" {{sort :sort sort-type :sort_type page :page} :params session :session} (wrap-session-verify session (order/index page sort sort-type)))
   (GET "/order/:id/delete" {{id :id} :params session :session} (wrap-session-verify session (order/delete id)))

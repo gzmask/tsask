@@ -125,12 +125,26 @@
              (sql/where {:id (:id params)}))
   (redirect "/forms"))
 
-(defmacro apply-macro [macro coll]
-  (cons macro coll))
-
-(defn add-cart [params]
-  (prn "yo hi mama is awesome ====================gzmask========================")
-  )
+(defn add-cart [params session]
+  (let [orders (not-empty (:orders session)) 
+        order {:order_content (:order_content params) 
+               :form_name (:form_name params)}
+        payment-info {:app_name    (:ordName    params) 
+                      :invoice_no  (:InvoiceNumber params) 
+                      :address     (str (:ordAddress1 params) \space (:ordAddress2 params)) 
+                      :phone       (:ordPhoneNumber       params) 
+                      :email       (:ordEmailAddress       params) 
+                      :file_no     (:file_no     params)
+                      :reg_class   (:reg_class   params)
+                      :app_type    (:form_name   params) 
+                      :app_detail  (:app_detail  params) 
+                      :invoice_id  (not-empty (:invoice_id  params)) 
+                      :paid_by     (:trnCardOwner     params) 
+                      :card_type   (:trnCardType   params) 
+                      :payment_amt (not-empty (:trnAmount params))}]
+    {:status 302
+     :session (assoc session :orders (cons order orders))
+     :headers {"Location" "/"}}))
 
 (defn submit [params]
   (binding [template/*js-css-files* template/form-view-files] 
@@ -179,6 +193,6 @@
               (template/commit-page [:div (str "Payment attempt failed due to reason: " (:messageText response) "<br>Please contact us and we will help you to submit your payment.")]) 
               (template/commit-page [:div "Thank you, your payment is successful! Tsask will process your request shortly. If you have not received confirmation in a few days please contact us."])))))
 
-(defn commit [params]
-  (cond (contains? params :user_add_cart) (add-cart params)
+(defn commit [params session]
+  (cond (contains? params :user_add_cart) (add-cart params session)
         (contains? params :user_submit) (submit params)))
