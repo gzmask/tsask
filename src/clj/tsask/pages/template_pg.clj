@@ -3,11 +3,10 @@
         hiccup.page
         hiccup.util))
 
+;these are like atoms that can be changed
 (def ^:dynamic *js-files* nil)
-
 (def ^:dynamic *css-files* nil)
 (def ^:dynamic *js-css-files* nil)
-
 (def ^:dynamic *main-nav*
   (let [nav-list [{:id "forms" :content "Form" :title "forms" :href "/forms"}
                   {:id "orders" :content "Order" :title "orders" :href "/orders"}

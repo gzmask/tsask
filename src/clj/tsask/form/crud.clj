@@ -1,13 +1,13 @@
 (ns tsask.form.crud
   (:use tsask.env
         tsask.util
-        tsask.pages.template-pg
-        com.reasonr.scriptjure
-        postal.core
         hiccup.page
         hiccup.core)
   (:require [tsask.csv.crud :as csv]
             [tsask.file.crud :as file]
+            [tsask.pages.template-pg :as template]
+            [postal.core :as postal]
+            [com.reasonr.scriptjure :as sj]
             [clojure.java.jdbc :as j]
             [tsask.order.crud :as order]
             [clojure.java.jdbc.sql :as sql]
@@ -24,7 +24,7 @@
                        (sql/select [:id :form_name :created_at :updated_at] :sa_forms
                                    (if sort (sql/order-by {(keyword sort) (keyword sort-type)}))))
         opposite-sort-type {"desc" "asc", "asc" "desc", nil "asc"}]
-    (binding [*js-css-files* forms-files]
+    (binding [template/*js-css-files* template/forms-files] ;like let, but deeper into function context
       (pages
        [:dl.txtcont
         [:dt [:div.ltit [:strong "Froms List"]] [:div.clear]]
@@ -57,24 +57,22 @@
                [:td [:ul.sf_admin_td_actions
                      [:li.sf_admin_action_view [:a {:href (str "/form/" (:id form) "/view")} "View"]]
                      [:li.sf_admin_action_delete [:a {:href (str "/form/" (:id form) "/delete")
-                                                      :onclick (js (return (confirm "are you sure")))} "Delete"]]
+                                                      :onclick (sj/js (return (confirm "are you sure")))} "Delete"]]
                      [:li.sf_admin_action_edit [:a {:href (str "/form/" (:id form) "/edit")} "Edit"]]
                      [:li.sf_admin_action_copy [:a {:href (str "/form/" (:id form) "/copy")} "Copy"]]]]])]]]]
         [:script {:type "text/javascript"}
-         (js (fn checkAll []
+         (sj/js (fn checkAll []
                (var checkboxes (.getElementsByName document "ids[]"))
                (doseq [i checkboxes]
                  (set! (.. (aget checkboxes i) checked)
                        (.. (.getElementById document "sf_admin_list_batch_checkbox") checked)))))]]))))
 
-
 (defn delete [id]
   (j/delete! SQLDB :sa_forms (sql/where {:id id}))
   (redirect "/forms"))
 
-
 (defn edit [id]
-  (binding [*js-css-files* form-edit-files]
+  (binding [template/*js-css-files* template/form-edit-files]
     (let [form (first (j/query SQLDB
                                (sql/select [:id :form_name :form_content] :sa_forms
                                            (sql/where {:id id}))))]
@@ -95,8 +93,8 @@
   (let [form (first (j/query SQLDB
                              (sql/select [:form_name :form_published] :sa_forms
                                          (sql/where {:id id}))))]
-    (binding [*js-css-files* form-view-files]
-      (view-pages
+    (binding [template/*js-css-files* template/form-view-files]
+      (template/view-pages
        [:form {:method "post" :action "/form/commit" :enctype "multipart/form-data" :id "form_user" :onsubmit "return validateForm()"}
         [:dl.txtcont.requtxt
          ;; title
@@ -105,10 +103,9 @@
          [:dd (:form_published form)]
          (include-js "/js/jquery.min.js" "/js/layout.js" "/js/form_commit.js")]]))))
 
-
 (defn new []
-  (binding [*js-css-files* form-new-files]
-    (form-design-pages)))
+  (binding [template/*js-css-files* template/form-new-files]
+    (template/form-design-pages)))
 
 (defn create [params]
   (j/insert! SQLDB :sa_forms
@@ -132,7 +129,7 @@
   (cons macro coll))
 
 (defn commit [params]
-  (binding [*js-css-files* form-view-files] 
+  (binding [template/*js-css-files* template/form-view-files] 
     (let [order_record (order/create {:order_content (:order_content params) 
                                       :form_name (:form_name params)}) 
           payment-info {:app_name    (:ordName    params) 
@@ -169,11 +166,11 @@
                         :trnExpMonth     (:trnExpMonth params)
                         :trnExpYear      (:trnExpYear params)}
           response (client/get "https://www.beanstream.com/scripts/process_transaction.asp" {:query-params (assoc query-params :requestType "BACKEND" :merchant_id "257900000")})
-          email (send-message 
+          email (postal/send-message 
                   (assoc MAIL_TEMPLATE 
                          :to "chao@melcher.com" 
                          :subject "subject" 
                          :body "body"))]
             (if (.contains (:body response) "trnApproved=0")
-              (commit-page [:div (str "Payment attempt failed due to reason: " (:messageText response) "<br>Please contact us and we will help you to submit your payment.")]) 
-              (commit-page [:div "Thank you, your payment is successful! Tsask will process your request shortly. If you have not received confirmation in a few days please contact us."])))))
+              (template/commit-page [:div (str "Payment attempt failed due to reason: " (:messageText response) "<br>Please contact us and we will help you to submit your payment.")]) 
+              (template/commit-page [:div "Thank you, your payment is successful! Tsask will process your request shortly. If you have not received confirmation in a few days please contact us."])))))

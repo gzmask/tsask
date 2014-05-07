@@ -21,28 +21,6 @@
   [fmt t]
   (strftime fmt (.getTime t)))
 
-(comment ;; comment begin
-(defn- wrap-session-verify
-  [handler]
-  (fn [request]
-    (let [request request]
-      (if (:login (:session request))
-        (handler request)
-        {:status 302
-         :headers {"Location" "/login"}
-         :body ""}))))
-
-(defmacro wrap-session-verify
-  [handler]
-  `(fn [request#]
-     (if (:login (:session request#))
-       (~handler request#)
-       {:status 302
-        :headers {"Location" "/login"}
-        :body ""})))
-
-) ;; comment end
-
 (defmacro wrap-session-verify
   [session & handler-bodys]
   `(if (:login ~session)
@@ -50,7 +28,6 @@
      {:status 302
       :headers {"Location" "/login"}
       :body ""}))
-
 
 (defmacro wrap-with-try-catch
   [handler & error-handlers]
