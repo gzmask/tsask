@@ -25,7 +25,7 @@
                                    (if sort (sql/order-by {(keyword sort) (keyword sort-type)}))))
         opposite-sort-type {"desc" "asc", "asc" "desc", nil "asc"}]
     (binding [template/*js-css-files* template/forms-files] ;like let, but deeper into function context
-      (pages
+      (template/pages
        [:dl.txtcont
         [:dt [:div.ltit [:strong "Froms List"]] [:div.clear]]
         [:form {:method "post" :action "/forms/batch/action"}
@@ -76,7 +76,7 @@
     (let [form (first (j/query SQLDB
                                (sql/select [:id :form_name :form_content] :sa_forms
                                            (sql/where {:id id}))))]
-      (form-design-pages form))))
+      (template/form-design-pages form))))
 
 (defn copy [id]
   (let [form (first (j/query SQLDB
