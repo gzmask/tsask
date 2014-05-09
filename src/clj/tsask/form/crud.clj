@@ -144,7 +144,7 @@
                       :payment_amt (not-empty (:trnAmount params))}]
     {:status 302
      :session (assoc session :orders (cons order orders))
-     :headers {"Location" "/"}}))
+     :headers {"Location" "/carts"}}))
 
 (defn submit [params]
   (binding [template/*js-css-files* template/form-view-files] 

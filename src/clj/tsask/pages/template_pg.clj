@@ -20,14 +20,10 @@
                              [:span (:content nav-ele)]]]))
            (map-indexed vector nav-list))]
      [:div.clear]]))
-
-
-(defn include-js-css [files]
-  (for [f files]
-    (if (.endsWith f "js")
-      (include-js f)
-      (include-css f))))
-
+(def ^:dynamic *sub-nav*
+  [:div.subnav
+   [:a.newform {:href "/form/new" :title "new form"} "New Form"]
+   [:a.newuser {:href "/user/new" :title "new user"} "New User"]])
 
 (def home-files (.split (slurp "resources/public/html/home.files") "\n"))
 (def form-view-files (.split (slurp "resources/public/html/form-view.files") "\n"))
@@ -38,10 +34,11 @@
 (def order-view-files (.split (slurp "resources/public/html/form-view.files") "\n"))
 (def user-files (.split (slurp "resources/public/html/user.files") "\n"))
 
-(def ^:dynamic *sub-nav*
-  [:div.subnav
-   [:a.newform {:href "/form/new" :title "new form"} "New Form"]
-   [:a.newuser {:href "/user/new" :title "new user"} "New User"]])
+(defn include-js-css [files]
+  (for [f files]
+    (if (.endsWith f "js")
+      (include-js f)
+      (include-css f))))
 
 (defn commit-page [page]
    (html5
