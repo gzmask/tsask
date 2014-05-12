@@ -4,8 +4,6 @@ function commitOrder(){
 	var content='';
 	var is_heading_start=false;		
 	$('.container .form_control').each(function(){	
-		//alert("in");
-		//alert($(this).html());
 	
 		if($(this).hasClass('form_heading')){
 			if(is_heading_start){
@@ -74,7 +72,7 @@ function commitOrder(){
 
 	if(is_heading_start){content+='</div>';}	
 	$('#order_content').val(content);
-	$('#form_user').submit();
+	//$('#form_user').submit();
 }
 
 function bindActionSelectedItem(obj,bindItem,searchType,selectItem,selectedItem){
