@@ -35,17 +35,19 @@
               [:th#sf_admin_list_batch_actions [:input#sf_admin_list_batch_checkbox {:type "checkbox" :onclick "checkAll()"}]]
               [:th.sf_admin_text.sf_admin_list_th
                "Form Name"]
+              [:th.sf_admin_list_th "pirce"]
               [:th.sf_admin_list_th "Actions"]]
              (for [order orders]
               [:tr
                [:td [:input.sf_admin_batch_checkbox {:type "checkbox" :value (:id order) :name "ids[]"}]]
                [:td.sf_admin_text.sf_admin_list_td_form_name (:form_name order)]
+               [:td.sf_admin_text.sf_admin_list_td_form_name (:payment_amt order)]
                [:td [:ul.sf_admin_td_actions
                      [:li.sf_admin_action_view [:a "View"]]
                      [:li.sf_admin_action_delete [:a "Delete"]]]]])
              ]]]] 
          [:script {:type "text/javascript"}
-           (js (fn checkAll []
+           (sj/js (fn checkAll []
                  (var checkboxes (.getElementsByName document "ids[]"))
                  (doseq [i checkboxes]
                    (set! (.. (aget checkboxes i) checked)

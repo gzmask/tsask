@@ -89,19 +89,20 @@
                                 :updated_at       (java.util.Date.)}))
     (redirect "/forms"))
 
+
 (defn view [id]
   (let [form (first (j/query SQLDB
                              (sql/select [:form_name :form_published] :sa_forms
                                          (sql/where {:id id}))))]
     (binding [template/*js-css-files* template/form-view-files]
       (template/view-pages
-       [:form {:method "post" :action "/form/commit" :enctype "multipart/form-data" :id "form_user" :onsubmit "return validateForm()"}
+       [:form {:method "post" :action "/form/commit" :enctype "multipart/form-data" :id "form_user"}
         [:dl.txtcont.requtxt
          ;; title
          [:dt [:div.ltit [:strong (:form_name form)]] [:input#form_name {:type "hidden" :value (:form_name form) :name "form_name"}] [:input#order_content {:type "hidden" :name "order_content"}] [:div.clear]]
          ;; main content
          [:dd (:form_published form)]
-         (include-js "/js/jquery.min.js" "/js/layout.js" "/js/form_commit.js")]]))))
+         ]]))))
 
 (defn new []
   (binding [template/*js-css-files* template/form-new-files]
@@ -128,20 +129,20 @@
 (defn add-cart [params session]
   (let [orders (not-empty (:orders session)) 
         order {:order_content (:order_content params) 
-               :form_name (:form_name params)}
-        payment-info {:app_name    (:ordName    params) 
-                      :invoice_no  (:InvoiceNumber params) 
-                      :address     (str (:ordAddress1 params) \space (:ordAddress2 params)) 
-                      :phone       (:ordPhoneNumber       params) 
-                      :email       (:ordEmailAddress       params) 
-                      :file_no     (:file_no     params)
-                      :reg_class   (:reg_class   params)
-                      :app_type    (:form_name   params) 
-                      :app_detail  (:app_detail  params) 
-                      :invoice_id  (not-empty (:invoice_id  params)) 
-                      :paid_by     (:trnCardOwner     params) 
-                      :card_type   (:trnCardType   params) 
-                      :payment_amt (not-empty (:trnAmount params))}]
+               :form_name (:form_name params) 
+               :app_name    (:ordName    params) 
+               :invoice_no  (:InvoiceNumber params) 
+               :address     (str (:ordAddress1 params) \space (:ordAddress2 params)) 
+               :phone       (:ordPhoneNumber       params) 
+               :email       (:ordEmailAddress       params) 
+               :file_no     (:file_no     params) 
+               :reg_class   (:reg_class   params) 
+               :app_type    (:form_name   params) 
+               :app_detail  (:app_detail  params) 
+               :invoice_id  (not-empty (:invoice_id  params)) 
+               :paid_by     (:trnCardOwner     params) 
+               :card_type   (:trnCardType   params) 
+               :payment_amt (if (empty? (:trnAmount params)) 0 (:trnAmount params))}]
     {:status 302
      :session (assoc session :orders (cons order orders))
      :headers {"Location" "/carts"}}))

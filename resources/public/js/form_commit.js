@@ -74,7 +74,7 @@ function commitOrder(){
 
 	if(is_heading_start){content+='</div>';}	
 	$('#order_content').val(content);
-	//document.forms[0].submit(); 	
+	$('#form_user').submit();
 }
 
 function bindActionSelectedItem(obj,bindItem,searchType,selectItem,selectedItem){
@@ -157,8 +157,12 @@ function rebindActionForm(){
 
 $(document).ready(function(){
 	rebindActionForm();
-	$(":submit").click(function(e){
-		commitOrder();
+	$("#user_submit").click(function(e){ 
+          if (validateForm()) 
+            commitOrder(); 
+	});
+	$("#user_add_cart").click(function(e){
+          commitOrder(); 
 	});
 });
 
