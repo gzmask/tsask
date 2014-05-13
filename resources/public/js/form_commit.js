@@ -156,8 +156,7 @@ function rebindActionForm(){
 $(document).ready(function(){
 	rebindActionForm();
 	$("#user_submit").click(function(e){ 
-          if (validateForm()) 
-            commitOrder(); 
+          commitOrder(); 
 	});
 	$("#user_add_cart").click(function(e){
           commitOrder(); 
@@ -175,5 +174,4 @@ function validateForm(){
                         flag = flag && validateFormInvoice($(this))
                 }
         });
-        return flag;
-}
+        return flag;}

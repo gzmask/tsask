@@ -96,7 +96,7 @@
                                          (sql/where {:id id}))))]
     (binding [template/*js-css-files* template/form-view-files]
       (template/view-pages
-       [:form {:method "post" :action "/form/commit" :enctype "multipart/form-data" :id "form_user"}
+       [:form {:method "post" :action "/form/commit" :enctype "multipart/form-data" :id "form_user" :onsubmit "return validateForm()"}
         [:dl.txtcont.requtxt
          ;; title
          [:dt [:div.ltit [:strong (:form_name form)]] [:input#form_name {:type "hidden" :value (:form_name form) :name "form_name"}] [:input#order_content {:type "hidden" :name "order_content"}] [:div.clear]]
