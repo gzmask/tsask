@@ -1,6 +1,6 @@
 /css/main.css
 /css/common.css
-/js/jquery.min.js
+/js/jquery-1.11.1.min.js
 /js/layout.js
 /js/control/form/FormAddress.js
 /js/control/form/FormBirthDatePicker.js

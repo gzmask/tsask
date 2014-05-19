@@ -72,7 +72,6 @@ function commitOrder(){
 
 	if(is_heading_start){content+='</div>';}	
 	$('#order_content').val(content);
-	//$('#form_user').submit();
 }
 
 function bindActionSelectedItem(obj,bindItem,searchType,selectItem,selectedItem){
@@ -153,25 +152,23 @@ function rebindActionForm(){
 	});
 }
 
-$(document).ready(function(){
-	rebindActionForm();
-	$("#user_submit").click(function(e){ 
-          commitOrder(); 
-	});
-	$("#user_add_cart").click(function(e){
-          commitOrder(); 
-	});
-});
-
 function validateForm(){
         var flag = true;
         $('.container .form_control').each(function(){  
                 if ($(this).hasClass('form_tos')){
                         flag = flag && validateFormTOS($(this));
-                } else if ($(this).hasClass('form_payment')){
+                } else if ($(this).hasClass('form_payment') && 
+                           ($('input[name=user_action]:checked').val()!="cart")){
                         flag = flag && validateFormPayment($(this));
                 } else if ($('input[name=InvoiceNumber]', this).length > 0) {
                         flag = flag && validateFormInvoice($(this))
                 }
         });
         return flag;}
+
+$(document).ready(function(){
+	rebindActionForm();
+	$("#user_submit").click(function(e){
+          commitOrder(); 
+	});
+});

@@ -185,7 +185,7 @@
                         :trnExpMonth     (:trnExpMonth params)
                         :trnExpYear      (:trnExpYear params)}
           response (client/get "https://www.beanstream.com/scripts/process_transaction.asp" {:query-params (assoc query-params :requestType "BACKEND" :merchant_id "257900000")})
-          email (postal/send-message 
+          email (comment postal/send-message 
                   (assoc MAIL_TEMPLATE 
                          :to "chao@melcher.com" 
                          :subject "subject" 
@@ -195,5 +195,5 @@
               (template/commit-page [:div "Thank you, your payment is successful! Tsask will process your request shortly. If you have not received confirmation in a few days please contact us."])))))
 
 (defn commit [params session]
-  (cond (contains? params :user_add_cart) (add-cart params session)
-        (contains? params :user_submit) (submit params)))
+  (cond (= (:user_action params) "cart") (add-cart params session)
+        (= (:user_action params) "submit") (submit params)))

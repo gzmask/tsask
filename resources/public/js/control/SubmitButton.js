@@ -12,8 +12,9 @@ function controlSubmitButton() {
 	'    </span></div>'+
 	'    </div>'+
 	'    <div class="fbc_txt">'+
+        '    <div class="resubmit"><input type="radio" name="user_action" value="cart">Add to Cart |'+
+        '    | <input type="radio" name="user_action" value="submit" checked="checked">Pay now</div>'+
 	'    <div class="submittxt" style="margin:0 auto;"><span>Submit</span></div>'+
-	'    <div class="addcarttxt" style="margin:0 auto;"><span>Add to Cart</span></div>'+
 	'    <div class="btn_options"> <a href="#!" title="Options" id="op2" class="btn_ops">Options</a>'+
 	'      <div class="layoutbox" id="cont_op2">'+
 	'        <div class="laym">'+
@@ -152,8 +153,9 @@ function saveSubmitButton(obj, sm) {
 
 function makeSubmitButton(obj, sm) {
 	var control='';
-	control=control+'<div class="resubmit"><button type="submit" name="user_submit" id="user_submit" value="submit">Submit</button>';
-	control=control+'<div class="addcart"><button type="submit" name="user_add_cart" id="user_add_cart" value="add_to_cart">Add to Cart</button>';
+        control=control+'<div class="resubmit"><input type="radio" name="user_action" value="cart">Add to Cart |';
+        control=control+'| <input type="radio" name="user_action" value="submit" checked="checked">Pay now</div>';
+	control=control+'<div class="resubmit"><button type="submit" name="user_submit" id="user_submit">Submit</button>';
 	control=control+'</div>';	
 	return control;
 }

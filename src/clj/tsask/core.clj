@@ -5,7 +5,6 @@
           ring.adapter.jetty
           tsask.util)
     (:require [compojure.handler :as handler]
-
               [ring.middleware.session :as session]
               [ring.middleware.params :as params]
               ;[ring.middleware.multipart-params :as mulparams]
