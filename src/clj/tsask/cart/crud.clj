@@ -15,12 +15,6 @@
 (defn index [session]
   (let [orders (not-empty (:orders session))]
     (binding [*js-css-files* orders-files 
-              *main-nav* [:div.mainnav 
-                          [:ul.navlist 
-                           [:li [:a.nav1
-                                 {:href "/carts"} 
-                                 [:span "Shopping Cart"]]]] 
-                          [:div.clear]]
               *sub-nav* nil]
       (pages
         [:dl.txtcont

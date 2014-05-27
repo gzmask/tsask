@@ -11,7 +11,8 @@
   (let [nav-list [{:id "forms" :content "Form" :title "forms" :href "/forms"}
                   {:id "orders" :content "Order" :title "orders" :href "/orders"}
                   {:id "users" :content "User" :title "users" :href "/users"}
-                  {:id "payment-report" :content "Payment Report" :title "payment report" :href "/csv/payment-report"}]]
+                  {:id "payment-report" :content "Payment Report" :title "payment report" :href "/csv/payment-report"}
+                  {:id "carts" :content "Cart" :title "carts" :href "/carts"}]]
     [:div.mainnav
      [:ul.navlist
       (map (fn [nav] (let [nav-ele (second nav)] 
