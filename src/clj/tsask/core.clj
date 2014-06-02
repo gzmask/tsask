@@ -56,9 +56,7 @@
   (POST "/order/delete-selected" {params :params session :session} (wrap-session-verify session (order/delete-selected params)))
 
   (GET "/carts" {session :session} (cart/index session))
-  (GET "/cart/:id/delete" {{id :id} :params session :session} (wrap-session-verify session (cart/delete id)))
-  (GET "/cart/:id/view" {{id :id} :params session :session} (wrap-session-verify session (cart/view id)))
-  (POST "/cart/delete-selected" {params :params session :session} (wrap-session-verify session (cart/delete-selected params)))
+  (POST "/cart/pay" {params :params session :session} (cart/pay params session))
 
   (GET "/users" {{sort :sort sort-type :sort_type} :params session :session} (wrap-session-verify session (user/index sort sort-type)))
   (GET "/user/new" {session :session} (wrap-session-verify session (user/new)))

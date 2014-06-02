@@ -147,8 +147,7 @@
      :session (assoc session :orders (cons order orders))
      :headers {"Location" "/carts"}}))
 
-(defn submit [params]
-  (binding [template/*js-css-files* template/form-view-files] 
+(defn order_action [params]
     (let [order_record (order/create {:order_content (:order_content params) 
                                       :form_name (:form_name params)}) 
           payment-info {:app_name    (:ordName    params) 
@@ -184,14 +183,19 @@
                         :trnCardNumber   (:trnCardNumber params)
                         :trnExpMonth     (:trnExpMonth params)
                         :trnExpYear      (:trnExpYear params)}
-          response (client/get "https://www.beanstream.com/scripts/process_transaction.asp" {:query-params (assoc query-params :requestType "BACKEND" :merchant_id "257900000")})
-          email (comment postal/send-message 
+          response (client/get "https://www.beanstream.com/scripts/process_transaction.asp" {:query-params (assoc query-params :requestType "BACKEND" :merchant_id "257900000")})]
+      response))
+
+(defn submit [params]
+  (binding [template/*js-css-files* template/form-view-files] 
+    (let [response (order_action params)
+          email (postal/send-message 
                   (assoc MAIL_TEMPLATE 
                          :to "chao@melcher.com" 
                          :subject "subject" 
                          :body "body"))]
             (if (.contains (:body response) "trnApproved=0")
-              (template/commit-page [:div (str "Payment attempt failed due to reason: " (:messageText response) "<br>Please contact us and we will help you to submit your payment.")]) 
+              (template/commit-page [:div (str "Payment attempt failed due to reason: " (:body response) "<br>Please contact us and we will help you to submit your payment.")]) 
               (template/commit-page [:div "Thank you, your payment is successful! Tsask will process your request shortly. If you have not received confirmation in a few days please contact us."])))))
 
 (defn commit [params session]
