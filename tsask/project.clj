@@ -5,10 +5,12 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :plugins [[lein-cljsbuild "0.3.2"] 
             [lein-ring "0.8.5"]]
-  :dependencies [[ring/ring-core "1.1.8"]
+  :dependencies [
+                 [ring/ring-core "1.1.8"]
                  [ring/ring-jetty-adapter "1.1.8"]
                  [ring-mock "0.1.5"]
                  [ring/ring-json "0.2.0"]
+                 [ring/ring-codec "1.0.0"]
                  [me.raynes/laser "1.1.1"]
                  [hiccup "1.0.3"]
                  [com.draines/postal "1.11.0"]
@@ -24,9 +26,8 @@
                  [digest "1.4.3"]
                  [incanter "1.5.4"]]
   :source-paths ["src/clj"]
-  :ring {:handler tsask.core/app
-         :auto-reload? true
-         :adapter {:port 3000}
-         :nrepl {:start? true :port 7000}}
+  :ring {:handler tsask.core/app 
+         :join? false 
+         :port 3000}
   :main tsask.core
   :profiles {:uberjar {:aot :all}})

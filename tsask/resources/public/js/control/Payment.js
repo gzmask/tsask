@@ -413,8 +413,9 @@ control=control+'		<tr><td><font face=Arial size=2 color=000000>Amount (CAD):</f
 control=control+'   		';
 control=control+'   		';
 control=control+'		';
+//control=control+'               <tr><td><font face=Arial size=2 color=000000>Payment Method:</font></td><td><select id="paymentMethod" name="paymentMethod" onChange="paymentMethodStatus()"><option value="CC">Credit Card</option><option value="IO">Interac Online</option></select></td></tr>';
 control=control+'   		<tr><td><font face=Arial size=2 color=000000>Name on card:</font></td><td><input type="text" id="trnCardOwner" name="trnCardOwner" value="" size=30 maxlength=64 autocomplete="off" ></td></tr>	';
-control=control+'   		<tr><td><font face=Arial size=2 color=000000>Credit Card Type:</font></td><td><select id="trnCardType" name="trnCardType" onChange="CheckPaymentType()"><option value="VI">VISA<option value="MC">MasterCard</select></td></tr>';
+control=control+'   		<tr><td><font face=Arial size=2 color=000000>Credit Card Type:</font></td><td><select id="trnCardType" name="trnCardType" onChange="CheckPaymentType()"><option value="VI">VISA</option><option value="MC">MasterCard</option></td></tr>';
 control=control+'   		<tr><td><font face=Arial size=2 color=000000>Credit Card Number:</font></td><td><input type="text" id="trnCardNumber" name="trnCardNumber" value="" size=30 maxlength=20 onchange="ValidateCardNumber();" autocomplete="off" ></td></tr>';
 control=control+'		<tr><td><font face=Arial size=2 color=000000>Expiration Date:</font></td>';
 control=control+'   			<td>';

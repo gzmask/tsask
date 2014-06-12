@@ -36,20 +36,15 @@
         (for [f fs]
           (let [fname (subs (str f) (inc (.lastIndexOf (str f) "/")))]
             (if (not (= "files" fname))
-              [:tr [:td [:a {:target "_blank" :href (str "/files/" fname)} (str fname)]]]))))])))
+              [:tr 
+                [:td {:width "500px"} [:a {:target "_blank" :href (str "/files/" fname)} (str fname)]]
+                [:td [:a {:href (str "/file/delete/" fname)} "Delete"]]]))))])))
 
-(defn upload-file [params]
-  (let [file (:real-input params)]
-    (if (not-empty (file :filename)) (io/copy (io/file (file :tempfile)) (io/file (str "resources/public/files/" (file :filename)))))
-    (redirect "/file")))
+(defn delete-file [filename]
+  (io/delete-file (str "resources/public/files/" filename))
+  (redirect "/files"))
 
 (defn view-file [filename]
   {:status 200
    :body (io/file (str "resources/public/files/" filename))})
 
-(comment
-(defn upload-file [params]
-  (let [file (get params "file")
-        info (first (j/query SQLDB ["show table status like 'sa_orders'"]))
-        file-name (replace (file :filename) #"^(.*).(.*)$" (str "invoice-" (:auto_increment info) "$2"))]
-    (io/copy (io/file (file :tempfile)) (io/file (format "/files/%s" file-name))))))

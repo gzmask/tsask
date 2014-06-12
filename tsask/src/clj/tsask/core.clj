@@ -48,6 +48,8 @@
   (POST "/form/create" {params :params session :session} (wrap-session-verify session (form/create params)))
   (POST "/form/:id/create" {params :params session :session} (wrap-session-verify session (form/update params)))
   (POST "/form/commit" {params :params} (form/commit params))
+  (POST "/success" {params :params} (form/success params))
+  (POST "/fail" {params :params} (form/fail params))
 
   (GET "/orders" {{sort :sort sort-type :sort_type page :page} :params session :session} (wrap-session-verify session (order/index page sort sort-type)))
   (GET "/order/:id/delete" {{id :id} :params session :session} (wrap-session-verify session (order/delete id)))
@@ -69,7 +71,7 @@
 
   (GET "/files" {session :session} (wrap-session-verify session (file/files)))
   (GET "/files/:filename" {params :params session :session} (wrap-session-verify session (file/view-file (:filename params))))
-  (POST "/file/upload" {params :params} (file/upload-file params)))
+  (GET "/file/delete/:filename" {params :params session :session} (wrap-session-verify session (file/delete-file (:filename params)))))
 
 (def app
     (params/wrap-params (session/wrap-session (handler/site app-routes))))

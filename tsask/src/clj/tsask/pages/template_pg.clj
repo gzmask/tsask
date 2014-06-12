@@ -58,6 +58,9 @@
        [:div.mainbox
         page]]]]))
 
+(defn interac-page [page]
+  page)
+
 (defn pages 
   "get page by pagename"
   [page]

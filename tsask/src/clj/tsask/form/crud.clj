@@ -4,7 +4,7 @@
         tsask.pages.template-pg
         com.reasonr.scriptjure
         postal.core
-
+        ring.util.codec
         hiccup.page
         hiccup.core)
   (:require [tsask.csv.crud :as csv]
@@ -22,6 +22,12 @@
    :headers {"Location" url}
    :body ""})
 
+(defn- query-to-map [query]
+  (->> (clojure.string/split query #"&")
+       (map #(clojure.string/split % #"="))
+       (map (fn [[k v]] [(keyword k) v]))
+       (into {})))
+
 (defn index [sort sort-type]
   (let [forms (j/query SQLDB
                        (sql/select [:id :form_name :created_at :updated_at] :sa_forms
@@ -30,7 +36,7 @@
     (binding [*js-css-files* forms-files]
       (pages
        [:dl.txtcont
-        [:dt [:div.ltit [:strong "Froms List"]] [:div.clear]]
+        [:dt [:div.ltit [:strong "Forms List"]] [:div.clear]]
         [:form {:method "post" :action "/forms/batch/action"}
          [:dd
           [:div.fc_con
@@ -134,49 +140,260 @@
 (defmacro apply-macro [macro coll]
   (cons macro coll))
 
+(defn success [params]
+  (let [form-params {:funded (:funded params)
+                     :IDEBIT_NOTFUNDEDURL (if (nil? (:IDEBIT_NOTFUNDEDURL params)) "https://www.tsaskforms.ca/fail?funded=0" (:IDEBIT_NOTFUNDEDURL params))
+                     :IDEBIT_TRACK2 (:IDEBIT_TRACK2 params)
+                     :IDEBIT_ISSLANG (:IDEBIT_ISSLANG params)
+                     :IDEBIT_VERSION (:IDEBIT_VERSION params)
+                     :IDEBIT_ISSCONF (:IDEBIT_ISSCONF params)
+                     :IDEBIT_MERCHDATA (:IDEBIT_MERCHDATA params)
+                     :IDEBIT_AMOUNT 10
+                     :IDEBIT_INVOICE (:IDEBIT_INVOICE params)
+                     :IDEBIT_FUNDEDURL (if (nil? (:IDEBIT_FUNDEDURL params)) "https://www.tsaskforms.ca/success?funded=1" (:IDEBIT_FUNDEDURL params))}
+        response (query-to-map (:body (client/post "https://www.beanstream.com/scripts/process_transaction_auth.asp" {:form-params (assoc form-params :requestType "BACKEND" :merchant_id "257900000") :debug true :debug-body true :save-request? true})))]
+        (spit "resources/params.txt" (str params))
+        (spit "resources/form-params.txt" (str form-params))
+        (spit "resources/response.txt" (str response))
+        (if (= (:trnApproved response) 1)
+          (commit-page [:div
+                          [:table {:width "100%" :height "100%" :border "0"}
+                            [:tr
+                              [:td {:valign "center" :align "center"}
+                                [:font {:face "Arial" :size "4"} "Your transaction is successful"]]]]
+                          [:table {:border "0" :align "center"}
+                            [:tr
+                              [:td
+                                [:font {:face "Arial" :size "2"} "Transaction ID:"]]
+                              [:td
+                                [:font {:face "Arial" :size "2"} (:trnId response)]]]
+                            [:tr
+                              [:td
+                                [:font {:face "Arial" :size "2"} "Order Number:"]]
+                              [:td
+                                [:font {:face "Arial" :size "2"} (:trnOrderNumber response)]]]
+                            [:tr
+                              [:td
+                                [:font {:face "Arial" :size "2"} "Transaction Amount:"]]
+                              [:td
+                                [:font {:face "Arial" :size "2"} (url-decode (:trnAmount response))]]]
+                            [:tr
+                              [:td
+                                [:font {:face "Arial" :size "2"} "IO Institution Name:"]]
+                              [:td
+                                [:font {:face "Arial" :size "2"} (:ioInstName response)]]]
+                            [:tr
+                              [:td
+                                [:font {:face "Arial" :size "2"} "IO Confirmation Code:"]]
+                              [:td
+                                [:font {:face "Arial" :size "2"} (:ioConfCode response)]]]
+                            [:tr
+                              [:td
+                                [:font {:face "Arial" :size "2"} "Authorization Code:"]]
+                              [:td
+                                [:font {:face "Arial" :size "2"} (:authCode response)]]]
+                            [:tr
+                              [:td
+                                [:font {:face "Arial" :size "2"} "Message ID:"]]
+                              [:td
+                                [:font {:face "Arial" :size "2"} (:messageId response)]]]
+                            [:tr
+                              [:td
+                                [:font {:face "Arial" :size "2"} "Message Text:"]]
+                              [:td
+                                [:font {:face "Arial" :size "2"} (:messageText response)]]]
+                            [:tr
+                              [:td
+                                [:font {:face "Arial" :size "2"} "Transaction Date:"]]
+                              [:td
+                                [:font {:face "Arial" :size "2"} (url-decode (:trnDate response))]]]]])
+          (commit-page [:div
+                          [:table {:width "100%" :height "100%" :border "0"}
+                            [:tr
+                              [:td {:valign "center" :align "center"}
+                                [:font {:face "Arial" :size "4"} "Your transaction is declined"]]]]
+                          [:table {:border "0" :align "center"}
+                            [:tr
+                              [:td
+                                [:font {:face "Arial" :size "2"} "Transaction ID:"]]
+                              [:td
+                                [:font {:face "Arial" :size "2"} (:trnId response)]]]
+                            [:tr
+                              [:td
+                                [:font {:face "Arial" :size "2"} "Order Number:"]]
+                              [:td
+                                [:font {:face "Arial" :size "2"} (:trnOrderNumber response)]]]
+                            [:tr
+                              [:td
+                                [:font {:face "Arial" :size "2"} "Transaction Amount:"]]
+                              [:td
+                                [:font {:face "Arial" :size "2"} (url-decode (:trnAmount response))]]]
+                            [:tr
+                              [:td
+                                [:font {:face "Arial" :size "2"} "IO Institution Name:"]]
+                              [:td
+                                [:font {:face "Arial" :size "2"} (:ioInstName response)]]]
+                            [:tr
+                              [:td
+                                [:font {:face "Arial" :size "2"} "Authorization Code:"]]
+                              [:td
+                                [:font {:face "Arial" :size "2"} (:authCode response)]]]
+                            [:tr
+                              [:td
+                                [:font {:face "Arial" :size "2"} "Message ID:"]]
+                              [:td
+                                [:font {:face "Arial" :size "2"} (:messageId response)]]]
+                            [:tr
+                              [:td
+                                [:font {:face "Arial" :size "2"} "Message Text:"]]
+                              [:td
+                                [:font {:face "Arial" :size "2"} (:messageText response)]]]
+                            [:tr
+                              [:td
+                                [:font {:face "Arial" :size "2"} "Transaction Date:"]]
+                              [:td
+                                [:font {:face "Arial" :size "2"} (url-decode (:trnDate response))]]]]]))))
+
+(defn fail [params]
+  (let [form-params {:funded (:funded params)
+                     :IDEBIT_NOTFUNDEDURL (if (nil? (:IDEBIT_NOTFUNDEDURL params)) "" (:IDEBIT_NOTFUNDEDURL params))
+                     :IDEBIT_TRACK2 (if (nil? (:IDEBIT_TRACK2 params)) "" (:IDEBIT_TRACK2 params))
+                     :IDEBIT_ISSLANG (if (nil? (:IDEBIT_ISSLANG params)) "" (:IDEBIT_ISSLANG params))
+                     :IDEBIT_VERSION (if (nil? (:IDEBIT_VERSION params)) "" (:IDEBIT_VERSION params))
+                     :IDEBIT_ISSCONF (if (nil? (:IDEBIT_ISSCONF params)) "" (:IDEBIT_ISSCONF params))
+                     :IDEBIT_MERCHDATA (if (nil? (:IDEBIT_MERCHDATA params)) "" (:IDEBIT_MERCHDATA params))
+                     :IDEBIT_AMOUNT (if (nil? (:IDEBIT_AMOUNT params)) "" (:IDEBIT_AMOUNT params))
+                     :IDEBIT_INVOICE (if (nil? (:IDEBIT_INVOICE params)) "" (:IDEBIT_INVOICE params))
+                     :IDEBIT_FUNDEDURL (if (nil? (:IDEBIT_FUNDEDURL params)) "" (:IDEBIT_FUNDEDURL params))}
+        response (query-to-map (:body (client/post "https://www.beanstream.com/scripts/process_transaction_auth.asp" {:form-params (assoc form-params :requestType "BACKEND" :merchant_id "257900000")})))]
+        (spit "resources/params.txt" (str params))
+        (spit "resources/response.txt" (str form-params))
+        (commit-page [:div
+                        [:table {:width "100%" :height "100%" :border "0"}
+                          [:tr
+                            [:td {:valign "center" :align "center"}
+                              [:font {:face "Arial" :size "4"} "Your transaction is declined"]]]]
+                        [:table {:border "0" :align "center"}
+                          [:tr
+                            [:td
+                              [:font {:face "Arial" :size "2"} "Transaction ID:"]]
+                            [:td
+                              [:font {:face "Arial" :size "2"} (:trnId response)]]]
+                          [:tr
+                            [:td
+                              [:font {:face "Arial" :size "2"} "Order Number:"]]
+                            [:td
+                              [:font {:face "Arial" :size "2"} (:trnOrderNumber response)]]]
+                          [:tr
+                            [:td
+                              [:font {:face "Arial" :size "2"} "Transaction Amount:"]]
+                            [:td
+                              [:font {:face "Arial" :size "2"} (url-decode (:trnAmount response))]]]
+                          [:tr
+                            [:td
+                              [:font {:face "Arial" :size "2"} "IO Institution Name:"]]
+                            [:td
+                              [:font {:face "Arial" :size "2"} (:ioInstName response)]]]
+                          [:tr
+                            [:td
+                              [:font {:face "Arial" :size "2"} "Authorization Code:"]]
+                            [:td
+                              [:font {:face "Arial" :size "2"} (:authCode response)]]]
+                          [:tr
+                            [:td
+                              [:font {:face "Arial" :size "2"} "Message ID:"]]
+                            [:td
+                              [:font {:face "Arial" :size "2"} (:messageId response)]]]
+                          [:tr
+                            [:td
+                              [:font {:face "Arial" :size "2"} "Message Text:"]]
+                            [:td
+                              [:font {:face "Arial" :size "2"} (:messageText response)]]]
+                          [:tr
+                            [:td
+                              [:font {:face "Arial" :size "2"} "Transaction Date:"]]
+                            [:td
+                              [:font {:face "Arial" :size "2"} (url-decode (:trnDate response))]]]]])))
+
 (defn commit [params]
   (binding [*js-css-files* form-view-files] 
-    (let [payment-info {:app_name    (:ordName    params) 
-                        :invoice_no  (:InvoiceNumber params)
-                        :address     (str (:ordAddress1 params) \space (:ordAddress2 params)) 
-                        :phone       (:ordPhoneNumber       params) 
-                        :email       (:ordEmailAddress       params) 
-                        :file_no     (:file_no     params)
-                        :reg_class   (:reg_class   params)
-                        :app_type    (:form_name   params) 
-                        :app_detail  (:app_detail  params) 
-                        :invoice_id  (not-empty (:invoice_id  params)) 
-                        :paid_by     (:trnCardOwner     params) 
-                        :card_type   (:trnCardType   params) 
-                        :payment_amt (not-empty (:trnAmount params))}
-          file (:real_input params)
-          info (first (j/query SQLDB ["show table status like 'sa_orders'"]))
-          upload_file  (if (not-empty (:filename file)) (io/copy (io/file (:tempfile file)) (io/file (str "resources/public/files/Invoice-" (:auto_increment info) (if (= "image/jpeg" (:content-type file)) ".jpg" (if (= "application/pdf" (:content-type file)) ".pdf"))))))
-          csv_record   (csv/create payment-info)
-          order_record (order/create {:order_content (:order_content params) 
+    (if (not= (:paymentMethod params) "IO")
+      (let [payment-info {:app_name    (:ordName    params) 
+                          :invoice_no  (:InvoiceNumber params)
+                          :address     (str (:ordAddress1 params) \space (:ordAddress2 params)) 
+                          :phone       (:ordPhoneNumber       params) 
+                          :email       (:ordEmailAddress       params) 
+                          :file_no     (:file_no     params)
+                          :reg_class   (:reg_class   params)
+                          :app_type    (:form_name   params) 
+                          :app_detail  (:app_detail  params) 
+                          :invoice_id  (not-empty (:invoice_id  params)) 
+                          :paid_by     (:trnCardOwner     params) 
+                          :card_type   (:trnCardType   params) 
+                          :payment_amt (not-empty (:trnAmount params))}
+            csv_record   (csv/create payment-info)
+            order_record (order/create {:order_content (:order_content params) 
                                       :form_name (:form_name params)}) 
-          query-params {:ordName         (:ordName params) 
-                        :ordPhoneNumber  (:ordPhoneNumber params)
-                        :ordAddress1     (:ordAddress1 params)
-                        :ordAddress2     (:ordAddress2 params)
-                        :ordCity         (:ordCity params)
-                        :ordProvince     (:ordProvince params)
-                        :ordPostalCode   (:ordPostalCode params)
-                        :ordCountry      (:ordCountry params)
-                        :ordEmailAddress (:ordEmailAddress params)
-                        :trnOrderNumber  (:trnOrderNumber params)
-                        :trnAmount       (:trnAmount params)
-                        :trnCardOwner    (:trnCardOwner params)
-                        :trnCardType     (:trnCardType params)
-                        :trnCardNumber   (:trnCardNumber params)
-                        :trnExpMonth     (:trnExpMonth params)
-                        :trnExpYear      (:trnExpYear params)}
-          response (client/get "https://www.beanstream.com/scripts/process_transaction.asp" {:query-params (assoc query-params :requestType "BACKEND" :merchant_id "257900000")})
-          email (send-message 
-                  (assoc MAIL_TEMPLATE 
+            query-params {:ordName         (:ordName params) 
+                          :ordPhoneNumber  (:ordPhoneNumber params)
+                          :ordAddress1     (:ordAddress1 params)
+                          :ordAddress2     (:ordAddress2 params)
+                          :ordCity         (:ordCity params)
+                          :ordProvince     (:ordProvince params)
+                          :ordPostalCode   (:ordPostalCode params)
+                          :ordCountry      (:ordCountry params)
+                          :ordEmailAddress (:ordEmailAddress params)
+                          :trnOrderNumber  (:trnOrderNumber params)
+                          :trnAmount       (:trnAmount params)
+                          :trnCardOwner    (:trnCardOwner params)
+                          :trnCardType     (:trnCardType params)
+                          :trnCardNumber   (:trnCardNumber params)
+                          :trnExpMonth     (:trnExpMonth params)
+                          :trnExpYear      (:trnExpYear params)}
+            response (client/get "https://www.beanstream.com/scripts/process_transaction.asp" {:query-params (assoc query-params :requestType "BACKEND" :merchant_id "257900000")})
+            file (:real_input params)
+            info (first (j/query SQLDB ["show table status like 'sa_orders'"]))
+            upload_file  (if (not-empty (:filename file)) (io/copy (io/file (:tempfile file)) (io/file (str "resources/public/files/Invoice-" (:auto_increment info) (if (= "image/jpeg" (:content-type file)) ".jpg" (if (= "application/pdf" (:content-type file)) ".pdf"))))))
+
+            email (send-message 
+                    (assoc MAIL_TEMPLATE 
                          :to "chao@melcher.com" 
                          :subject "subject" 
                          :body "body"))]
             (if (.contains (:body response) "trnApproved=0")
               (commit-page [:div (str "Payment attempt failed due to reason: " (:messageText response) "<br>Please contact us and we will help you to submit your payment.")]) 
-              (commit-page [:div "Thank you, your payment is successful! Tsask will process your request shortly. If you have not received confirmation in a few days please contact us."])))))
+              (commit-page [:div "Thank you, your payment is successful! Tsask will process your request shortly. If you have not received confirmation in a few days please contact us."])))
+      (let [payment-info {:app_name    (:ordName    params) 
+                          :invoice_no  (:InvoiceNumber params)
+                          :address     (str (:ordAddress1 params) \space (:ordAddress2 params)) 
+                          :phone       (:ordPhoneNumber       params) 
+                          :email       (:ordEmailAddress       params) 
+                          :file_no     (:file_no     params)
+                          :reg_class   (:reg_class   params)
+                          :app_type    (:form_name   params) 
+                          :app_detail  (:app_detail  params) 
+                          :invoice_id  (not-empty (:invoice_id  params)) 
+                          :paid_by     (:trnCardOwner     params) 
+                          :card_type   (:trnCardType   params) 
+                          :payment_amt (not-empty (:trnAmount params))}
+            csv_record   (csv/create payment-info)
+            order_record (order/create {:order_content (:order_content params) 
+                                      :form_name (:form_name params)}) 
+            form-params {:ordName         (:ordName params) 
+                          :ordPhoneNumber  (:ordPhoneNumber params)
+                          :ordAddress1     (:ordAddress1 params)
+                          :ordAddress2     (:ordAddress2 params)
+                          :ordCity         (:ordCity params)
+                          :ordProvince     (:ordProvince params)
+                          :ordPostalCode   (:ordPostalCode params)
+                          :ordCountry      (:ordCountry params)
+                          :ordEmailAddress (:ordEmailAddress params)
+                          :trnOrderNumber  (:trnOrderNumber params)
+                          :trnAmount       (:trnAmount params)
+                          :paymentMethod   (:paymentMethod params)}
+            response (query-to-map (:body (client/post "https://www.beanstream.com/scripts/process_transaction.asp" {:form-params (assoc form-params :requestType "BACKEND" :merchant_id "257900000")})))
+            file (:real_input params)
+            info (first (j/query SQLDB ["show table status like 'sa_orders'"]))
+            upload_file  (if (not-empty (:filename file)) (io/copy (io/file (:tempfile file)) (io/file (str "resources/public/files/Invoice-" (:auto_increment info) (if (= "image/jpeg" (:content-type file)) ".jpg" (if (= "application/pdf" (:content-type file)) ".pdf"))))))]
+            (spit "resources/test.txt" (url-decode (:pageContents response)))
+            (interac-page (url-decode (:pageContents response)))))))

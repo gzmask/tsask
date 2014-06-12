@@ -1,9 +1,8 @@
 function formFileUpload(obj, sm) {
     var form_file_upload_label=obj.find("#form_file_upload_label").text();
     var form_file_upload_text=obj.find("#real_input").val();
-    console.log(form_file_upload_text);
     if(form_file_upload_text != '')
-      form_file_upload_text = 'File has been uploaded to the server, to view the file go to www.tsaskforms.ca/files/Invoice-{order-id}, replace the order-id with the real order id and without the brackets. For example: www.tsaskforms.ca/files/Invoice-1';
+      form_file_upload_text = 'File has been uploaded to the server, to view the list of files go to www.tsaskforms.ca/files.';
     else
       form_file_upload_text = 'There is no file been uploaded';
     var control='';

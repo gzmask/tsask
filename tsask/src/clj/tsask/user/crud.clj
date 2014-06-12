@@ -25,7 +25,7 @@
     (binding [*js-css-files* user-files]
       (pages
        [:dl.txtcont
-        [:dt [:div.ltit [:strong "Userss List"]] [:div.clear]]
+        [:dt [:div.ltit [:strong "Users List"]] [:div.clear]]
         [:form {:method "post" :action "/forms/batch/action"}
          [:dd
           [:div.fc_con
