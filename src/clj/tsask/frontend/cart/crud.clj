@@ -1,11 +1,11 @@
-(ns tsask.cart.crud
+(ns tsask.frontend.cart.crud
   (:use tsask.env
         tsask.util)
   (:require [clojure.java.jdbc :as j]
             [clojure.java.io :as io]
             [tsask.order.crud :as order]
             [tsask.form.crud :as form]
-            [tsask.pages.template-pg :as template]
+            [tsask.frontend.pages.template-pg :as template]
             [com.reasonr.scriptjure :as sj]
             [clojure.java.jdbc.sql :as sql]))
 
@@ -956,7 +956,7 @@
 (defn index [session]
   (let [orders (not-empty (:orders session))
         sum (reduce + (for [order orders] (read-string (:payment_amt order))))]
-    (binding [template/*js-css-files* template/orders-files 
+    (binding [template/*js-css-files* template/cart-files 
               template/*sub-nav* nil]
       (template/pages
         [:dl.txtcont
@@ -993,7 +993,7 @@
                                    true
                                    false))
                   responses)]
-    (binding [template/*js-css-files* template/form-view-files]
+    (binding [template/*js-css-files* template/cart-files]
       (if (empty? errors)
         (template/commit-page [:div "Thank you, your payment is successful! Tsask will process your request shortly. If you have not received confirmation in a few days please contact us."]) 
         (template/commit-page 
