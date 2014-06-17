@@ -21,6 +21,7 @@
               [tsask.form.crud :as form]
               [tsask.order.crud :as order]
               [tsask.frontend.cart.crud :as cart]
+              [tsask.frontend.calendar.crud :as cal]
               [tsask.user.crud :as user]
               [tsask.file.crud :as file]))
 
@@ -57,6 +58,8 @@
 
   (GET "/carts" {session :session} (cart/index session))
   (POST "/cart/pay" {params :params session :session} (cart/pay params session))
+
+  (GET "/calendar" {session :session} (cal/index session))
 
   (GET "/users" {{sort :sort sort-type :sort_type} :params session :session} (wrap-session-verify session (user/index sort sort-type)))
   (GET "/user/new" {session :session} (wrap-session-verify session (user/new)))
