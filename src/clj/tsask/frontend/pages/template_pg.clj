@@ -23,7 +23,7 @@
    [:a.newuser {:href "/user/new" :title "new user"} "New User"]])
 
 (def cart-files  ["/css/fcommon.css" "/css/fix.css" "/js/jquery-1.7.2.js" "/js/DD_belatedPNG.js" "/js/layout.js" "/js/login.js"])
-(def calendar-files  ["/css/fcommon.css" "/css/fix.css" "/js/jquery-1.7.2.js" "/js/DD_belatedPNG.js" "/js/moment.min.js" "/js/clndr.min.js" "/js/layout.js" "/js/login.js"])
+(def calendar-files  ["/css/fcommon.css" "/css/fix.css" "/js/jquery-1.7.2.js" "/js/DD_belatedPNG.js" "/vendor/moment.min.js" "/vendor/underscore-min.js" "/vendor/clndr.min.js" "/js/layout.js" "/js/login.js"])
 
 (defn include-js-css [files]
   (for [f files]
@@ -72,3 +72,4 @@
    [:dvi
     [:h1 "Ooooops..."]
     [:h3 "Server is busying..."]]))
+
