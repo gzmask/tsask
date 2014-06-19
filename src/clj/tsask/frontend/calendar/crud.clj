@@ -32,18 +32,16 @@
      "<% }); %>"
      [:div.days 
       "<% _.each(days, function(day) { %>"
-      [:div {:class "<%= day.classes %>"} "<%= day.day %>"]
+      "<div class=\"<%= day.classes %>\"><%= day.day %></div>"
       "<% }); %>"
       ]]] 
-   [:div.clndr-today-button "today"]
-   ])
+   [:div.clndr-today-button "today"]])
 
 (defn index [session]
     (binding [template/*js-css-files* template/calendar-files 
               template/*sub-nav* nil]
       (template/pages
-        [:diva#calendar "this is calendar. Clndr is ready."
+        [:div#calendar_target.cal2 "this is calendar. Clndr is ready."
          CLNDR-template
-         (include-js "/js/calendar/cal.js")]
-        )))
+         (include-js "/js/calendar/cal.js")])))
 

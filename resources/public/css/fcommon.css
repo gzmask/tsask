@@ -14,6 +14,8 @@ body{ width:100%; background:url(../images/bg_header.jpg) repeat-x;}
 .mainnav .navlist li a span{ display:none;}
 .mainnav .navlist .nav1{ background:url(../images/bg_nav.gif) 0 -505px no-repeat; }
 .mainnav .navlist .nav1:hover,.mainnav .navlist .nav1_on { background:url(../images/bg_nav.gif) 0 -462px no-repeat; }
+.mainnav .navlist .nav2{ background:url(../images/bg_nav.gif) 0 -591px no-repeat; }
+.mainnav .navlist .nav2:hover,.mainnav .navlist .nav2_on { background:url(../images/bg_nav.gif) 0 -548px no-repeat; }
 .mainbox{ padding:10px;}
 .subnav{ border:1px #fff solid; padding:15px 6px; background:#d1d2d4; }
 .subnav a{ display:inline-block; width:96px; height:43px; margin:0 0 0 10px; line-height:43px; text-align:center; background:url(../images/bg_blur2.jpg) repeat-x; color:#FFF; overflow:hidden; }

@@ -8,7 +8,8 @@
 (def ^:dynamic *css-files* nil)
 (def ^:dynamic *js-css-files* nil)
 (def ^:dynamic *main-nav*
-  (let [nav-list [{:id "carts" :content "Cart" :title "carts" :href "/carts"}]]
+  (let [nav-list [{:id "carts" :content "Cart" :title "carts" :href "/carts"}
+                  {:id "calendar" :content "Calendar" :title "calendar" :href "/calendar"}]]
     [:div.mainnav
      [:ul.navlist
       (map (fn [nav] (let [nav-ele (second nav)] 
@@ -23,7 +24,7 @@
    [:a.newuser {:href "/user/new" :title "new user"} "New User"]])
 
 (def cart-files  ["/css/fcommon.css" "/css/fix.css" "/js/jquery-1.7.2.js" "/js/DD_belatedPNG.js" "/js/layout.js" "/js/login.js"])
-(def calendar-files  ["/css/fcommon.css" "/css/fix.css" "/js/jquery-1.7.2.js" "/js/DD_belatedPNG.js" "/vendor/moment.min.js" "/vendor/underscore-min.js" "/vendor/clndr.min.js" "/js/layout.js" "/js/login.js"])
+(def calendar-files  ["/css/fcommon.css" "/css/fix.css" "/vendor/clndr.css" "/js/jquery-1.7.2.js" "/js/DD_belatedPNG.js" "/vendor/moment.min.js" "/vendor/underscore-min.js" "/vendor/clndr.min.js" "/js/layout.js" "/js/login.js"])
 
 (defn include-js-css [files]
   (for [f files]
