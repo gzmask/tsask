@@ -35,7 +35,14 @@
       "<div class=\"<%= day.classes %>\"><%= day.day %></div>"
       "<% }); %>"
       ]]] 
-   [:div.clndr-today-button "today"]])
+   [:div.clndr-today-button "today"]
+   [:div.event-listing
+    [:div.event-listing-title "EVENTS THIS MONTH" ]
+    "<% _.each(eventsThisMonth, function(event) { %>"
+    [:div.event-item 
+     [:div.event-item-name "<%= event.title %>"]
+     [:div.event-item-location "<%= event.location %>"]]
+    "<% }); %>" ]])
 
 (defn index [session]
     (binding [template/*js-css-files* template/calendar-files 
