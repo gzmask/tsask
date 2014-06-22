@@ -191,7 +191,7 @@ p {
   border-bottom: 1px solid #000000;
 }
 .cal2 {
-  max-width: 177px;
+  max-width: 247px;
   margin: 0 auto;
   font-family: 'Droid Sans Mono';
 }
@@ -238,18 +238,18 @@ p {
 }
 .cal2 .clndr .clndr-grid {
   text-align: center;
-  border: 1px solid #FF4545;
+  border: 1px solid #45B5FF;
   display: inline-block;
 }
 .cal2 .clndr .clndr-grid .header-day {
   float: left;
-  width: 25px;
+  width: 35px;
   height: 25px;
-  background: #FF4545;
+  background: #45B5FF;
 }
 .cal2 .clndr .clndr-grid .day {
   float: left;
-  width: 25px;
+  width: 35px;
   height: 25px;
 }
 .cal2 .clndr .clndr-grid .day.event {
@@ -261,7 +261,7 @@ p {
 .cal2 .clndr .clndr-grid .empty,
 .cal2 .clndr .clndr-grid .adjacent-month {
   float: left;
-  width: 25px;
+  width: 35px;
   height: 25px;
   background: #ddd;
 }
