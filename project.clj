@@ -5,10 +5,10 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :plugins [[lein-cljsbuild "0.3.2"] 
             [lein-ring "0.8.5"]]
-  :dependencies [[ring/ring-core "1.1.8"]
+  :dependencies [[ring/ring "1.1.8"]
                  [ring/ring-jetty-adapter "1.1.8"]
                  [ring-mock "0.1.5"]
-                 [ring/ring-json "0.2.0"]
+                 [ring/ring-json "0.3.1"]
                  [me.raynes/laser "1.1.1"]
                  [hiccup "1.0.3"]
                  [com.draines/postal "1.11.0"]

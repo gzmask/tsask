@@ -7,8 +7,8 @@
     (:require [compojure.handler :as handler]
               [ring.middleware.session :as session]
               [ring.middleware.params :as params]
+              [ring.middleware.json :as json]
               ;[ring.middleware.multipart-params :as mulparams]
-              ;[ring.middleware.json :as json]
 
               ;[clojure.java.jdbc :as j]
               ;[clojure.java.io :as io]
@@ -60,6 +60,7 @@
   (POST "/cart/pay" {params :params session :session} (cart/pay params session))
 
   (GET "/calendar" {session :session} (cal/index session))
+  (GET "/calevents" {params :params session :session} (cal/calevents))
 
   (GET "/users" {{sort :sort sort-type :sort_type} :params session :session} (wrap-session-verify session (user/index sort sort-type)))
   (GET "/user/new" {session :session} (wrap-session-verify session (user/new)))
@@ -79,7 +80,7 @@
   (POST "/file/upload" {params :params} (file/upload-file params)))
 
 (def app
-    (params/wrap-params (session/wrap-session (handler/site app-routes))))
+    (json/wrap-json-response (params/wrap-params (session/wrap-session (handler/site app-routes)))))
 
 (defn -main []
       (run-jetty #'app {:port 80

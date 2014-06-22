@@ -6,6 +6,7 @@
         hiccup.util)
   (:require [clojure.java.jdbc :as j]
             [clojure.java.io :as io]
+            [ring.util.response :as ut :refer [response]]
             [tsask.order.crud :as order]
             [tsask.form.crud :as form]
             [tsask.frontend.pages.template-pg :as template]
@@ -16,6 +17,11 @@
   {:status 302
    :headers {"Location" url}
    :body ""})
+
+(defn calevents
+  "response forms that should be in calendar"
+  []
+  (ut/response {:foo "bar"}))
 
 (def CLNDR-template
   [:script 
