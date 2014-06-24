@@ -1,15 +1,28 @@
-var currentMonth = moment().format('YYYY-MM');
-var nextMonth    = moment().add('month', 1).format('YYYY-MM');
+//var currentMonth = moment().format('YYYY-MM');
+//var nextMonth    = moment().add('month', 1).format('YYYY-MM');
+var thisMonth = moment().format('YYYY-MM');
 
 var events = [
-  { date: currentMonth + '-' + '10', title: 'Persian Kitten Auction', location: 'Center for Beautiful Cats' },
-  { date: currentMonth + '-' + '19', title: 'Cat Frisbee', location: 'Jefferson Park' },
-  { date: currentMonth + '-' + '23', title: 'Kitten Demonstration', location: 'Center for Beautiful Cats' },
-  { date: nextMonth + '-' + '07',    title: 'Small Cat Photo Session', location: 'Center for Cat Photography' }
-];
+  { start: thisMonth + '-10', 
+    end: thisMonth + '-14', 
+    title: 'Multi-Day Event',
+    description: 'Multi-Day Event', 
+    form_id: 1 },
+  { start: thisMonth + '-21', 
+    end: thisMonth + '-23', 
+    title: 'Another Multi-Day Event',
+    description: 'Another Multi-Day Event', 
+    form_id: 2 }
+  ];
 
 $('#calendar_target').clndr({
   template: $('#template-calendar').html(),
-  events: events
+  events: events,
+  clickEvents: {
+    click: function(target) { 
+      console.log(target);}}, 
+  multiDayEvents: {
+    startDate: 'start',
+    endDate: 'end'},
 });
 
