@@ -953,10 +953,12 @@
         {:cols "40", :rows "4", :name "trnComments"}]]]
      "\t"]])
 
+(def cart-files  ["/css/fcommon.css" "/css/fix.css" "/js/jquery-1.7.2.js" "/js/DD_belatedPNG.js" "/js/layout.js" "/js/login.js"])
+
 (defn index [session]
   (let [orders (not-empty (:orders session))
         sum (reduce + (for [order orders] (read-string (:payment_amt order))))]
-    (binding [template/*js-css-files* template/cart-files 
+    (binding [template/*js-css-files* cart-files 
               template/*sub-nav* nil]
       (template/pages
         [:dl.txtcont
@@ -993,7 +995,7 @@
                                    true
                                    false))
                   responses)]
-    (binding [template/*js-css-files* template/cart-files]
+    (binding [template/*js-css-files* cart-files]
       (if (empty? errors)
         (template/commit-page [:div "Thank you, your payment is successful! Tsask will process your request shortly. If you have not received confirmation in a few days please contact us."]) 
         (template/commit-page 

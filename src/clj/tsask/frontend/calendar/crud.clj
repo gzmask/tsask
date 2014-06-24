@@ -47,11 +47,13 @@
     "<% _.each(eventsThisMonth, function(event) { %>"
     [:div.event-item 
      [:div.event-item-name "<%= event.title %>"]
-     [:div.event-item-location "<%= event.location %>"]]
+     [:div.event-item-location "<%= event.description %>"]]
     "<% }); %>" ]])
 
+(def calendar-files  ["/css/fcommon.css" "/css/fix.css" "/vendor/clndr.css" "/js/jquery-1.7.2.js" "/js/DD_belatedPNG.js" "/vendor/moment.min.js" "/vendor/underscore-min.js" "/vendor/clndr.min.js" "/js/layout.js" "/js/login.js"])
+
 (defn index [session]
-    (binding [template/*js-css-files* template/calendar-files 
+    (binding [template/*js-css-files* calendar-files 
               template/*sub-nav* nil]
       (template/pages
         [:div#calendar_target.cal2 "this is calendar. Clndr is ready."
