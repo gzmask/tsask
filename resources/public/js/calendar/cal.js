@@ -2,6 +2,27 @@
 //var nextMonth    = moment().add('month', 1).format('YYYY-MM');
 var thisMonth = moment().format('YYYY-MM');
 
+ajaxEvents = [];
+
+$.ajax({
+    method: "POST",
+    dataType: "json",
+    url: '/calevents',
+    success: function(data) {
+        $.each(data, function(key, event) {
+
+            var item = {"start" : moment(event.start).format('YYYY-MM-DD'), 
+              "end" : moment(event.end).format('YYYY-MM-DD'), 
+              "title" : event.title, "description" : event.description};
+
+            ajaxEvents.push(item);  
+        });
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+        console.log(errorThrown);
+    }
+});
+
 var events = [
   { start: thisMonth + '-10', 
     end: thisMonth + '-14', 
@@ -17,7 +38,7 @@ var events = [
 
 $('#calendar_target').clndr({
   template: $('#template-calendar').html(),
-  events: events,
+  events: ajaxEvents,
   clickEvents: {
     click: function(target) { 
       console.log(target);}}, 

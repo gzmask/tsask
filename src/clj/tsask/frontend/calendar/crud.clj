@@ -19,9 +19,20 @@
    :body ""})
 
 (defn calevents
-  "response forms that should be in calendar"
+  "json response forms that should be in calendar"
   []
-  (ut/response {:foo "bar"}))
+  (ut/response 
+    [{:title "form 1" 
+      :description "this is description of form 1"
+      :form_id 1
+      :start (java.util.Date.)
+      :end (java.util.Date.)}
+     {:title "form 2" 
+      :description "this is description of form 2"
+      :form_id 2
+      :start (java.util.Date.)
+      :end (java.util.Date.)}
+     ]))
 
 (def CLNDR-template
   [:script 
