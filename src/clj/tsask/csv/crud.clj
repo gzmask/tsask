@@ -86,7 +86,7 @@
             :paid_by     (:paid_by     params) 
             :card_type   (:card_type   params) 
             :payment_amt (empty-to-nil (:payment_amt params))
-            :created_at  (java.util.Date.)
+            :created_at  (.getTime (java.util.Date.))
             :o_id        (:o_id params)}))
 
 

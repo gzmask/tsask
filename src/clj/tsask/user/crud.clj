@@ -87,8 +87,8 @@
               :first_name 	(:first_name params)
               :last_name        (:last_name params)
               :password         (digest/sha-256 (:password params))
-              :created_at	(java.util.Date.)
-              :updated_at	(java.util.Date.)})
+              :created_at	(.getTime (java.util.Date.))
+              :updated_at	(.getTime (java.util.Date.))})
   (redirect "/users"))
 
 (defn update [params]
@@ -98,7 +98,7 @@
                 :email_address	(:email_address params)
                 :first_name 	(:first_name params)
                 :last_name      (:last_name params)
-                :updated_at	(java.util.Date.)}
+                :updated_at	(.getTime (java.util.Date.))}
               (sql/where {:id (:id params)}))
     (j/update! SQLDB :user
                {:username 	(:username params)
@@ -106,7 +106,7 @@
                 :first_name 	(:first_name params)
                 :last_name      (:last_name params)
                 :password       (digest/sha-256 (:password params))
-                :updated_at	(java.util.Date.)}
+                :updated_at	(.getTime (java.util.Date.))}
               (sql/where {:id (:id params)})))
   (redirect "/users"))
 

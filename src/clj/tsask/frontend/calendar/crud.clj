@@ -18,21 +18,27 @@
    :headers {"Location" url}
    :body ""})
 
+(def one-day 86400000)
+
+(comment "debug repls"
+  (j/query SQLDB (sql/select [:id :title :description :form_id :start :end] :calevent))
+  (j/query SQLDB (sql/select [:created_at] :sa_orders))
+  (j/insert! SQLDB :calevent 
+             {:title "form 2" 
+              :description "this is description of form 2" 
+              :form_id 1 
+              :start (- (.getTime (java.util.Date.)) one-day) 
+              :end (+ (.getTime (java.util.Date.)) one-day)})
+  (type (.getTime (java.util.Date.))))
+
 (defn calevents
   "json response forms that should be in calendar"
   []
-  (ut/response 
-    [{:title "form 1" 
-      :description "this is description of form 1"
-      :form_id 1
-      :start (java.util.Date.)
-      :end (java.util.Date.)}
-     {:title "form 2" 
-      :description "this is description of form 2"
-      :form_id 2
-      :start (java.util.Date.)
-      :end (java.util.Date.)}
-     ]))
+  (let [events (j/query SQLDB 
+                        (sql/select [:id :title :description :form_id :start :end] :calevent))]
+    (ut/response events)))
+
+(java.util.Date.)
 
 (def CLNDR-template
   [:script 

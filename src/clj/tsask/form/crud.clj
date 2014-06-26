@@ -85,8 +85,8 @@
     (j/insert! SQLDB :sa_forms {:form_name        (:form_name form)
                                 :form_content     (:form_content form)
                                 :form_published   (:form_published form)
-                                :created_at       (java.util.Date.)
-                                :updated_at       (java.util.Date.)}))
+                                :created_at       (.getTime (java.util.Date.))
+                                :updated_at       (.getTime (java.util.Date.))}))
     (redirect "/forms"))
 
 
@@ -113,8 +113,8 @@
              {:form_name 	(:form_name params)
               :form_content	(:form_content params)
               :form_published 	(:form_published params)
-              :created_at	(java.util.Date.)
-              :updated_at	(java.util.Date.)})
+              :created_at	(.getTime (java.util.Date.))
+              :updated_at	(.getTime (java.util.Date.))})
   (redirect "/forms"))
 
 (defn update [params]
@@ -122,7 +122,7 @@
              {:form_name 	(:form_name params)
               :form_content	(:form_content params)
               :form_published 	(:form_published params)
-              :updated_at	(java.util.Date.)}
+              :updated_at	(.getTime (java.util.Date.))}
              (sql/where {:id (:id params)}))
   (redirect "/forms"))
 

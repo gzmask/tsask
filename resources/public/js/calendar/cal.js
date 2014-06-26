@@ -14,14 +14,24 @@ $.ajax({
             var item = {"start" : moment(event.start).format('YYYY-MM-DD'), 
               "end" : moment(event.end).format('YYYY-MM-DD'), 
               "title" : event.title, "description" : event.description};
-
             ajaxEvents.push(item);  
-        });
+        }); 
+      $('#calendar_target').clndr({
+        template: $('#template-calendar').html(),
+        events: ajaxEvents,
+        clickEvents: {
+          click: function(target) {
+            console.log(target);}}, 
+        multiDayEvents: {
+          startDate: 'start',
+          endDate: 'end'},
+      });
     },
     error: function(jqXHR, textStatus, errorThrown) {
         console.log(errorThrown);
     }
 });
+
 
 var events = [
   { start: thisMonth + '-10', 
@@ -36,14 +46,4 @@ var events = [
     form_id: 2 }
   ];
 
-$('#calendar_target').clndr({
-  template: $('#template-calendar').html(),
-  events: ajaxEvents,
-  clickEvents: {
-    click: function(target) { 
-      console.log(target);}}, 
-  multiDayEvents: {
-    startDate: 'start',
-    endDate: 'end'},
-});
 

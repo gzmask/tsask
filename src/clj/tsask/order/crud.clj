@@ -92,8 +92,8 @@
   (j/insert! SQLDB :sa_orders
              {:order_content (:order_content params)
               :form_name (:form_name params)
-              :created_at (java.util.Date.)
-              :updated_at (java.util.Date.)}))
+              :created_at (.getTime (java.util.Date.))
+              :updated_at (.getTime (java.util.Date.))}))
 
 (defn delete [id]
   (if (.exists (io/file (str "resources/public/files/Invoice-" id ".jpg")))
