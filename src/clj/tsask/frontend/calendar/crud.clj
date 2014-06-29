@@ -29,6 +29,7 @@
               :form_id 1 
               :start (- (.getTime (java.util.Date.)) one-day) 
               :end (+ (.getTime (java.util.Date.)) one-day)})
+  (java.util.Date.)
   (type (.getTime (java.util.Date.))))
 
 (defn calevents
@@ -37,8 +38,6 @@
   (let [events (j/query SQLDB 
                         (sql/select [:id :title :description :form_id :start :end] :calevent))]
     (ut/response events)))
-
-(java.util.Date.)
 
 (def CLNDR-template
   [:script 
