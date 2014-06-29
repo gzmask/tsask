@@ -179,6 +179,10 @@
      [:dt
       [:div.ltit [:strong "Forms Builder"]]
       [:div.rbtns
+       [:label "Begin date: "]
+       [:input#begin {:type "text" :name "begin"}]
+       [:label "End date: "]
+       [:input#end {:type "text" :name "end"}]
        [:a.bsave {:href "#!" :title "save" :onclick "saveForm()"} "SAVE"]
        [:a.bcancle {:href "/forms" :title "cancel"} "CANCLE"]]
       [:div.clear]]
@@ -213,7 +217,8 @@
          [:ul.fbc_list (:form_content form)]]
         [:div.clear]]]]]
     [:input#form_content {:type "hidden" :name "form_content" :value ""}]
-    [:input#form_published {:type "hidden" :name "form_published" :value ""}]])))
+    [:input#form_published {:type "hidden" :name "form_published" :value ""}]
+    (include-js "//code.jquery.com/jquery-1.9.1.js" "//code.jquery.com/ui/1.10.3/jquery-ui.js" "/js/csv.js")])))
 
 (def home-pg 
   (binding [*js-css-files* home-files]
