@@ -109,13 +109,19 @@
     (template/form-design-pages)))
 
 (defn create [params]
-  (j/insert! SQLDB :sa_forms
+  (let [form_record (j/insert! SQLDB :sa_forms
              {:form_name 	(:form_name params)
               :form_content	(:form_content params)
               :form_published 	(:form_published params)
               :created_at	(.getTime (java.util.Date.))
-              :updated_at	(.getTime (java.util.Date.))})
-  (redirect "/forms"))
+              :updated_at	(.getTime (java.util.Date.))})] 
+    (j/insert! SQLDB :calevent 
+               {:title (:form_name params)
+                :description (:form_name params)
+                :form_id (:last_insert_rowid() form_record)
+                :start (:start params)
+                :end (:end params)})
+  (redirect "/forms")))
 
 (defn update [params]
   (j/update! SQLDB :sa_forms
