@@ -42,6 +42,10 @@
     nil
     value))
 
+(defn get_last_id [record]
+  ((keyword "last_insert_rowid()") (first record)))
+  
+
 (defmacro wrap-error-handler
   [handler]
   `(wrap-with-try-catch ~handler (err-handler)))

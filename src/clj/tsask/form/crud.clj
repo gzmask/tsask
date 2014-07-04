@@ -69,6 +69,7 @@
 
 (defn delete [id]
   (j/delete! SQLDB :sa_forms (sql/where {:id id}))
+  (j/delete! SQLDB :calevent (sql/where {:form_id id}))
   (redirect "/forms"))
 
 (defn edit [id]
@@ -118,7 +119,7 @@
     (j/insert! SQLDB :calevent 
                {:title (:form_name params)
                 :description (:form_name params)
-                :form_id (:last_insert_rowid() form_record)
+                :form_id (get_last_id form_record)
                 :start (:start params)
                 :end (:end params)})
   (redirect "/forms")))
@@ -169,7 +170,7 @@
                         :paid_by     (:trnCardOwner     params) 
                         :card_type   (:trnCardType   params) 
                         :payment_amt (not-empty (:trnAmount params))
-                        :o_id (:last_insert_rowid() order_record)}
+                        :o_id (get_last_id order_record)}
           file (:real_input params)
           upload_file  (if (not-empty (:filename file)) (io/copy (io/file (:tempfile file)) (io/file (str "resources/public/files/Invoice-" (:last_insert_rowid() order_record) (if (= "image/jpeg" (:content-type file)) ".jpg" (if (= "application/pdf" (:content-type file)) ".pdf"))))))
           csv_record   (csv/create payment-info)
