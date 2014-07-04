@@ -170,19 +170,21 @@
                               [:span.fonti [:label {:for "sf_guard_user_password_again"} "Password (again)"]]]
                               [:div.sf_admin_form_row.sf_admin_text.sf_admin_form_field_password_again]]]]]]]]]]]]])))
 
-(defn form-design-pages [& [form]]
+(defn form-design-pages [& [form calevt]]
   (binding [*js-css-files* form-edit-files]
   (pages
-   [:form {:method "post" :action (.replace (str "/form/" (:id form) "/create") "//" "/")}
+   [:form {:method "post" :action 
+           (if (:id form) (str "/form/" (:id form) "/update")
+             (str "/form/create"))}
     [:input {:type "hidden" :name "sf_method" :value "put"}]
     [:dl.txtcont
      [:dt
       [:div.ltit [:strong "Forms Builder"]]
       [:div.rbtns
        [:label "Begin date: "]
-       [:input#start {:type "text" :name "start"}]
+       [:input#start {:type "text" :name "start" :value (:start calevt)}]
        [:label "End date: "]
-       [:input#end {:type "text" :name "end"}]
+       [:input#end {:type "text" :name "end" :value (:end calevt)}]
        [:a.bsave {:href "#!" :title "save" :onclick "saveForm()"} "SAVE"]
        [:a.bcancle {:href "/forms" :title "cancel"} "CANCLE"]]
       [:div.clear]]

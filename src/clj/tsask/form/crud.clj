@@ -76,8 +76,11 @@
   (binding [template/*js-css-files* template/form-edit-files]
     (let [form (first (j/query SQLDB
                                (sql/select [:id :form_name :form_content] :sa_forms
-                                           (sql/where {:id id}))))]
-      (template/form-design-pages form))))
+                                           (sql/where {:id id}))))
+          calevt (first (j/query SQLDB
+                                 (sql/select [:id :title :description :form_id :start :end] :calevent
+                                            (sql/where {:form_id id}))))]
+      (template/form-design-pages form calevt))))
 
 (defn copy [id]
   (let [form (first (j/query SQLDB
@@ -129,8 +132,14 @@
              {:form_name 	(:form_name params)
               :form_content	(:form_content params)
               :form_published 	(:form_published params)
-              :updated_at	(.getTime (java.util.Date.))}
-             (sql/where {:id (:id params)}))
+              :updated_at	(.getTime (java.util.Date.))} 
+             (sql/where {:id (:id params)})) 
+  (j/update! SQLDB :calevent 
+             {:title (:form_name params)
+              :description (:form_name params)
+              :start (:start params)
+              :end (:end params)} 
+             (sql/where {:form_id (:id params)}))
   (redirect "/forms"))
 
 (defn add-cart [params session]
