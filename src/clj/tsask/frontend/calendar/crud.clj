@@ -18,9 +18,9 @@
    :headers {"Location" url}
    :body ""})
 
-(def one-day 86400000)
 
 (comment "debug repls"
+  (def one-day 86400000)
   (j/query SQLDB (sql/select [:id :title :description :form_id :start :end] :calevent))
   (j/query SQLDB (sql/select [:created_at] :sa_orders))
   (def cal_evt
