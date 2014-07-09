@@ -28,6 +28,15 @@ CREATE TABLE "calevent" (
   "start" datetime NOT NULL,
   "end" datetime NOT NULL
 );
+CREATE TABLE "hasrole" (
+  "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+  "user_id" bigint(20) NOT NULL,
+  "role_id" bigint(20) NOT NULL
+);
+CREATE TABLE "role" (
+  "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+  "name" varchar(255) NOT NULL
+);
 CREATE TABLE "sa_forms" (
   "id" INTEGER PRIMARY KEY AUTOINCREMENT,
   "form_name" varchar(255) DEFAULT NULL,

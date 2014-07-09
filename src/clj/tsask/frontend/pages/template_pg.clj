@@ -9,7 +9,8 @@
 (def ^:dynamic *js-css-files* nil)
 (def ^:dynamic *main-nav*
   (let [nav-list [{:id "carts" :content "Cart" :title "carts" :href "/carts"}
-                  {:id "calendar" :content "Calendar" :title "calendar" :href "/calendar"}]]
+                  {:id "calendar" :content "Calendar" :title "calendar" :href "/calendar"}
+                  {:id "signup" :content "Signup" :title "signup" :href "/user/new"}]]
     [:div.mainnav
      [:ul.navlist
       (map (fn [nav] (let [nav-ele (second nav)] 

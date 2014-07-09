@@ -53,5 +53,5 @@ CREATE TABLE "user" (
   "created_at" datetime,
   "updated_at" datetime
 );
-INSERT INTO user (username, password) VALUES ('admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918');
+INSERT INTO user (id, username, password) VALUES (1, 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918');
 COMMIT;
