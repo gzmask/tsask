@@ -63,7 +63,7 @@
   (GET "/calendar" {session :session} (cal/index session))
   (GET "/calevents" {params :params session :session} (cal/calevents))
 
-  (GET "/fuser/new" {session :session} (wrap-session-verify session (fuser/new)))
+  (GET "/fuser/signup" {session :session} (wrap-session-verify session (fuser/signup)))
   (POST "/fuser/create" {params :params} (fuser/create params))
   (GET "/fuser/:id/edit" {{id :id} :params session :session} (wrap-session-verify session (fuser/edit id)))
   (POST "/fuser/:id/update" {params :params session :session} (wrap-session-verify session (fuser/update params)))

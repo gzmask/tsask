@@ -1,7 +1,6 @@
 (ns tsask.frontend.user.crud
   (:use tsask.env
         tsask.util
-        tsask.frontend.pages.template-pg
         com.reasonr.scriptjure
         digest
         hiccup.page
@@ -9,6 +8,7 @@
   (:require [clojure.java.jdbc :as j]
             [clojure.java.jdbc.sql :as sql]
             [clj-http.client :as client]
+            [tsask.frontend.pages.template-pg :as template]
             [net.cgrand.enlive-html :as html]
             [me.raynes.laser :as l]))
 
@@ -18,9 +18,9 @@
    :body ""})
 
 (defn user-design-pages [& [user]]
-  (binding [*js-css-files* user-files
-            *sub-nav* nil]
-  (pages
+  (binding [template/*js-css-files* template/user-files
+            template/*sub-nav* nil]
+  (template/pages
     [:dl.txtcont
       [:form#user_form {:method "post" :action (if user (str "/fuser/" (:id user) "/update")
                                                  (str "/fuser/create")) 
@@ -91,14 +91,14 @@
                               [:div.sf_admin_form_row.sf_admin_text.sf_admin_form_field_password_again]]]]]]]]]]]]])))
 
 (defn edit [id]
-  (binding [*js-css-files* user-files]
+  (binding [template/*js-css-files* template/user-files]
     (let [user (first (j/query SQLDB
                                (sql/select [:id :username :email_address :first_name :last_name] :user
                                            (sql/where {:id id}))))]
       (user-design-pages user))))
 
-(defn new []
-  (binding [*js-css-files* user-files]
+(defn signup []
+  (binding [template/*js-css-files* template/user-files]
     (user-design-pages)))
 
 (defn create [params]

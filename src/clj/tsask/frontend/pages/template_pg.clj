@@ -10,7 +10,7 @@
 (def ^:dynamic *main-nav*
   (let [nav-list [{:id "carts" :content "Cart" :title "carts" :href "/carts"}
                   {:id "calendar" :content "Calendar" :title "calendar" :href "/calendar"}
-                  {:id "signup" :content "Signup" :title "signup" :href "/fuser/new"}]]
+                  {:id "signup" :content "Signup" :title "signup" :href "/fuser/signup"}]]
     [:div.mainnav
      [:ul.navlist
       (map (fn [nav] (let [nav-ele (second nav)] 
@@ -24,7 +24,7 @@
    [:a.newform {:href "/form/new" :title "new form"} "New Form"]
    [:a.newuser {:href "/fuser/new" :title "new user"} "New User"]])
 
-(def user-files (.split (slurp "resources/public/html/user.files") "\n"))
+(def user-files ["/css/fcommon.css" "/css/fix.css" "/js/jquery-1.7.2.js" "/js/DD_belatedPNG.js" "/js/layout.js" "/js/login.js" "/js/user.js"])
 
 (defn include-js-css [files]
   (for [f files]
