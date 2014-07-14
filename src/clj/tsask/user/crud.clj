@@ -81,6 +81,20 @@
     (user-design-pages)))
 
 (defn create [params]
+  (let [user (j/insert! SQLDB :user 
+                        {:username 	(:username params) 
+                         :email_address	(:email_address params)
+                         :first_name 	(:first_name params) 
+                         :last_name        (:last_name params) 
+                         :password         (digest/sha-256 (:password params)) 
+                         :created_at	(.getTime (java.util.Date.)) 
+                         :updated_at	(.getTime (java.util.Date.))})] 
+    (j/insert! SQLDB :hasrole 
+               {:user_id (get_last_id user) 
+                :role_id 1}) 
+    (redirect "/users")))
+
+(defn create [params]
   (j/insert! SQLDB :user
              {:username 	(:username params)
               :email_address	(:email_address params)

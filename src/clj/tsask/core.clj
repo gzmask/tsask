@@ -22,6 +22,7 @@
               [tsask.order.crud :as order]
               [tsask.frontend.cart.crud :as cart]
               [tsask.frontend.calendar.crud :as cal]
+              [tsask.frontend.user.crud :as fuser]
               [tsask.user.crud :as user]
               [tsask.file.crud :as file]))
 
@@ -61,6 +62,11 @@
 
   (GET "/calendar" {session :session} (cal/index session))
   (GET "/calevents" {params :params session :session} (cal/calevents))
+
+  (GET "/fuser/new" {session :session} (wrap-session-verify session (fuser/new)))
+  (POST "/fuser/create" {params :params} (fuser/create params))
+  (GET "/fuser/:id/edit" {{id :id} :params session :session} (wrap-session-verify session (fuser/edit id)))
+  (POST "/fuser/:id/update" {params :params session :session} (wrap-session-verify session (fuser/update params)))
 
   (GET "/users" {{sort :sort sort-type :sort_type} :params session :session} (wrap-session-verify session (user/index sort sort-type)))
   (GET "/user/new" {session :session} (wrap-session-verify session (user/new)))
